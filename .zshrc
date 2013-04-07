@@ -104,7 +104,7 @@ clone() {
 }
 
 ec2() {
-  ssh -i $HOME/.ssh/wopata root@$1
+  ssh -i $ec2_keyfile root@$1
 }
 
 run() {
