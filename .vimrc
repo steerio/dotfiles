@@ -91,6 +91,12 @@ nnoremap <Leader>c :cd ~/Wrk/
 nnoremap <Leader>C :cd ~/Clj/
 nnoremap <Leader>p :cd ~/Wrk/pillango/
 inoremap <Tab> <C-R>=MyTab()<cr>
+nnoremap <Leader>n :lne<CR>
+nnoremap <Leader>N :lp<CR>
+nnoremap <Leader>f :lnf<CR>
+nnoremap <Leader>F :lpf<CR>
+
+cnoreabbrev / lgrep -r
 
 let maplocalleader=','
 set lispwords+=->,->>
