@@ -62,7 +62,11 @@ app() {
   fi
 
   if [[ -n $heroku_app ]]; then
-    RPROMPT="%F{red}--app $heroku_app%f"
+    if [[ $heroku_app =~ -staging$ ]]; then
+      RPROMPT="%F{red}${heroku_app%-staging}%F{magenta}-s%f"
+    else
+      RPROMPT="%F{red}$heroku_app%f"
+    fi
   else
     unset heroku_app
     unset RPROMPT
