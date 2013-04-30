@@ -83,10 +83,10 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au FileType clojure call MyCljBindings()
 au FileType html,xml source ~/.vim/scripts/closetag.vim
-nnoremap <Leader>s :Sexplore<CR>z10<CR>8Gz<CR>j
-nnoremap <Leader>S :s .<CR>z10<CR>8Gz<CR>j
-nnoremap <Leader>e :Explore<CR>8Gz<CR>j
-nnoremap <Leader>E :e .<CR>8Gz<CR>j
+nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
+nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
+nnoremap <Leader>e :Explore<CR>9Gz<CR>j
+nnoremap <Leader>E :e .<CR>9Gz<CR>j
 nnoremap <Leader>c :cd ~/Wrk/
 nnoremap <Leader>C :cd ~/Clj/
 nnoremap <Leader>p :cd ~/Wrk/pillango/
@@ -104,4 +104,4 @@ let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
 let g:clojure_align_multiline_strings = 1
 let g:paredit_electric_return = 0
-let g:netrw_liststyle=1
+let g:netrw_list_hide = '^\..*swp$,^\.git/$,^\.bundle/$'
