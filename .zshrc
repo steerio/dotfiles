@@ -168,6 +168,9 @@ alias lua="rlwrap luajit -i ~/.luarc"
 
 alias g=git
 alias ga='git add'
+alias gci='git commit'
+alias gdf='git diff'
+alias gst='git status -sb'
 alias pull='git pull'
 alias push='git push'
 
