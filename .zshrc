@@ -13,31 +13,45 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
-__collapse_branch () {
-  local out
-  if [[ -n $1 ]]; then
-    case $1 in
-      master|staging)
-        out="%F{green}${1[1]}"
+if [[ -n $SSH_TTY ]]; then
+  PROMPT="%F{cyan}[%F{yellow}%n@%m %F{blue}%~%F{cyan}]%f "
+else
+  __collapse_path () {
+    case $PWD in
+      $HOME/*)
+        echo ${PWD#$HOME/}
         ;;
-      stable)
-        out="%F{red}S"
+      $HOME)
+        echo '~'
         ;;
-      feature[_-]*)
-        out="%F{magenta}${1#feature}"
-        ;;
-      *?)
-        out="%F{magenta}$1"
+      *)
+        echo $PWD
         ;;
     esac
-    echo " $out$2"
-  fi
-}
+  }
 
-if [[ -n $SSH_TTY ]]; then
-  PROMPT="%F{green}%n@%m %F{blue}%~ %#%f "
-else
-  PROMPT='%F{cyan}[%F{blue}%~$(__collapse_branch ${=vcs_info_msg_0_})%F{cyan}]%f '
+  __collapse_branch () {
+    local out
+    if [[ -n $1 ]]; then
+      case $1 in
+        master|staging)
+          out="%F{green}${1[1]}"
+          ;;
+        stable)
+          out="%F{red}S"
+          ;;
+        feature[_-]*)
+          out="%F{magenta}${1#feature}"
+          ;;
+        *?)
+          out="%F{magenta}$1"
+          ;;
+      esac
+      echo " $out$2"
+    fi
+  }
+
+  PROMPT='%F{cyan}[%F{blue}$(__collapse_path)$(__collapse_branch ${=vcs_info_msg_0_})${prompt_app}%F{cyan}]%f '
   autoload vcs_info
   setopt prompt_subst
   zstyle ':vcs_info:*' unstagedstr '%F{11}●'
@@ -62,14 +76,13 @@ app() {
   fi
 
   if [[ -n $heroku_app ]]; then
-    if [[ $heroku_app =~ -staging$ ]]; then
-      RPROMPT="%F{red}${heroku_app%-staging}%F{magenta}-s%f"
-    else
-      RPROMPT="%F{red}$heroku_app%f"
-    fi
+    prompt_app=$heroku_app
+    [[ $heroku_app =~ ^pillango- ]] && prompt_app="p-${prompt_app#pillango-}"
+    [[ $heroku_app =~ -staging$ ]] && prompt_app="${prompt_app%-staging}-s"
+    prompt_app=" %F{yellow}$prompt_app"
   else
     unset heroku_app
-    unset RPROMPT
+    unset prompt_app
   fi
 }
 
