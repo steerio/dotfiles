@@ -88,9 +88,9 @@ app() {
 
 heroku() {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
-    $commands[heroku] $* --app $heroku_app
+    ~/.heroku/client/bin/heroku $* --app $heroku_app
   else
-    $commands[heroku] $*
+    ~/.heroku/client/bin/heroku $*
   fi
 }
 
