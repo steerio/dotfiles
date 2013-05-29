@@ -170,7 +170,7 @@ rails() {
 
 alias be='bundle exec'
 alias bu=bundle
-alias clj='rlwrap java -cp ~/jars/clojure-1.5.0.jar:. clojure.main'
+alias clj="rlwrap java -cp `echo ~/jars/clojure-*.jar`:. clojure.main"
 alias he=heroku
 
 alias hc="heroku run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
