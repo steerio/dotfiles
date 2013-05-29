@@ -69,9 +69,13 @@ export ANDROID_HOME BREW EDITOR JAVA_HOME LSCOLORS \
 
 app() {
   if [[ -n $1 ]]; then
-    prompt_app=$1
-    [[ $heroku_app =~ ^pillango- ]] && prompt_app="p-${prompt_app#pillango-}"
-    [[ $heroku_app =~ -staging$ ]] && prompt_app="${prompt_app%-staging}-s"
+    prompt_app=$1${2:+-$2}
+    if [[ $heroku_app =~ ^pillango- ]]; then
+      prompt_app="p-${prompt_app#pillango-}"
+    fi
+    if [[ $heroku_app =~ -staging$ ]]; then
+      prompt_app="${prompt_app%-staging}-s"
+    fi
     prompt_app=" %F{yellow}$prompt_app"
   else
     unset heroku_app
