@@ -2,6 +2,7 @@
 
 if [[ -z $ZSH_VERSION ]]; then
   echo This script needs zsh. >&2
+  exit 1
 fi
 
 setopt extended_glob
