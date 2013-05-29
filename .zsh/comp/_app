@@ -1,0 +1,13 @@
+#compdef app
+
+if list=`git remote -v 2>/dev/null`; then
+  if [[ -n $list ]]; then
+    out=`echo $list|ruby -ne 'BEGIN { a=[] }; a << $_.scan(/heroku.com[:\/]([a-z0-9_-]+).*push/).first; END { puts a.compact.uniq.join(" ") }'`
+  fi
+  if [[ -z $out ]]; then
+    out=$(basename `git rev-parse --show-toplevel`)
+  fi
+  _arguments "1: :($out)"
+else
+  _arguments "1: :($(basename `pwd`))"
+fi

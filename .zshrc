@@ -68,12 +68,7 @@ export ANDROID_HOME BREW EDITOR JAVA_HOME LSCOLORS \
        LUA_CPATH LUA_PATH PATH PROMPT
 
 app() {
-  if [[ $1 == . ]]; then
-    heroku_app=$(basename `pwd`)
-    [[ -n $2 ]] && heroku_app+="-$2"
-  else
-    heroku_app=$1
-  fi
+  heroku_app=$1
 
   if [[ -n $heroku_app ]]; then
     prompt_app=$heroku_app
