@@ -1,23 +1,26 @@
 #compdef app
 
-local list out state
-_arguments '1: :->base' '2: :->suffix'
+local list out ret=1 state
+_arguments '1: :->base' '2: :->suffix' && ret=0
 
 case $state in
   base)
     if list=`git remote -v 2>/dev/null`; then
       if [[ -n $list ]]; then
-        out=`echo $list|ruby -ne 'BEGIN { a=[] }; a << $_.scan(/heroku.com[:\/]([a-z0-9_-]+).*push/).first; END { puts a.compact.uniq.join(" ") }'`
+        out=($(echo $list|ruby -ne 'puts $_.scan(/heroku.com[:\/]([a-z0-9_-]+).*push/).first'))
       fi
       if [[ -z $out ]]; then
-        out=$(basename `git rev-parse --show-toplevel`)
+        out=($(basename `git rev-parse --show-toplevel`))
       fi
     else
-      out="$(basename `pwd`)"
+      out=($(basename `pwd`))
     fi
-    compadd "$@" ${=out}
+    _describe -t apps 'Application names' out && ret=0
     ;;
-  *)
+  suffix)
     compadd "$@" demo staging
+    ret=0
     ;;
 esac
+
+return ret
