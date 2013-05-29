@@ -116,8 +116,13 @@ clone() {
   else
     n=${1%-server}
   fi
-  echo -n "Repo $github_company/$1: "
-  git clone git@github.com:$github_company/$1 "$n"
+  local repo="git@github.com:$github_company/$1.git"
+  echo "Repository $repo"
+  git clone $repo $n
+}
+
+hclone() {
+  git clone git@heroku.com:$1.git $2
 }
 
 ec2() {
