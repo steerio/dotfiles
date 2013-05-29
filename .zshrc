@@ -68,10 +68,8 @@ export ANDROID_HOME BREW EDITOR JAVA_HOME LSCOLORS \
        LUA_CPATH LUA_PATH PATH PROMPT
 
 app() {
-  heroku_app=$1
-
-  if [[ -n $heroku_app ]]; then
-    prompt_app=$heroku_app
+  if [[ -n $1 ]]; then
+    prompt_app=$1
     [[ $heroku_app =~ ^pillango- ]] && prompt_app="p-${prompt_app#pillango-}"
     [[ $heroku_app =~ -staging$ ]] && prompt_app="${prompt_app%-staging}-s"
     prompt_app=" %F{yellow}$prompt_app"
