@@ -99,9 +99,9 @@ nnoremap <Leader>F :lpf<CR>
 cnoreabbrev / lgrep -r
 
 let maplocalleader=','
-set lispwords+=->,->>
+set lispwords+=->,->>,GET,POST,PUT,DELETE,HEAD
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with', '^def', '^let']
+let g:clojure_fuzzy_indent_patterns = ['^with-', '^def']
 let g:clojure_align_multiline_strings = 1
 let g:paredit_electric_return = 0
 let g:netrw_list_hide = '^\..*swp$,^\.git/$,^\.bundle/$'
