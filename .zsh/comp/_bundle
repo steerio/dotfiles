@@ -1,0 +1,26 @@
+#compdef bundle
+
+local ret=1 state
+_arguments ':subcommand:->subcommand' && ret=0
+
+case $state in
+  subcommand)
+    subcommands=(
+      "clean:Cleans up unused gems in your bundler directory"
+      "config:Specify and read configuration options for bundler"
+      "console:Start an IRB session in the context of the current bundle"
+      "env:Show environment"
+      "exec:Execute script in the context of the current bundle"
+      "gem:Create a simple gem, suitable for development with bundler"
+      "init:Generate a simple Gemfile, placed in the current directory"
+      "install:Install gems specified by Gemfile or Gemfile.lock"
+      "outdated:Show all of the outdated gems in the current bundle"
+      "show:Show the source location of a particular gem in the bundle"
+      "update:Update dependencies to their latest versions"
+    )
+    _describe -t subcommands 'bundle subcommands' subcommands && ret=0
+esac
+
+return ret
+
+# vim: ft=zsh sw=2 ts=2 et
