@@ -15,3 +15,7 @@ for i in (.*~.git*~.*.swp); do
   rm -rf $HOME/$i
   ln -s $src/$i $HOME/
 done
+
+if which heroku >/dev/null; then
+  ruby scrape-heroku.rb >.zsh/comp/_heroku
+fi
