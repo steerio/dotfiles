@@ -182,6 +182,11 @@ alias hsh='heroku run /bin/bash'
 alias ls='ls -G'
 alias lua="rlwrap luajit -i ~/.luarc"
 
+gbc () {
+  git branch $1
+  git checkout $1
+}
+
 alias g=git
 alias ga='git add'
 alias gbr='git branch'
