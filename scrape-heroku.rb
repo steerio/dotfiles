@@ -59,7 +59,7 @@ end
     if kk = back[v]
       opts.delete k
       opts.delete kk
-      opts["#{k}|#{kk}"] = v
+      opts["#{kk}|#{k}"] = v
     else
       back[v] = k
     end
