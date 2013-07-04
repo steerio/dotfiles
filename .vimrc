@@ -82,7 +82,7 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au FileType clojure call MyCljBindings()
-au FileType html,xml source ~/.vim/scripts/closetag.vim
+au FileType html,xml,eruby source ~/.vim/scripts/closetag.vim
 nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>e :Explore<CR>9Gz<CR>j
