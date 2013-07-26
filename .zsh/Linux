@@ -1,0 +1,3 @@
+# vim: filetype=zsh
+
+export EDITOR=vim

@@ -1,13 +1,7 @@
 . ~/.zshrc.local
 
 ANDROID_HOME=$HOME/Android
-BREW=$HOME/.brew
-EDITOR=$HOME/bin/vim # MacVim
-JAVA_HOME=`echo /Library/Java/JavaVirtualMachines/*1.7.0*/Contents/Home`
 LSCOLORS=cx
-LUA_PATH="$BREW/share/lua/5.1/?.lua;$BREW/share/lua/5.1/?/init.lua;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$BREW/Cellar/luarocks/2.0.12/share/lua/5.1/?.lua;$BREW/Cellar/luarocks/2.0.12/share/lua/5.1/?/init.lua;$BREW/share/lua/5.1/?.lua;$BREW/share/lua/5.1/?/init.lua;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$BREW/Cellar/luarocks/2.0.10/share/lua/5.1/?.lua;$BREW/Cellar/luarocks/2.0.10/share/lua/5.1/?/init.lua;./?.lua;$BREW/Cellar/luajit/2.0.0/share/luajit-2.0.0/?.lua;$BREW/Cellar/luajit/2.0.0/share/lua/5.1/?.lua;$BREW/Cellar/luajit/2.0.0/share/lua/5.1/?/init.lua;;$LUA_PATH"
-LUA_CPATH="$BREW/lib/lua/5.1/?.so;$HOME/.luarocks/lib/lua/5.1/?.so;$BREW/lib/lua/5.1/?.so;$HOME/.luarocks/lib/lua/5.1/?.so;./?.so;$BREW/Cellar/luajit/2.0.0/lib/lua/5.1/?.so;;$LUA_CPATH"
-PATH=$HOME/bin:$BREW/bin:$HOME/.rvm/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
 HISTSIZE=1000
 SAVEHIST=1000
@@ -64,8 +58,7 @@ else
   }
 fi
 
-export ANDROID_HOME BREW EDITOR JAVA_HOME LSCOLORS \
-       LUA_CPATH LUA_PATH PATH PROMPT
+export ANDROID_HOME LSCOLORS PATH PROMPT
 
 app() {
   if [[ -n $1 ]]; then
@@ -168,7 +161,7 @@ rails() {
 
 alias be='bundle exec'
 alias bu=bundle
-alias clj="rlwrap java -cp `echo ~/jars/clojure-*.jar`:. clojure.main"
+alias clj="rlwrap java -cp ~/jars/clojure-current.jar:. clojure.main"
 alias he=heroku
 
 alias hc="heroku run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"

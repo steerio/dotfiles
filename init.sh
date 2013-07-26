@@ -16,6 +16,10 @@ for i in (.*~.git*~.*.swp); do
   ln -s $src/$i $HOME/
 done
 
+if [[ ! -f $HOME/.zshrc.local ]]; then
+  echo . $HOME/.zsh/`uname` > $HOME/.zshrc.local
+fi
+
 if which heroku >/dev/null; then
   ruby scrape-heroku.rb >.zsh/comp/_heroku
 fi
