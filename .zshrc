@@ -9,6 +9,9 @@ HISTFILE=~/.history
 
 if [[ -n $SSH_TTY ]]; then
   PROMPT="%F{cyan}[%F{yellow}%n@%m %F{blue}%~%F{cyan}]%f "
+  precmd () {
+    print -Pn "\e]0;%d - %n@%m\a"
+  }
 else
   __collapse_path () {
     case $PWD in
@@ -54,6 +57,7 @@ else
   zstyle ':vcs_info:*' check-for-changes true
 
   precmd() {
+    print -Pn "\e]0;%d\a"
     vcs_info
   }
 fi
@@ -165,10 +169,9 @@ alias clj="rlwrap java -cp ~/jars/clojure-current.jar:. clojure.main"
 alias he=heroku
 
 alias hc="heroku run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
-alias hdump='heroku pgbackups:capture'
 alias hl='heroku logs'
+alias hlt='heroku logs --tail'
 alias hrake='heroku run rake'
-alias hrestore='heroku pgbackups:restore'
 alias hrun='heroku run'
 alias hsh='heroku run /bin/bash'
 
