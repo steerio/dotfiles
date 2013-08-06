@@ -73,7 +73,7 @@ endfunction
 command! Repl call StartRepl()
 command! Term call StartTerm()
 
-au BufNewFile,BufRead *.lsp call PareditInitBuffer()
+au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
 au BufNewFile,BufRead *.json set filetype=javascript
 au BufNewFile,BufRead * set formatoptions-=o
