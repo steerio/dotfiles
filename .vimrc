@@ -1,11 +1,29 @@
 " --- My settings ---
 
-set nocompatible
+set nocompatible ttimeoutlen=50
 set bs=2 ts=2 sw=2 expandtab
 set lazyredraw modeline modelines=3
-set nowrap nohlsearch nobackup nowritebackup ignorecase smartcase autoindent
+set nowrap noshowmode nohlsearch nobackup nowritebackup
+set ignorecase smartcase autoindent
 set foldmethod=marker
 set wildmode=longest,list
+
+let g:airline_powerline_fonts = 1
+let g:airline_linecolumn_prefix = "⭡"
+let g:airline_readonly_symbol = "⭤"
+let g:airline_branch_prefix = "⭠ "
+let g:airline_paste_symbol = "PASTE"
+if has('gui_running')
+  let g:airline_left_sep = "⮀"
+  let g:airline_left_alt_sep = "⮁"
+  let g:airline_right_sep = "⮂"
+  let g:airline_right_alt_sep = "⮃"
+else
+  let g:airline_left_sep = ""
+  let g:airline_left_alt_sep = ""
+  let g:airline_right_sep = ""
+  let g:airline_right_alt_sep = ""
+endif
 
 call pathogen#infect()
 filetype off
@@ -16,7 +34,6 @@ syn on
 " --- Looks ---
 
 set ruler ls=2 bg=dark
-set statusline=%f%(\ [%M%R%H%W]%)%=%l,%c%V%5P\ [%03b\ 0x%02B]
 highlight Folded ctermbg=darkmagenta ctermfg=darkcyan
 highlight StatusLine cterm=bold ctermbg=blue ctermfg=white
 highlight StatusLineNC cterm=NONE ctermbg=blue ctermfg=darkcyan
