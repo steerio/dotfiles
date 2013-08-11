@@ -95,6 +95,7 @@ nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>f :lnf<CR>
 nnoremap <Leader>F :lpf<CR>
+nnoremap <Leader>v :set invpaste
 
 cnoreabbrev / lgrep -r
 
