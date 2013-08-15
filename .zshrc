@@ -183,6 +183,13 @@ gbc () {
   git checkout $1
 }
 
+gru () {
+  local remote=${1-origin}
+  git remote update $remote
+  echo Pruning $remote
+  git remote prune $remote
+}
+
 alias g=git
 alias ga='git add'
 alias gbr='git branch'
@@ -192,8 +199,6 @@ alias gdf='git diff'
 alias gdfc='git diff --cached'
 alias ghi='git log -p'
 alias glog='git log'
-alias grp='git remote prune'
-alias gru='git remote update'
 alias gst='git status -sb'
 alias pull='git pull'
 alias push='git push'
