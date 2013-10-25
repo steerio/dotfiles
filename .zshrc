@@ -190,6 +190,11 @@ gru () {
   git remote prune $remote
 }
 
+gsu () {
+  local br=`git rev-parse --abbrev-ref HEAD`
+  git branch --set-upstream $br origin/$br
+}
+
 alias g=git
 alias ga='git add'
 alias gbr='git branch'
