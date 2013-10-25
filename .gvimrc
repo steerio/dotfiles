@@ -1,4 +1,4 @@
-highlight Folded guibg=#102050 guifg=#4060bb
+highlight Folded guibg=#203020 guifg=#407040
 
 if has('GUI_GTK')
   highlight Normal guibg=black guifg=white
