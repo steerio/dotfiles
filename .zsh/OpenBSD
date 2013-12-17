@@ -1,0 +1,9 @@
+# vim: filetype=zsh
+
+JAVA_HOME=${$(echo /usr/local/jdk-*)[(w)1]}
+if [[ -n $JAVA_HOME ]]; then
+  PATH=$JAVA_HOME/bin:$PATH
+  export JAVA_HOME PATH
+fi
+
+alias ls='ls -F'
