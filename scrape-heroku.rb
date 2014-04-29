@@ -33,7 +33,8 @@ for pkg in pkgs
     f.each_line do |line|
       if line =~ %r{^\s+([a-z]+:[a-z]+).+#\s+(.+)$}
         cmds[$1] = $2.capitalize unless $2.include?('deprecated')
-      elsif line =~ %r{^\s+(-[a-z, -]+).+#\s+(.+)$}
+      elsif line =~ %r{^\s+(-[A-Z]{0,1}[a-z, -]+).+#\s+(.+)$}
+        STDERR.puts "SWITCH: #{$1}"
         opts.add pkg, $1, $2
       end
     end
@@ -44,7 +45,8 @@ for cmd in cmds.keys
   next unless cmd.include? ':'
   cmd "help #{cmd}" do |f|
     f.each_line do |line|
-      if line =~ %r{^\s+([a-z, -]+)\s+#\s+(.+)$}
+      if line =~ %r{^\s+(-[A-Z]{0,1}[a-z, -]+)\s+#\s+(.+)$}
+        STDERR.puts "SWITCH: #{$1}"
         opts.add cmd, $1, $2
       end
     end
