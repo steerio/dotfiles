@@ -62,7 +62,7 @@ else
   }
 fi
 
-export ANDROID_HOME LSCOLORS PATH PROMPT
+export ANDROID_HOME LSCOLORS PROMPT
 
 app() {
   if [[ -n $1 ]]; then
@@ -210,8 +210,6 @@ bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 bindkey "^R" history-incremental-search-backward
 setopt noautomenu nobeep
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.zsh/comp $fpath)
