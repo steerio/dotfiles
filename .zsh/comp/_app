@@ -18,7 +18,7 @@ case $state in
     _describe -t apps 'Application names' out && ret=0
     ;;
   suffix)
-    compadd "$@" demo staging
+    compadd "$@" beta demo staging
     ret=0
     ;;
 esac
