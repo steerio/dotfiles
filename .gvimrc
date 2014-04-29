@@ -6,5 +6,5 @@ if has('GUI_GTK')
   set guioptions-=T
   set guioptions-=m
 else
-  set guifont=Monaco\ for\ Powerline:h12
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
 endif

@@ -7,23 +7,9 @@ set nowrap noshowmode nohlsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
 set foldmethod=marker
 set wildmode=longest,list
+set visualbell
 
 let g:airline_powerline_fonts = 1
-let g:airline_linecolumn_prefix = "⭡"
-let g:airline_readonly_symbol = "⭤"
-let g:airline_branch_prefix = "⭠ "
-let g:airline_paste_symbol = "PASTE"
-if has('gui_running')
-  let g:airline_left_sep = "⮀"
-  let g:airline_left_alt_sep = "⮁"
-  let g:airline_right_sep = "⮂"
-  let g:airline_right_alt_sep = "⮃"
-else
-  let g:airline_left_sep = ""
-  let g:airline_left_alt_sep = ""
-  let g:airline_right_sep = ""
-  let g:airline_right_alt_sep = ""
-endif
 
 call pathogen#infect()
 filetype off
@@ -104,10 +90,9 @@ nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>e :Explore<CR>9Gz<CR>j
 nnoremap <Leader>E :e .<CR>9Gz<CR>j
-nnoremap <Leader>c :cd ~/Wrk/
-nnoremap <Leader>C :cd ~/Clj/
-nnoremap <Leader>p :cd ~/Wrk/pillango/
-inoremap <Tab> <C-R>=MyTab()<cr>
+nnoremap <Leader>c :lcd ~/Wrk/
+nnoremap <Leader>C :lcd ~/Clj/
+"inoremap <Tab> <C-R>=MyTab()<cr>
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>f :lnf<CR>
