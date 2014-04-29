@@ -1,31 +1,31 @@
 . ~/.zshrc.local
 
-ANDROID_HOME=$HOME/Android
-LSCOLORS=cx
-
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
+__collapse_path () {
+  case $PWD in
+    $HOME/*)
+      echo ${PWD#$HOME/}
+      ;;
+    $HOME)
+      echo '~'
+      ;;
+    *)
+      echo $PWD
+      ;;
+  esac
+}
+
+setopt prompt_subst
+
 if [[ -n $SSH_TTY ]]; then
-  PROMPT="%F{cyan}[%F{yellow}%n@%m %F{blue}%~%F{cyan}]%f "
+  PROMPT='%F{cyan}[%F{yellow}%n@%m %F{blue}$(__collapse_path)%F{cyan}]%f '
   precmd () {
     print -Pn "\e]0;%d - %n@%m\a"
   }
 else
-  __collapse_path () {
-    case $PWD in
-      $HOME/*)
-        echo ${PWD#$HOME/}
-        ;;
-      $HOME)
-        echo '~'
-        ;;
-      *)
-        echo $PWD
-        ;;
-    esac
-  }
 
   __collapse_branch () {
     local out
@@ -50,7 +50,6 @@ else
 
   PROMPT='%F{cyan}[%F{blue}$(__collapse_path)$(__collapse_branch ${=vcs_info_msg_0_})${prompt_app}%F{cyan}]%f '
   autoload vcs_info
-  setopt prompt_subst
   zstyle ':vcs_info:*' unstagedstr '%F{11}●'
   zstyle ':vcs_info:*' stagedstr '%F{28}●'
   zstyle ':vcs_info:git*' formats '%b %u%c'
@@ -62,7 +61,7 @@ else
   }
 fi
 
-export ANDROID_HOME LSCOLORS PROMPT
+export PATH PROMPT
 
 app() {
   if [[ -n $1 ]]; then
@@ -172,7 +171,6 @@ alias hrake='heroku run rake'
 alias hrun='heroku run'
 alias hsh='heroku run /bin/bash'
 
-alias ls='ls -G'
 alias lua="rlwrap luajit -i ~/.luarc"
 
 gbc () {
