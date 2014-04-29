@@ -68,9 +68,6 @@ app() {
   if [[ -n $1 ]]; then
     prompt_app=$1${2:+-$2}
     heroku_app=$prompt_app
-    if [[ $heroku_app =~ ^pillango- ]]; then
-      prompt_app="p-${prompt_app#pillango-}"
-    fi
     if [[ $heroku_app =~ -staging$ ]]; then
       prompt_app="${prompt_app%-staging}-s"
     fi
