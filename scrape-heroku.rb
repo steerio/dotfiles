@@ -2,7 +2,7 @@
 
 require 'erb'
 
-HEROKU="#{ENV['HOME']}/.heroku/client/bin/heroku"
+HEROKU="#{ENV['HOME']}/.heroku/heroku-client/bin/heroku"
 
 def cmd cmdline, &blk
   STDERR.puts cmdline
