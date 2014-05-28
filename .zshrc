@@ -20,6 +20,10 @@ __collapse_path () {
 
 setopt prompt_subst
 
+if [[ "$TMUX" != "" ]]; then
+  export TERM=screen-256color
+fi
+
 if [[ -n $SSH_TTY ]]; then
   PROMPT='%F{cyan}[%F{yellow}%n@%m %F{blue}$(__collapse_path)%F{cyan}]%f '
   precmd () {
