@@ -7,23 +7,9 @@ set nowrap noshowmode nohlsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
 set foldmethod=marker
 set wildmode=longest,list
+set visualbell
 
 let g:airline_powerline_fonts = 1
-let g:airline_linecolumn_prefix = "⭡"
-let g:airline_readonly_symbol = "⭤"
-let g:airline_branch_prefix = "⭠ "
-let g:airline_paste_symbol = "PASTE"
-if has('gui_running')
-  let g:airline_left_sep = "⮀"
-  let g:airline_left_alt_sep = "⮁"
-  let g:airline_right_sep = "⮂"
-  let g:airline_right_alt_sep = "⮃"
-else
-  let g:airline_left_sep = ""
-  let g:airline_left_alt_sep = ""
-  let g:airline_right_sep = ""
-  let g:airline_right_alt_sep = ""
-endif
 
 call pathogen#infect()
 filetype off
@@ -77,19 +63,6 @@ fu! MyCljBindings()
   exe 'nmap <buffer> <LocalLeader>: <Plug>FireplacePrompt' . &cedit . 'i'
 endfunction
 
-function StartRepl()
-  :silent !osascript -e 'tell application "Terminal"' -e "do script \"cd `pwd`; lein repl\"" -e activate -e 'end tell'
-  redraw!
-endfunction
-
-function StartTerm()
-  :silent !osascript -e 'tell application "Terminal"' -e "do script \"cd `pwd`\"" -e activate -e 'end tell'
-  redraw!
-endfunction
-
-command! Repl call StartRepl()
-command! Term call StartTerm()
-
 au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
 au BufNewFile,BufRead *.json set filetype=javascript
@@ -104,10 +77,9 @@ nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>e :Explore<CR>9Gz<CR>j
 nnoremap <Leader>E :e .<CR>9Gz<CR>j
-nnoremap <Leader>c :cd ~/Wrk/
-nnoremap <Leader>C :cd ~/Clj/
-nnoremap <Leader>p :cd ~/Wrk/pillango/
-inoremap <Tab> <C-R>=MyTab()<cr>
+nnoremap <Leader>c :lcd ~/Wrk/
+nnoremap <Leader>C :lcd ~/Clj/
+"inoremap <Tab> <C-R>=MyTab()<cr>
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>f :lnf<CR>
@@ -116,7 +88,7 @@ nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
 
 let maplocalleader=','
-set lispwords+=->,->>,GET,POST,PUT,DELETE,HEAD
+set lispwords+=GET,POST,PUT,DELETE,HEAD
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with-', '^def']
 let g:clojure_align_multiline_strings = 1

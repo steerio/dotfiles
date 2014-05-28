@@ -20,6 +20,10 @@ __collapse_path () {
 
 setopt prompt_subst
 
+if [[ "$TMUX" != "" ]]; then
+  export TERM=screen-256color
+fi
+
 if [[ -n $SSH_TTY ]]; then
   PROMPT='%F{cyan}[%F{yellow}%n@%m %F{blue}$(__collapse_path)%F{cyan}]%f '
   precmd () {
@@ -67,9 +71,6 @@ app() {
   if [[ -n $1 ]]; then
     prompt_app=$1${2:+-$2}
     heroku_app=$prompt_app
-    if [[ $heroku_app =~ ^pillango- ]]; then
-      prompt_app="p-${prompt_app#pillango-}"
-    fi
     if [[ $heroku_app =~ -staging$ ]]; then
       prompt_app="${prompt_app%-staging}-s"
     fi
@@ -82,9 +83,9 @@ app() {
 
 heroku() {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
-    ~/.heroku/client/bin/heroku $* --app $heroku_app
+    ~/.heroku/heroku-client/bin/heroku $* --app $heroku_app
   else
-    ~/.heroku/client/bin/heroku $*
+    ~/.heroku/heroku-client/bin/heroku $*
   fi
 }
 
@@ -212,9 +213,9 @@ bindkey "^E" vi-end-of-line
 bindkey "^R" history-incremental-search-backward
 setopt noautomenu nobeep
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
 zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
