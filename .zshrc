@@ -217,3 +217,5 @@ zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
