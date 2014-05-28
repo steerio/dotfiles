@@ -9,4 +9,12 @@ if [[ -n $JAVA_HOME ]]; then
 fi
 export PATH
 
+if [[ $TERM == xterm ]]; then
+  export TERM=xterm-256color
+fi
+
+LANG=en_US.UTF-8
+LC_CTYPE=$LANG
+export LANG LC_CTYPE
+
 alias ls='ls -F'
