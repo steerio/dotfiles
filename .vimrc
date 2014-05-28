@@ -101,7 +101,7 @@ nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
 
 let maplocalleader=','
-set lispwords+=->,->>,GET,POST,PUT,DELETE,HEAD
+set lispwords+=GET,POST,PUT,DELETE,HEAD
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with-', '^def']
 let g:clojure_align_multiline_strings = 1
