@@ -65,7 +65,7 @@ else
   }
 fi
 
-export PATH PROMPT
+export PROMPT
 
 app() {
   if [[ -n $1 ]]; then
@@ -218,4 +218,5 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
