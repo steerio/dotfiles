@@ -98,6 +98,10 @@ let g:netrw_list_hide = '^\..*swp$,^\.git/$,^\.bundle/$'
 
 au VimEnter * AirlineTheme molokai
 
+if filereadable(expand("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
 let g:rbpt_colorpairs = [
 	\ ['brown',       'RoyalBlue3'],
 	\ ['Darkblue',    'SeaGreen3'],
