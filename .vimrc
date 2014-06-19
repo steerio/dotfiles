@@ -8,6 +8,7 @@ set ignorecase smartcase autoindent
 set foldmethod=marker
 set wildmode=longest,list
 set visualbell
+set mouse=a
 
 let g:airline_powerline_fonts = 1
 
