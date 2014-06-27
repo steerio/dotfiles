@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+system=${$(uname):l}
+
 if [[ -z $ZSH_VERSION ]]; then
   echo This script needs zsh. >&2
   exit 1
@@ -17,7 +19,7 @@ for i in (.*~.git*~.*.swp); do
 done
 
 if [[ ! -f $HOME/.zshrc.local ]]; then
-  echo . $HOME/.zsh/`uname` > $HOME/.zshrc.local
+  echo . $HOME/.zsh/$system > $HOME/.zshrc.local
 fi
 
 if which heroku >/dev/null; then
