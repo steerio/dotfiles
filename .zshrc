@@ -20,7 +20,7 @@ __collapse_path () {
 
 setopt prompt_subst
 
-if [[ "$TMUX" != "" ]]; then
+if [[ -n $TMUX ]]; then
   export TERM=screen-256color
 fi
 
@@ -193,6 +193,8 @@ gsu () {
   local br=`git rev-parse --abbrev-ref HEAD`
   git branch --set-upstream $br origin/$br
 }
+
+alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
 
 alias g=git
 alias ga='git add'
