@@ -120,10 +120,6 @@ hclone() {
   git clone git@heroku.com:$1.git $2
 }
 
-ec2() {
-  ssh -i $ec2_keyfile root@$1
-}
-
 run() {
   local ver=`ruby -e'print RUBY_VERSION'`
   if [[ -f Gemfile ]]; then
