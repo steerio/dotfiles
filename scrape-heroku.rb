@@ -31,7 +31,7 @@ for pkg in pkgs
     end
 
     f.each_line do |line|
-      if line =~ %r{^\s+([a-z]+:[a-z]+).+#\s+(.+)$}
+      if line =~ %r{^\s+([a-z]+:[a-z]+).+#\s*(.*)$}
         cmds[$1] = $2.capitalize unless $2.include?('deprecated')
       elsif line =~ %r{^\s+(-[A-Z]{0,1}[a-z, -]+).+#\s+(.+)$}
         STDERR.puts "SWITCH: #{$1}"
