@@ -81,7 +81,7 @@ app() {
   fi
 }
 
-heroku() {
+he() {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
     ~/.heroku/heroku-client/bin/heroku $* --app $heroku_app
   else
@@ -162,7 +162,6 @@ rails() {
 alias be='bundle exec'
 alias bu=bundle
 alias clj="rlwrap java -cp ~/jars/clojure-current.jar:. clojure.main"
-alias he=heroku
 
 alias hc="heroku run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
 alias hl='heroku logs'
