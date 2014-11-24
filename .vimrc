@@ -67,6 +67,7 @@ endfunction
 au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
 au BufNewFile,BufRead *.json set filetype=javascript
+au BufNewFile,BufRead *.md set filetype=markdown
 au BufNewFile,BufRead * set formatoptions-=o
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
