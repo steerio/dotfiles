@@ -71,7 +71,7 @@ end
 # OUTPUT
 
 puts <<EOF
-#compdef heroku
+#compdef he
 
 local -a _1st_arguments
 _1st_arguments=(
