@@ -4,6 +4,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
+heroku_home=$HOME/.heroku/heroku-client
+
 __collapse_path () {
   case $PWD in
     $HOME/*)
@@ -83,9 +85,9 @@ app() {
 
 he() {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
-    ~/.heroku/heroku-client/bin/heroku $* --app $heroku_app
+    $heroku_home/bin/heroku $* --app $heroku_app
   else
-    ~/.heroku/heroku-client/bin/heroku $*
+    $heroku_home/bin/heroku $*
   fi
 }
 
@@ -163,12 +165,12 @@ alias be='bundle exec'
 alias bu=bundle
 alias clj="rlwrap java -cp ~/jars/clojure-current.jar:. clojure.main"
 
-alias hc="heroku run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
-alias hl='heroku logs'
-alias hlt='heroku logs --tail'
-alias hrake='heroku run rake'
-alias hrun='heroku run'
-alias hsh='heroku run /bin/bash'
+alias hc="he run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
+alias hl='he logs'
+alias hlt='he logs --tail'
+alias hrake='he run rake'
+alias hrun='he run'
+alias hsh='he run /bin/bash'
 
 alias lua="rlwrap luajit -i ~/.luarc"
 
@@ -215,5 +217,5 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-export PATH="$HOME/bin:$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/bin:$heroku_home/bin:$PATH:$HOME/.rvm/bin"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
