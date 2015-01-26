@@ -4,7 +4,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
-heroku_home=$HOME/.heroku/heroku-client
 dot_bin=~/.zshrc
 dot_bin=${dot_bin:A:h}/bin
 
@@ -86,9 +85,9 @@ app() {
 
 he() {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
-    $heroku_home/bin/heroku $* --app $heroku_app
+    heroku $* --app $heroku_app
   else
-    $heroku_home/bin/heroku $*
+    heroku $*
   fi
 }
 
@@ -211,5 +210,5 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-export PATH="$HOME/bin:$heroku_home/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.heroku/heroku-client/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
