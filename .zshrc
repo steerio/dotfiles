@@ -159,7 +159,7 @@ alias bu=bundle
 alias clj="rlwrap java -cp ~/jars/clojure-current.jar:. clojure.main"
 
 alias hc="he run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
-alais hcs="he config -s"
+alias hcs="he config -s"
 alias hl='he logs'
 alias hlt='he logs --tail'
 alias hrake='he run rake'
