@@ -5,8 +5,8 @@ SAVEHIST=1000
 HISTFILE=~/.history
 
 heroku_home=$HOME/.heroku/heroku-client
-dot_home=$HOME/.zshrc
-dot_home=${${dot_home:A}%/.zshrc}
+dot_bin=~/.zshrc
+dot_bin=${dot_bin:A:h}/bin
 
 __collapse_path () {
   case $PWD in
@@ -93,7 +93,7 @@ he() {
 }
 
 remote-mongo() {
-  $dot_home/bin/remote-mongo ${1-$heroku_app}
+  $dot_bin/remote-mongo ${1-$heroku_app}
 }
 
 get() {
