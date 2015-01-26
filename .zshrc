@@ -129,24 +129,13 @@ hclone() {
 
 run() {
   local ver=`ruby -e'print RUBY_VERSION'`
-  if [[ -f Gemfile ]]; then
-    if `grep -q unicorn Gemfile`; then
-      echo '>>' "Unicorn with bundler (Ruby $ver)"
-      bundle exec unicorn -p 3000 $*
-    else
-      echo '>>' "Thin with bundler (Ruby $ver)"
-      bundle exec thin $* start
-    fi
-  else
-    echo '>>' "Thin (Ruby $ver)"
-    thin $* start
-  fi
+  PORT=${PORT-3000} $dot_bin/poorman web
 }
 
 con() {
   local ver=`ruby -e'print RUBY_VERSION'`
   if [[ -f script/rails ]]; then
-    echo '>>' "Starting Rails 3 console (Ruby $ver)"
+    echo '>>' "Starting Rails 3+ console (Ruby $ver)"
     ruby script/rails c $*
   else
     echo '>>' "Starting Rails 2 console (Ruby $ver)"

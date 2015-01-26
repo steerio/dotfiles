@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+def err msg
+  STDERR.puts msg
+  exit 1
+end
+
+err "No procfile." unless File.exist? 'Procfile'
+
+arg = ARGV[0]
+
+File.open('Procfile', 'r') do |io|
+  io.each_line do |l|
+    label, cmd = l.split(/:\s+/, 2)
+    if label == arg
+      IO.popen 'zsh', 'w' do |zsh|
+        zsh.puts "exec #{cmd}"
+      end
+    end
+  end
+  err %Q(No idea how to run "#{arg}", please check your Procfile.)
+end
