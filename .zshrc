@@ -5,6 +5,8 @@ SAVEHIST=1000
 HISTFILE=~/.history
 
 heroku_home=$HOME/.heroku/heroku-client
+dot_home=$HOME/.zshrc
+dot_home=${${dot_home:A}%/.zshrc}
 
 __collapse_path () {
   case $PWD in
@@ -32,7 +34,6 @@ if [[ -n $SSH_TTY ]]; then
     print -Pn "\e]0;%d - %n@%m\a"
   }
 else
-
   __collapse_branch () {
     local out
     if [[ -n $1 ]]; then
@@ -89,6 +90,10 @@ he() {
   else
     $heroku_home/bin/heroku $*
   fi
+}
+
+remote-mongo() {
+  $dot_home/bin/remote-mongo ${1-$heroku_app}
 }
 
 get() {
@@ -217,5 +222,5 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-export PATH="$HOME/bin:$heroku_home/bin:$PATH:$HOME/.rvm/bin"
+export PATH="$HOME/bin:$heroku_home/bin:$PATH"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
