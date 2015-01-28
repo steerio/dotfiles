@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Poor man's Foreman.
 
 def err msg
   STDERR.puts msg
