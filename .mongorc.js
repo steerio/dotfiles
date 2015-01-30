@@ -5,7 +5,6 @@
 
   var orig = Array.prototype.map;
   Array.prototype.map = function (fn) {
-    if (typeof(fn) == "string") ;
     return orig.call(this, typeof(fn) == "string" ? prop(fn) : fn);
   }
 
