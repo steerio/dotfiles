@@ -87,7 +87,7 @@ DBQuery.prototype.next = function () {
 
     if (this._pipe) {
       try {
-        for (var i=0; i < this._pipe.length; i++ ) ret = this._pipe[i](ret);
+        for (var i=0; i < this._pipe.length; i++) ret = this._pipe[i](ret);
       } catch (err) {
         if (err == this.filter)
           redo = true;
