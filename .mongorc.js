@@ -1,3 +1,10 @@
+//// Operator helpers
+
+exists = { $exists: true }
+missing = { $exists: false }
+reallyNull = { $type: 10 }
+notNull = { $not: reallyNull }
+
 //// Collection
 
 DBCollection.prototype.get = function (id) {
