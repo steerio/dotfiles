@@ -109,12 +109,22 @@ DBQuery.prototype.next = function () {
 
 // Mapping, filtering, also a map() that accepts strings
 
-;
+var juxt;
+
 (function () {
   function prop(arg) {
     return typeof(arg) == "string" ?
       eval("(function (obj) { return obj."+arg+" })") :
       arg;
+  }
+
+  juxt = function () {
+    var fns = Array.prototype.map.call(arguments, prop);
+    return function (obj) {
+      return fns.map(function (fn) {
+        return fn(obj);
+      });
+    }
   }
 
   var orig = Array.prototype.map;
