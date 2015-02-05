@@ -111,17 +111,6 @@ delete() {
   get -X DELETE "$@"
 }
 
-clone() {
-  if [[ -n $2 ]]; then
-    n=$2
-  else
-    n=${1%-server}
-  fi
-  local repo="git@github.com:$github_company/$1.git"
-  echo "Repository $repo"
-  git clone $repo $n
-}
-
 hclone() {
   git clone git@heroku.com:$1.git $2
 }
