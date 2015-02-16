@@ -1,9 +1,13 @@
-//// Operator helpers
+//// Useful helpers
 
 exists = { $exists: true }
 missing = { $exists: false }
 reallyNull = { $type: 10 }
 notNull = { $not: reallyNull }
+
+function sum(k,v) {
+  return Array.sum(v)
+}
 
 //// Collection
 
