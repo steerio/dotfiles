@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+# vim: filetype=ruby
+
+def info msg
+  STDERR.puts "=> #{msg}"
+end
+
+def read_config app
+  info "Reading config from Heroku app #{app}"
+  IO.popen "heroku config -s --app #{app}", "r" do |io|
+    io.each_line do |line|
+      if m = line.scan(%r{^(REDIS.*?)=(redis://.+)$}).first
+        info "Found #{m.first}"
+        return m[1]
+      end
+    end
+    info "No Redis URL found."
+    exit 1
+  end
+end
+
+if ARGV.empty?
+  STDERR.puts "Specify a Redis URL or a Heroku app as the sole argument."
+  exit 1
+end
+
+arg = ARGV[0]
+arg = read_config arg unless arg.include? ?/
+
+require 'uri'
+uri = URI.parse arg
+
+opts = []
+opts << ["-h", uri.host] if uri.host
+opts << ["-p", uri.port] if uri.port
+opts << ["-a", uri.password] if uri.password
+
+exec "redis-cli #{opts.join(' ')}"

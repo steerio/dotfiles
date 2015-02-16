@@ -95,6 +95,10 @@ remote-mongo() {
   $dot_bin/remote-mongo ${1-$heroku_app}
 }
 
+remote-redis() {
+  $dot_bin/remote-redis ${1-$heroku_app}
+}
+
 get() {
   curl -b ~/.curl_cookie_jar -c ~/.curl_cookie_jar "$@"
 }
