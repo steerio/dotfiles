@@ -5,6 +5,8 @@ missing = { $exists: false }
 reallyNull = { $type: 10 }
 notNull = { $not: reallyNull }
 
+function int(n) { return NumberInt(n) }
+
 function sum(k,v) {
   return Array.sum(v)
 }
