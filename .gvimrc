@@ -10,4 +10,5 @@ else
   " OS X
   set guioptions-=e
   set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
+  highlight normal guibg=black
 endif
