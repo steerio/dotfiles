@@ -164,6 +164,9 @@ alias lua="rlwrap luajit -i ~/.luarc"
 gbc () {
   git branch $1
   git checkout $1
+  if [[ `git remote|wc -l` -ne 0 ]]; then
+    git remote --set-upstream-to=origin/$1 $1
+  fi
 }
 
 gru () {
