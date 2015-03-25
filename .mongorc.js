@@ -28,6 +28,14 @@ DBCollection.prototype.mapReduceInline = function () {
   return this.mapReduce.apply(this, args);
 }
 
+DBCollection.prototype.mapReduceObj = function () {
+  var obj = {};
+  this.mapReduceInline.apply(this, arguments).results.forEach(function (i) {
+    obj[i._id] = i.value;
+  });
+  return obj;
+}
+
 // Delegated methods (see definitions below)
 
 DBCollection.prototype.last = function () {
