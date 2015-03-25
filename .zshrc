@@ -195,6 +195,8 @@ alias glog='git log'
 alias gst='git status -sb'
 alias pull='git pull'
 alias push='git push'
+alias deploy='git push heroku stable:master'
+alias stage='git push heroku staging:master'
 
 bindkey -v
 bindkey "^A" vi-beginning-of-line
