@@ -38,12 +38,12 @@ DBCollection.prototype.mapReduceObj = function () {
 
 // Delegated methods (see definitions below)
 
-DBCollection.prototype.last = function () {
-  return this.find().last();
+DBCollection.prototype.last = function (k) {
+  return this.find().last(k);
 }
 
-DBCollection.prototype.lastAt = function () {
-  return this.find().lastAt();
+DBCollection.prototype.lastAt = function (k) {
+  return this.find().lastAt(k);
 }
 
 DBCollection.prototype.map = function (fn) {
@@ -63,16 +63,19 @@ DBQuery.prototype.one = function () {
   return this.limit(1)[0];
 }
 
-DBQuery.prototype.latest = function () {
-  return this.sort({createdAt: -1});
+DBQuery.prototype.latest = function (k) {
+  var q = {};
+  q[k || "createdAt"] = -1;
+  return this.sort(q);
 }
 
-DBQuery.prototype.last = function () {
-  return this.latest().one();
+DBQuery.prototype.last = function (k) {
+  return this.latest(k).one();
 }
 
-DBQuery.prototype.lastAt = function () {
-  return this.last().createdAt;
+DBQuery.prototype.lastAt = function (k) {
+  if (!k) k = "createdAt";
+  return this.last(k)[k];
 }
 
 // Sometimes you need to reduce locally
