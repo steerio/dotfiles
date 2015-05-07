@@ -11,6 +11,13 @@ function sum(k,v) {
   return Array.sum(v)
 }
 
+Number.prototype.toDate = function () {
+  return new Date(this*1000);
+}
+Number.prototype.millisToDate = function () {
+  return new Date(this);
+}
+
 //// Collection
 
 DBCollection.prototype.get = function (id) {
