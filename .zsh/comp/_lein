@@ -28,6 +28,7 @@ case $state in
       "deploy:Build and deploy jar to remote repository."
       "deps:Download all dependencies."
       "do:Higher-order task to perform other tasks in succession."
+      "figwheel:Start Figwheel server and REPL."
       "help:Display a list of tasks or help for a given task."
       "install:Install the current project to the local repository."
       "jack-in:Jack in to a Clojure SLIME session from Emacs."
