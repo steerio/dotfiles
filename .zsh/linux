@@ -1,3 +1,4 @@
 # vim: filetype=zsh
 
 export EDITOR=vim
+alias ls='ls --color'
