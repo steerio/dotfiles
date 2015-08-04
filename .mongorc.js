@@ -43,6 +43,28 @@ DBCollection.prototype.mapReduceObj = function () {
   return obj;
 }
 
+DBCollection.prototype.upObj = function (obj) {
+  arguments[0] = { _id: obj._id };
+  return this.update.apply(this, arguments);
+}
+
+DBCollection.prototype.upById = function (id) {
+  arguments[0] = { _id: id };
+  return this.update.apply(this, arguments);
+}
+
+DBCollection.prototype.setObj = function (obj, sets) {
+  arguments[0] = { _id: obj._id };
+  arguments[1] = { $set: sets };
+  return this.update.apply(this, arguments);
+}
+
+DBCollection.prototype.setById = function (id, sets) {
+  arguments[0] = { _id: id };
+  arguments[1] = { $set: sets };
+  return this.update.apply(this, arguments);
+}
+
 // Delegated methods (see definitions below)
 
 DBCollection.prototype.last = function (k) {
