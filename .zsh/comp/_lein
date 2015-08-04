@@ -24,6 +24,7 @@ case $state in
       "check:Check syntax and warn on reflection."
       "classpath:Print the classpath of the current project."
       "clean:Remove all files from project's target-path."
+      "cljsbuild:Compile Clojurescript source into Javascript."
       "compile:Compile Clojure source into .class files."
       "deploy:Build and deploy jar to remote repository."
       "deps:Download all dependencies."
