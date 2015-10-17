@@ -4,6 +4,7 @@ exists = { $exists: true }
 missing = { $exists: false }
 reallyNull = { $type: 10 }
 notNull = { $not: reallyNull }
+multi = { multi: true }
 
 function int(n) { return NumberInt(n) }
 
@@ -18,10 +19,22 @@ Number.prototype.millisToDate = function () {
   return new Date(this);
 }
 
+ISODate.prototype.toYMD = function() {
+  return this.toISOString().substr(0,10);
+}
+
 //// Collection
 
 DBCollection.prototype.get = function (id) {
   return this.findOne({ _id: id });
+}
+
+DBCollection.prototype.getObjectId = function (id) {
+  return this.findOne({ _id: ObjectId(id) });
+}
+
+DBCollection.prototype.getByEmail = function (email) {
+  return this.findOne({ email: email });
 }
 
 DBCollection.prototype.mget = function (ids) {
@@ -50,6 +63,11 @@ DBCollection.prototype.upObj = function (obj) {
 
 DBCollection.prototype.upById = function (id) {
   arguments[0] = { _id: id };
+  return this.update.apply(this, arguments);
+}
+
+DBCollection.prototype.upByObjectId = function (id) {
+  arguments[0] = { _id: ObjectId(id) };
   return this.update.apply(this, arguments);
 }
 
@@ -194,3 +212,18 @@ var juxt;
     return this;
   }
 })();
+
+function wrapInts(obj) {
+  switch (typeof(obj)) {
+    case "number":
+      return Math.floor(obj) == obj ? NumberInt(obj) : obj;
+      break;
+    case "object":
+      var out = new obj.__proto__.constructor();
+      for (var k in obj) out[k] = wrapInts(obj[k]);
+      return out;
+      break;
+    default:
+      return obj;
+  }
+}
