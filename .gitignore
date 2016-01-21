@@ -1,3 +1,4 @@
 /.vim/.netrwhist
+/.vim/swap/*
+!/.vim/swap/.gitkeep
 /.zsh/comp/_he
-.*.swp

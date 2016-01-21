@@ -9,6 +9,7 @@ set foldmethod=marker
 set wildmode=longest,list
 set visualbell
 set mouse=a
+set dir=~/.vim/swap,.,~/tmp,~/
 
 let g:airline_powerline_fonts = 1
 
