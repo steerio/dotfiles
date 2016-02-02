@@ -8,7 +8,7 @@ if has('GUI_GTK')
   set guioptions-=m
 else
   " OS X
-  set guioptions-=e
+  set guioptions-=erL
   set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
   highlight normal guibg=black
 endif
