@@ -9,7 +9,7 @@ def read_config app
   info "Reading config from Heroku app #{app}"
   IO.popen "heroku config -s --app #{app}", "r" do |io|
     io.each_line do |line|
-      if m = line.scan(%r{^(MONGO.*?)=(mongodb://.+)$}).first
+      if m = line.scan(%r{^(MONGO.*?)='{0,1}(mongodb://.+)'{0,1}$}).first
         info "Found #{m.first}"
         return m[1].sub(%r{,[^/]+/}, '/')
       end
@@ -37,4 +37,4 @@ opts << ["-p", uri.password] if uri.password
 hp = uri.host
 hp += ":#{uri.port}" if uri.port
 
-exec "mongo #{opts.join(' ')} #{hp}#{uri.path}"
+exec "mongo #{opts.join(' ')} #{hp}#{uri.path} #{ARGV[1..-1].join(' ')}"
