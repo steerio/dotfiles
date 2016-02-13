@@ -91,6 +91,12 @@ he() {
   fi
 }
 
+load() {
+  for i in `grep -v '^#' $1`; do
+    export $i
+  done
+}
+
 remote-mongo() {
   $dot_bin/remote-mongo ${1-$heroku_app}
 }
