@@ -4,8 +4,7 @@ if has('GUI_GTK')
   " Linux/BSD
   highlight Normal guibg=black guifg=white
   set guifont=Droid\ Sans\ Mono\ 9
-  set guioptions-=T
-  set guioptions-=m
+  set guioptions-=Tm
 else
   " OS X
   set guioptions-=erL
