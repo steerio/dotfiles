@@ -8,6 +8,10 @@ multi = { multi: true }
 
 function int(n) { return NumberInt(n) }
 
+function beginsWith(w) {
+  return {$regex: "^"+w};
+}
+
 function sum(k,v) {
   return Array.sum(v)
 }
@@ -19,7 +23,7 @@ Number.prototype.millisToDate = function () {
   return new Date(this);
 }
 
-ISODate.prototype.toYMD = function() {
+ISODate.prototype.ymd = function() {
   return this.toISOString().substr(0,10);
 }
 
@@ -29,16 +33,24 @@ DBCollection.prototype.get = function (id) {
   return this.findOne({ _id: id });
 }
 
-DBCollection.prototype.getObjectId = function (id) {
+DBCollection.prototype.oid = function (id) {
   return this.findOne({ _id: ObjectId(id) });
 }
 
-DBCollection.prototype.getByEmail = function (email) {
+DBCollection.prototype.email = function (email) {
   return this.findOne({ email: email });
+}
+
+DBCollection.prototype.user = function (u, q) {
+  return this.find(Object.merge(q, { user: u._id }));
 }
 
 DBCollection.prototype.mget = function (ids) {
   return this.find({ _id: { $in: ids }});
+}
+
+DBCollection.prototype.live = function (q) {
+  return this.find(Object.merge(q, {live:true}));
 }
 
 DBCollection.prototype.mapReduceInline = function () {
@@ -112,7 +124,7 @@ DBQuery.prototype.one = function () {
 
 DBQuery.prototype.latest = function (k) {
   var q = {};
-  q[k || "createdAt"] = -1;
+  q[k || "created"] = -1;
   return this.sort(q);
 }
 
@@ -121,7 +133,7 @@ DBQuery.prototype.last = function (k) {
 }
 
 DBQuery.prototype.lastAt = function (k) {
-  if (!k) k = "createdAt";
+  if (!k) k = "created";
   return this.last(k)[k];
 }
 
