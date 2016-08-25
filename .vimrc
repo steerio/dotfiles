@@ -80,8 +80,6 @@ nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>e :Explore<CR>9Gz<CR>j
 nnoremap <Leader>E :e .<CR>9Gz<CR>j
-nnoremap <Leader>c :lcd ~/Wrk/
-nnoremap <Leader>C :lcd ~/Clj/
 "inoremap <Tab> <C-R>=MyTab()<cr>
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
@@ -93,7 +91,7 @@ nnoremap <Leader>/ :set invhlsearch<CR>
 let maplocalleader=','
 set lispwords+=GET,POST,PUT,DELETE,HEAD
 let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do']
+let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do', '^if-']
 let g:clojure_align_multiline_strings = 1
 let g:paredit_electric_return = 0
 let g:netrw_list_hide = '^\..*swp$,^\.git/$,^\.bundle/$'
