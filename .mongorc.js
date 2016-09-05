@@ -97,6 +97,10 @@ DBCollection.prototype.setById = function (id, sets) {
 
 // Delegated methods (see definitions below)
 
+DBCollection.prototype.ids = function () {
+  return this.find().ids();
+}
+
 DBCollection.prototype.last = function (k) {
   return this.find().last(k);
 }
@@ -110,6 +114,10 @@ DBCollection.prototype.map = function (fn) {
 }
 
 //// Query
+
+DBQuery.prototype.ids = function () {
+  return this.map("_id")
+}
 
 DBQuery.prototype.rewind = function () {
   delete this._cursor;
