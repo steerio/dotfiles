@@ -16,7 +16,7 @@ def opts.add cmd, switches, doc
   self[cmd].store switches.strip.split(/,\s+/), doc.capitalize
 end
 
-cmd '' do |f|
+cmd 'help' do |f|
   f.each_line do |line|
     line =~ %r{([a-z0-9]+)\s+#}
     pkgs << $1 if $1
