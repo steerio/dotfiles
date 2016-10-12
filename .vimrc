@@ -1,3 +1,8 @@
+if has("nvim")
+  set termguicolors
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+endif
+
 " --- My settings ---
 
 set nocompatible ttimeoutlen=50
@@ -21,11 +26,20 @@ syn on
 
 " --- Looks ---
 
-set ruler ls=2 bg=dark
-highlight Folded ctermbg=darkmagenta ctermfg=darkcyan
+highlight Normal guibg=black guifg=#c7c7c7
+set ruler ls=2 bg=dark guioptions=c
+highlight Folded ctermbg=darkmagenta ctermfg=darkcyan guibg=#203020 guifg=#407040
 highlight StatusLine cterm=bold ctermbg=blue ctermfg=white
 highlight StatusLineNC cterm=NONE ctermbg=blue ctermfg=darkcyan
 set fillchars=vert:\|,fold:\ 
+
+if has('GUI_GTK')
+  " Linux/BSD
+  set guifont=Droid\ Sans\ Mono\ 9
+else
+  " OS X
+  set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
+endif
 
 fu! MyTab()
   if &omnifunc == '' || strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
