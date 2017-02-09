@@ -9,7 +9,7 @@ def read_config app
   info "Reading config from Heroku app #{app}"
   IO.popen "heroku config -s --app #{app}", "r" do |io|
     io.each_line do |line|
-      if m = line.scan(%r{^(REDIS.*?)=(redis://.+)$}).first
+      if m = line.scan(%r{^(REDIS.*?)='{0,1}(redis://.+?)'{0,1}$}).first
         info "Found #{m.first}"
         return m[1]
       end
