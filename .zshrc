@@ -216,6 +216,4 @@ autoload -U zutil compinit complist
 compinit
 
 export PATH="$HOME/bin:$HOME/.heroku/heroku-client/bin:$PATH"
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+eval "$(rbenv init -)"
