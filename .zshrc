@@ -168,6 +168,7 @@ alias hrun='he run'
 alias hsh='he run /bin/bash'
 
 alias lua="rlwrap luajit -i ~/.luarc"
+alias node="node -r ~/.noderc"
 alias rgrep='egrep -r'
 
 gbc () {

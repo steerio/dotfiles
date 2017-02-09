@@ -1,0 +1,24 @@
+// vim: filetype=javascript
+
+prn = console.log
+
+p = function(vrbl,promise) {
+  var fun;
+  if (!promise) {
+    if (!vrbl.then) return console.log(vrbl);
+    promise = vrbl.then(console.log);
+  } else {
+    promise = promise.then(function (value) {
+      global[vrbl] = value;
+      console.log(value);
+    });
+  }
+
+  return promise.fail(function (err) {
+    console.error("ERROR", err);
+  });
+}
+
+pp = function() {
+  void(p.apply(this, arguments));
+}
