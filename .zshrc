@@ -127,7 +127,7 @@ hclone() {
 
 run() {
   local ver=`ruby -e'print RUBY_VERSION'`
-  PORT=${1-3000} $dot_bin/poorman ${1-web}
+  PORT=${PORT-3000} $dot_bin/poorman ${1-web}
 }
 
 con() {
@@ -158,6 +158,7 @@ alias bu=bundle
 alias clj="rlwrap java -cp ~/.jars/clojure-current.jar:. clojure.main"
 
 alias dssh='docker-machine ssh'
+alias egrep='egrep --color=auto'
 alias hc="he run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
 alias hcs="he config -s"
 alias hl='he logs'
