@@ -12,9 +12,32 @@ function beginsWith(w) {
   return {$regex: "^"+w};
 }
 
+function emit(attr, n) {
+  return eval("(function () { emit(this."+attr+", "+(n || 1)+")})")
+}
+
+function emitKeys() {
+  for (var k in this) emit(k, 1);
+}
+
 function sum(k,v) {
   return Array.sum(v)
 }
+
+function min(k,v) {
+  var res=v[0], len=v.length;
+  for (var i=1; i<len; i++)
+    if (v[i] < res) res = v[i];
+  return res;
+}
+
+function max(k,v) {
+  var res=v[0], len=v.length;
+  for (var i=1; i<len; i++)
+    if (v[i] > res) res = v[i];
+  return res;
+}
+
 
 Number.prototype.toDate = function () {
   return new Date(this*1000);
@@ -53,16 +76,16 @@ DBCollection.prototype.live = function (q) {
   return this.find(Object.merge(q, {live:true}));
 }
 
-DBCollection.prototype.mapReduceInline = function () {
+DBCollection.prototype.mri = function () {
   var args = Array.prototype.slice.call(arguments);
   if (args.length < 3) args.push({});
   args[2].out = { inline: 1 };
   return this.mapReduce.apply(this, args);
 }
 
-DBCollection.prototype.mapReduceObj = function () {
+DBCollection.prototype.mr = function () {
   var obj = {};
-  this.mapReduceInline.apply(this, arguments).results.forEach(function (i) {
+  this.mri.apply(this, arguments).results.forEach(function (i) {
     obj[i._id] = i.value;
   });
   return obj;
@@ -93,6 +116,12 @@ DBCollection.prototype.setById = function (id, sets) {
   arguments[0] = { _id: id };
   arguments[1] = { $set: sets };
   return this.update.apply(this, arguments);
+}
+
+DBCollection.prototype.sumBy = function (by) {
+  return this.mr(
+    typeof(by) == 'function' ? by : emit(by),
+    sum);
 }
 
 // Delegated methods (see definitions below)
@@ -246,4 +275,11 @@ function wrapInts(obj) {
     default:
       return obj;
   }
+}
+
+if (db.getCollection("_User").exists()) {
+  db.users = db.getCollection("_User");
+  db.installations = db.getCollection("_Installation");
+  db.schema = db.getCollection("_SCHEMA");
+  db.sessions = db.getCollection("_Session");
 }
