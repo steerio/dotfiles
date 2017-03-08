@@ -171,6 +171,9 @@ alias lua="rlwrap luajit -i ~/.luarc"
 alias node="node -r ~/.noderc"
 alias rgrep='egrep -r'
 
+alias 4stat='netstat -f inet'
+alias 6stat='netstat -f inet6'
+
 gbc () {
   git branch $1
   git checkout $1
