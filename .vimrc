@@ -110,8 +110,6 @@ let g:clojure_align_multiline_strings = 1
 let g:paredit_electric_return = 0
 let g:netrw_list_hide = '^\..*swp$,^\.git/$,^\.bundle/$'
 
-au VimEnter * AirlineTheme molokai
-
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
