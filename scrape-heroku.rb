@@ -2,7 +2,11 @@
 
 require 'erb'
 
-HEROKU="#{ENV['HOME']}/.heroku/heroku-client/bin/heroku"
+HEROKU=`which heroku`.chomp
+unless $?.success?
+  STDERR.puts "Heroku CLI is not installed (or not in path)"
+  exit 1
+end
 
 def cmd cmdline, &blk
   STDERR.puts cmdline
@@ -31,7 +35,7 @@ for pkg in pkgs
     end
 
     f.each_line do |line|
-      if line =~ %r{^\s+([a-z0-9]+:[a-z-]+).+#\s*(.*)$}
+      if line =~ %r{^\s+heroku ([a-z0-9:]+).+#\s*(.*)$}
         cmds[$1] = $2.capitalize unless $2.include?('deprecated')
       elsif line =~ %r{^\s+(-[A-Z]{0,1}[a-z, -]+).+#\s+(.+)$}
         STDERR.puts "SWITCH: #{$1}"
@@ -78,7 +82,7 @@ _1st_arguments=(
 EOF
 
 for cmd, doc in cmds
-  puts %Q{  "#{cmd.sub(':', '\\:')}:#{doc}"}
+  puts %Q{  "#{cmd.gsub(':', '\\:')}:#{doc}"}
 end
 
 puts <<EOF

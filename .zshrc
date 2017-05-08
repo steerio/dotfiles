@@ -220,5 +220,5 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-export PATH="$HOME/bin:$HOME/.heroku/heroku-client/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 eval "$(rbenv init -)"
