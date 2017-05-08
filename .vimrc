@@ -5,14 +5,15 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " --- Plugins here ---
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'bling/vim-airline'
+Plugin 'elixir-lang/vim-elixir'
 Plugin 'guns/vim-clojure-static'
+Plugin 'itchyny/vim-haskell-indent'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'lambdatoast/elm.vim'
+Plugin 'paredit.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
-Plugin 'paredit.vim'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'lambdatoast/elm.vim'
 " --- Plugins until this point ---
 
 call vundle#end()
