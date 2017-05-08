@@ -40,7 +40,4 @@ fi
 
 # Heroku completion
 
-if /usr/bin/which heroku >/dev/null; then
-  echo 'Heroku client present, scraping CLI for completion'
-  ruby scrape-heroku.rb >.zsh/comp/_he
-fi
+ruby scrape-heroku.rb >.zsh/comp/_he
