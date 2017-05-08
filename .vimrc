@@ -1,11 +1,31 @@
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" --- Plugins here ---
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-fugitive'
+Plugin 'bling/vim-airline'
+Plugin 'paredit.vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'lambdatoast/elm.vim'
+" --- Plugins until this point ---
+
+call vundle#end()
+filetype plugin indent on
+
+" --- My settings ---
+
 if has("nvim")
   set termguicolors
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
-" --- My settings ---
-
-set nocompatible ttimeoutlen=50
+set ttimeoutlen=50
 set bs=2 ts=2 sw=2 expandtab
 set lazyredraw modeline modelines=3
 set nowrap noshowmode nohlsearch nobackup nowritebackup
@@ -17,11 +37,6 @@ set mouse=a
 set dir=~/.vim/swap,.,~/tmp,~/
 
 let g:airline_powerline_fonts = 1
-
-call pathogen#infect()
-filetype off
-call pathogen#runtime_append_all_bundles()
-filetype plugin indent on
 syn on
 
 " --- Looks ---
@@ -40,14 +55,6 @@ else
   " OS X
   set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
 endif
-
-fu! MyTab()
-  if &omnifunc == '' || strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-    return "\<Tab>"
-  else
-    return "\<C-X>\<C-O>"
-  endif
-endfunction
 
 fu! MyCljBindings()
   nmap <buffer> <LocalLeader>e <Plug>FireplacePrint
@@ -94,7 +101,6 @@ nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
 nnoremap <Leader>e :Explore<CR>9Gz<CR>j
 nnoremap <Leader>E :e .<CR>9Gz<CR>j
-"inoremap <Tab> <C-R>=MyTab()<cr>
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>f :lnf<CR>
