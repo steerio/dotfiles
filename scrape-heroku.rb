@@ -101,7 +101,7 @@ EOF
 
 for cmd in opts.keys.sort
   puts "  #{cmd})\n    _command_args=("
-  for opt, doc in opts[cmd] 
+  for opt, doc in opts[cmd]
     doc.gsub! '"', '\\"'
     if opt.size == 1
       puts "      '(#{opt[0]})#{opt[0]}[#{doc}]' \\"
@@ -110,7 +110,7 @@ for cmd in opts.keys.sort
     end
   end
   puts "    )\n    ;;"
-end 
+end
 
 puts <<EOF
 esac
