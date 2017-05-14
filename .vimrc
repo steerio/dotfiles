@@ -6,6 +6,7 @@ call vundle#begin()
 
 " --- Plugins here ---
 Plugin 'bling/vim-airline'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'guns/vim-clojure-static'
 Plugin 'itchyny/vim-haskell-indent'
@@ -47,7 +48,7 @@ set ruler ls=2 bg=dark guioptions=c
 highlight Folded ctermbg=darkmagenta ctermfg=darkcyan guibg=#203020 guifg=#407040
 highlight StatusLine cterm=bold ctermbg=blue ctermfg=white
 highlight StatusLineNC cterm=NONE ctermbg=blue ctermfg=darkcyan
-set fillchars=vert:\|,fold:\ 
+set fillchars=vert:\|,fold:\  " That's an escaped space.
 
 if has('GUI_GTK')
   " Linux/BSD
