@@ -6,7 +6,7 @@ call vundle#begin()
 
 " --- Plugins here ---
 Plugin 'bling/vim-airline'
-Plugin 'edkolev/tmuxline.vim'
+" Plugin 'edkolev/tmuxline.vim'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'guns/vim-clojure-static'
 Plugin 'itchyny/vim-haskell-indent'
@@ -55,7 +55,7 @@ if has('GUI_GTK')
   set guifont=Droid\ Sans\ Mono\ 9
 else
   " OS X
-  set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
+  set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h12
 endif
 
 fu! MyCljBindings()
