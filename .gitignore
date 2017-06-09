@@ -4,4 +4,3 @@
 /.zsh/comp/_he
 /.vim/bundle
 !/.vim/bundle/Vundle.vim
-/.tmux/airline.conf

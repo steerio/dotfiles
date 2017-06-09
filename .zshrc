@@ -193,6 +193,19 @@ gsu () {
 
 alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
 
+t () {
+  exec tmux new -s ${1-Main}
+}
+
+ta () {
+  local n=${1-Main}
+  if tmux has-session -t $n 2>/dev/null; then
+    exec tmux a -t $n
+  else
+    t $n
+  fi
+}
+
 alias g=git
 alias ga='git add'
 alias gbr='git branch'
