@@ -69,7 +69,7 @@ fi
 
 export PROMPT
 
-app() {
+app () {
   if [[ -n $1 ]]; then
     prompt_app=$1${2:+-$2}
     heroku_app=$prompt_app
@@ -83,7 +83,7 @@ app() {
   fi
 }
 
-he() {
+he () {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
     heroku $* --app $heroku_app
   else
@@ -91,46 +91,46 @@ he() {
   fi
 }
 
-load() {
+load () {
   for i in `grep -v '^#' $1`; do
     export $i
   done
 }
 
-remote-mongo() {
+remote-mongo () {
   $dot_bin/remote-mongo ${1-$heroku_app}
 }
 
-remote-redis() {
+remote-redis () {
   $dot_bin/remote-redis ${1-$heroku_app}
 }
 
-get() {
+get () {
   curl -b ~/.curl_cookie_jar -c ~/.curl_cookie_jar "$@"
 }
 
-post() {
+post () {
   get -d "$@"
 }
 
-put() {
+put () {
   get -X PUT -d "$@"
 }
 
-delete() {
+delete () {
   get -X DELETE "$@"
 }
 
-hclone() {
+hclone () {
   git clone git@heroku.com:$1.git $2
 }
 
-run() {
+run () {
   local ver=`ruby -e'print RUBY_VERSION'`
   PORT=${PORT-3000} $dot_bin/poorman ${1-web}
 }
 
-con() {
+con () {
   local ver=`ruby -e'print RUBY_VERSION'`
   if [[ -f script/rails ]]; then
     echo '>>' "Starting Rails 3+ console (Ruby $ver)"
@@ -141,7 +141,7 @@ con() {
   fi
 }
 
-rails() {
+rails () {
   if [[ -f script/rails ]]; then
     ruby script/rails $*
   else
