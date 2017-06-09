@@ -7,7 +7,13 @@ HISTFILE=~/.history
 dot_bin=~/.zshrc
 dot_bin=${dot_bin:A:h}/bin
 
-__collapse_path () {
+setopt prompt_subst
+
+if [[ -n $TMUX ]]; then
+  export TERM=screen-256color
+fi
+
+__left () {
   case $PWD in
     $HOME/*)
       echo ${PWD#$HOME/}
@@ -21,65 +27,55 @@ __collapse_path () {
   esac
 }
 
-setopt prompt_subst
+__right () {
+  local out bar
+  bar=()
+  if [[ -n $heroku_app ]]; then
+    bar+=$heroku_app
+  fi
 
-if [[ -n $TMUX ]]; then
-  export TERM=screen-256color
-fi
+  if [[ -n $2 ]]; then
+    case $2 in
+      master|staging)
+        out="${2[1]}"
+        ;;
+      stable)
+        out="S"
+        ;;
+      feature[_-]*)
+        out="${2#feature}"
+        ;;
+      *?)
+        out="$2"
+        ;;
+    esac
+    bar+=" $3$out"
+  fi
+
+  if [[ -n $bar[1] ]]; then
+    echo "%F{$1} ${(j:  :)bar} "
+  fi
+}
+
+zstyle ':vcs_info:*' unstagedstr '%F{160}'
+zstyle ':vcs_info:*' stagedstr '%F{178}'
+zstyle ':vcs_info:git*' formats '%b %u%c'
+zstyle ':vcs_info:*' check-for-changes true
+
+PROMPT='%K{23}%F{15} $(__left) %F{23}%k %f'
+RPROMPT='$(__right 23 ${=vcs_info_msg_0_})'
 
 if [[ -n $SSH_TTY ]]; then
-  PROMPT='%F{cyan}[%F{yellow}%n@%m %F{blue}$(__collapse_path)%F{cyan}]%f '
-  precmd () {
-    print -Pn "\e]0;%d - %n@%m\a"
-  }
-else
-  __collapse_branch () {
-    local out
-    if [[ -n $1 ]]; then
-      case $1 in
-        master|staging)
-          out="%F{green}${1[1]}"
-          ;;
-        stable)
-          out="%F{red}S"
-          ;;
-        feature[_-]*)
-          out="%F{magenta}${1#feature}"
-          ;;
-        *?)
-          out="%F{magenta}$1"
-          ;;
-      esac
-      echo " $out$2"
-    fi
-  }
-
-  PROMPT='%F{cyan}[%F{blue}$(__collapse_path)$(__collapse_branch ${=vcs_info_msg_0_})${prompt_app}%F{cyan}]%f '
-  autoload vcs_info
-  zstyle ':vcs_info:*' unstagedstr '%F{11}●'
-  zstyle ':vcs_info:*' stagedstr '%F{28}●'
-  zstyle ':vcs_info:git*' formats '%b %u%c'
-  zstyle ':vcs_info:*' check-for-changes true
-
-  precmd() {
-    print -Pn "\e]0;%d\a"
-    vcs_info
-  }
+  PROMPT="%K{235}%F{240} ${USER:0:2}@%m %K{23}%F{235}${PROMPT:6}"
 fi
 
-export PROMPT
+export PROMPT RPROMPT
 
 app () {
   if [[ -n $1 ]]; then
-    prompt_app=$1${2:+-$2}
-    heroku_app=$prompt_app
-    if [[ $heroku_app =~ -staging$ ]]; then
-      prompt_app="${prompt_app%-staging}-s"
-    fi
-    prompt_app=" %F{yellow}$prompt_app"
+    heroku_app=$1${2:+-$2}
   else
     unset heroku_app
-    unset prompt_app
   fi
 }
 
