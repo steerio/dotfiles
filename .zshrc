@@ -151,7 +151,7 @@ rails () {
 
 alias be='bundle exec'
 alias bu=bundle
-alias clj="rlwrap java -cp ~/.jars/clojure-current.jar:. clojure.main"
+alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
 alias dssh='docker-machine ssh'
 alias egrep='egrep --color=auto'
