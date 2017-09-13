@@ -115,7 +115,7 @@ nnoremap <Leader>f :lnf<CR>
 nnoremap <Leader>F :lpf<CR>
 nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
-nnoremap <C-W>l :exe "res ".line('$')<CR>ggM
+nnoremap <C-W>l :exe "res ".line('$')<CR>gg''
 
 let maplocalleader=','
 set lispwords+=GET,POST,PUT,DELETE,HEAD
