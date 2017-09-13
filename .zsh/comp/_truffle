@@ -1,0 +1,29 @@
+#compdef truffle
+
+local ret=1 state
+_arguments ':subcommand:->subcommand' && ret=0
+
+case $state in
+  subcommand)
+    subcommands=(
+      "init:Initialize new Ethereum project with example contracts and tests"
+      "compile:Compile contract source files"
+      "migrate:Run migrations to deploy contracts"
+      "deploy:(alias for migrate)"
+      "build:Execute build pipeline (if configuration present)"
+      "test:Run Mocha and Solidity tests"
+      "console:Run a console with contract abstractions and commands available"
+      "create:Helper to create new contracts, migrations and tests"
+      "install:Install a package from the Ethereum Package Registry"
+      "publish:Publish a package to the Ethereum Package Registry"
+      "networks:Show addresses for deployed contracts on each network"
+      "watch:Watch filesystem for changes and rebuild the project automatically"
+      "serve:Serve the build directory on localhost and watch for changes"
+      "exec:Execute a JS module within this Truffle environment"
+      "unbox:Unbox Truffle project"
+      "version:Show version number and exit"
+    )
+    _describe -t subcommands 'truffle subcommands' subcommands && ret=0
+esac
+
+return ret

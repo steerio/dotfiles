@@ -13,6 +13,7 @@ Plugin 'itchyny/vim-haskell-indent'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lambdatoast/elm.vim'
 Plugin 'paredit.vim'
+Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
 " --- Plugins until this point ---
