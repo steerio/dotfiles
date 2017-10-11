@@ -122,36 +122,13 @@ hclone () {
 }
 
 run () {
-  local ver=`ruby -e'print RUBY_VERSION'`
   PORT=${PORT-3000} $dot_bin/poorman ${1-web}
-}
-
-con () {
-  local ver=`ruby -e'print RUBY_VERSION'`
-  if [[ -f script/rails ]]; then
-    echo '>>' "Starting Rails 3+ console (Ruby $ver)"
-    ruby script/rails c $*
-  else
-    echo '>>' "Starting Rails 2 console (Ruby $ver)"
-    ruby script/console $*
-  fi
-}
-
-rails () {
-  if [[ -f script/rails ]]; then
-    ruby script/rails $*
-  else
-    if [[ $commands[rails] == "/usr/bin/rails" ]]; then
-      echo Refusing to use system Rails. >&2
-    else
-      $commands[rails] $*
-    fi
-  fi
 }
 
 alias be='bundle exec'
 alias bu=bundle
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
+alias rails="bundle exec rails"
 
 alias dssh='docker-machine ssh'
 alias egrep='egrep --color=auto'
