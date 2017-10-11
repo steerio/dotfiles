@@ -2,5 +2,6 @@
 /.vim/swap/*
 !/.vim/swap/.gitkeep
 /.zsh/comp/_he
+/.zsh/comp/_ipfs
 /.vim/bundle
 !/.vim/bundle/Vundle.vim

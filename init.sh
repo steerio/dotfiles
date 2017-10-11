@@ -38,6 +38,13 @@ if [[ ! -f $HOME/.zshrc.local ]]; then
   echo . $HOME/.zsh/$system > $HOME/.zshrc.local
 fi
 
-# Heroku completion
+# Completion
 
-ruby scrape-heroku.rb >.zsh/comp/_he
+scrape () {
+  if type $1 &>/dev/null; then
+    ruby scrape/$1.rb >.zsh/comp/_${2-$1}
+  fi
+}
+
+scrape heroku he
+scrape ipfs

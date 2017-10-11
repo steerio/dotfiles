@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'erb'
-
 HEROKU=`which heroku`.chomp
 unless $?.success?
   STDERR.puts "Heroku CLI is not installed (or not in path)"
