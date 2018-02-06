@@ -207,4 +207,4 @@ autoload -U zutil compinit complist
 compinit
 
 export PATH="$HOME/bin:$PATH"
-eval "$(rbenv init -)"
+eval "$(rbenv init - 2>/dev/null)"
