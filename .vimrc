@@ -1,13 +1,13 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/vundle
 call vundle#begin()
 
 " --- Plugins here ---
 Plugin 'bling/vim-airline'
 " Plugin 'edkolev/tmuxline.vim'
-Plugin 'elixir-lang/vim-elixir'
+" Plugin 'elixir-lang/vim-elixir'
 Plugin 'guns/vim-clojure-static'
 Plugin 'itchyny/vim-haskell-indent'
 Plugin 'kien/rainbow_parentheses.vim'
