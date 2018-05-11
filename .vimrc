@@ -12,7 +12,10 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'itchyny/vim-haskell-indent'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lambdatoast/elm.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'paredit.vim'
+Plugin 'slim-template/vim-slim.git'
 Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
@@ -46,6 +49,7 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_powerline_fonts = 1
+let g:jsx_ext_required = 1
 syn on
 
 " --- Looks ---
@@ -96,6 +100,8 @@ fu! MyCljBindings()
 endfunction
 
 au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
+au BufNewFile,BufRead *.go setlocal noexpandtab
+au BufNewFile,BufRead *.sol setlocal foldmethod=indent
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
 au BufNewFile,BufRead *.json set filetype=javascript
 au BufNewFile,BufRead *.md set filetype=ghmarkdown
