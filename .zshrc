@@ -57,10 +57,12 @@ __right () {
   fi
 }
 
+autoload vcs_info
 zstyle ':vcs_info:*' unstagedstr '%F{160}'
 zstyle ':vcs_info:*' stagedstr '%F{178}'
 zstyle ':vcs_info:git*' formats '%b %u%c'
 zstyle ':vcs_info:*' check-for-changes true
+precmd () { vcs_info }
 
 PROMPT='%K{23}%F{15} $(__left) %F{23}%k %f'
 RPROMPT='$(__right 23 ${=vcs_info_msg_0_})'
