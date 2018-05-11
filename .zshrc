@@ -133,6 +133,7 @@ alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 alias rails="bundle exec rails"
 
 alias dssh='docker-machine ssh'
+alias dps='docker ps'
 alias egrep='egrep --color=auto'
 alias hc="he run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
 alias hcs="he config -s"
@@ -195,7 +196,7 @@ alias gst='git status -sb'
 alias pull='git pull'
 alias push='git push'
 alias deploy='git push heroku stable:master'
-alias stage='git push heroku staging:master'
+alias stage='git push staging staging:master'
 
 bindkey -v
 bindkey "^A" vi-beginning-of-line
