@@ -209,5 +209,5 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$PATH:node_modules/.bin"
 eval "$(rbenv init - 2>/dev/null)"
