@@ -77,10 +77,20 @@ DBCollection.prototype.live = function (q) {
 }
 
 DBCollection.prototype.mri = function () {
-  var args = Array.prototype.slice.call(arguments);
-  if (args.length < 3) args.push({});
-  args[2].out = { inline: 1 };
-  return this.mapReduce.apply(this, args);
+  var args = Array.prototype.slice.call(arguments), keep;
+  var opts = { out: { inline: 1 }};
+  if (args.length < 3) {
+    args.push(opts);
+  } else {
+    args[2] = opts = Object.merge(args[2], opts, false);
+    keep = opts.keep; delete opts.keep;
+  }
+  var res = this.mapReduce.apply(this, args);
+  if (keep) {
+    res.results = res.results.filter(i => keep(i.value));
+    res.counts.kept = res.results.length;
+  }
+  return res;
 }
 
 DBCollection.prototype.mr = function () {
