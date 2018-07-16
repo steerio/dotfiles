@@ -56,7 +56,7 @@ syn on
 
 highlight Normal guibg=black guifg=#c7c7c7
 set ruler ls=2 bg=dark guioptions=c
-highlight Folded ctermbg=darkmagenta ctermfg=darkcyan guibg=#203020 guifg=#407040
+highlight Folded ctermbg=232 Ctermfg=darkcyan guibg=#0b0b0b guifg=#407040
 highlight StatusLine cterm=bold ctermbg=blue ctermfg=white
 highlight StatusLineNC cterm=NONE ctermbg=blue ctermfg=darkcyan
 set fillchars=vert:\|,fold:\  " That's an escaped space.
