@@ -104,7 +104,7 @@ au BufNewFile,BufRead *.go setlocal noexpandtab
 au BufNewFile,BufRead *.sol setlocal foldmethod=indent
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
 au BufNewFile,BufRead *.json set filetype=javascript
-au BufNewFile,BufRead *.md set filetype=ghmarkdown
+au BufNewFile,BufRead *.md set filetype=ghmarkdown wrap linebreak
 au BufNewFile,BufRead * set formatoptions-=o
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
@@ -121,6 +121,7 @@ nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>f :lnf<CR>
 nnoremap <Leader>F :lpf<CR>
 nnoremap <Leader>v :set invpaste<CR>
+nnoremap <Leader>t :set invwrap invlinebreak<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
 nnoremap <C-W>l :exe "res ".line('$')<CR>gg''
 
