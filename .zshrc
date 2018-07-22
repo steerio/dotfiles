@@ -209,5 +209,9 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-export PATH="$HOME/bin:$PATH:node_modules/.bin:$HOME/.yarn/bin"
-eval "$(rbenv init - 2>/dev/null)"
+if [[ "$PATH" != *"yarn"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH:node_modules/.bin:$HOME/.yarn/bin"
+fi
+
+# First line sets the PATH, let's prefix it with a conditional:
+eval "[[ -z \$RBENV_SHELL ]] && $(rbenv init - 2>/dev/null)"
