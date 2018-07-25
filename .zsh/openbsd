@@ -10,7 +10,8 @@ fi
 export PATH
 
 LANG=en_US.UTF-8
-LC_CTYPE=$LANG
-export LANG LC_CTYPE
+LANGUAGE=$LANG
+LC_ALL=$LANG
+export LANG LANGUAGE LC_ALL
 
 alias ls='ls -F'

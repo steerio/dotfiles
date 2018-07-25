@@ -9,5 +9,9 @@ PATH=$BREW/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 ANDROID_HOME=$HOME/Android
 LSCOLORS=cx
 export ANDROID_HOME BREW EDITOR JAVA_HOME LSCOLORS LUA_PATH LUA_CPATH PATH
+LANG=en_US.UTF-8
+LANGUAGE=$LANG
+LC_ALL=$LANG
+export LANG LANGUAGE LC_ALL
 
 alias ls='ls -G'
