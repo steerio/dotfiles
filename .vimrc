@@ -59,6 +59,7 @@ set ruler ls=2 bg=dark guioptions=c
 highlight Folded ctermbg=232 Ctermfg=darkcyan guibg=#0b0b0b guifg=#407040
 highlight StatusLine cterm=bold ctermbg=blue ctermfg=white
 highlight StatusLineNC cterm=NONE ctermbg=blue ctermfg=darkcyan
+highlight ColorColumn ctermbg=232 guibg=#0b0b0b
 set fillchars=vert:\|,fold:\  " That's an escaped space.
 
 if has('GUI_GTK')
@@ -123,7 +124,8 @@ nnoremap <Leader>F :lpf<CR>
 nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>t :set invwrap invlinebreak<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
-nnoremap <C-W>l :exe "res ".line('$')<CR>gg''
+nnoremap <C-W>S :exe "res ".line('$')<CR>gg''
+nnoremap du :diffupdate<CR>
 
 let maplocalleader=','
 set lispwords+=GET,POST,PUT,DELETE,HEAD
