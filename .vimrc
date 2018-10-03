@@ -126,6 +126,7 @@ nnoremap <Leader>t :set invwrap invlinebreak<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
 nnoremap <C-W>S :exe "res ".line('$')<CR>gg''
 nnoremap du :diffupdate<CR>
+nnoremap dP :.diffput<CR>
 
 let maplocalleader=','
 set lispwords+=GET,POST,PUT,DELETE,HEAD
