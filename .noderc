@@ -3,6 +3,13 @@
 prn = console.log
 log = prn
 err = console.error
+props = Object.getOwnPropertyNames;
+
+into = function (vn) {
+  return function (obj) {
+    global[vn] = obj;
+  }
+}
 
 Promise.prototype.into = function (vn) {
   return this.then(function (obj) {
