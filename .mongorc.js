@@ -38,7 +38,6 @@ function max(k,v) {
   return res;
 }
 
-
 Number.prototype.toDate = function () {
   return new Date(this*1000);
 }
