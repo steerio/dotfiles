@@ -103,56 +103,28 @@ remote-redis () {
   $dot_bin/remote-redis ${1-$heroku_app}
 }
 
-get () {
-  curl -b ~/.curl_cookie_jar -c ~/.curl_cookie_jar "$@"
-}
-
-post () {
-  get -d "$@"
-}
-
-put () {
-  get -X PUT -d "$@"
-}
-
-delete () {
-  get -X DELETE "$@"
-}
-
-hclone () {
-  git clone git@heroku.com:$1.git $2
-}
-
 run () {
   PORT=${PORT-3000} $dot_bin/poorman ${1-web}
-}
-
-ngrep () {
-  egrep -r --exclude-dir=node_modules $*
 }
 
 alias be='bundle exec'
 alias bu=bundle
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
-alias rails="bundle exec rails"
+alias node="node -r ~/.noderc"
 
 alias dssh='docker-machine ssh'
 alias dps='docker ps'
-alias egrep='egrep --color=auto'
-alias hc="he run 'if [ -f script/console ]; then script/console; else bundle exec rails c; fi'"
 alias hcs="he config -s"
 alias hl='he logs'
 alias hlt='he logs --tail'
-alias hrake='he run rake'
 alias hrun='he run'
 alias hsh='he run /bin/bash'
 
-alias lua="rlwrap luajit -i ~/.luarc"
-alias node="node -r ~/.noderc"
+alias egrep='egrep --color=auto'
 alias rgrep='egrep -r'
-
-alias 4stat='netstat -f inet'
-alias 6stat='netstat -f inet6'
+ngrep () {
+  egrep -r --exclude-dir=node_modules $*
+}
 
 gbc () {
   git branch $1
@@ -173,16 +145,12 @@ gsu () {
 
 alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
 
-t () {
-  exec tmux new -s ${1-Main}
-}
-
 ta () {
   local n=${1-Main}
   if tmux has-session -t $n 2>/dev/null; then
     exec tmux a -t $n
   else
-    t $n
+    exec tmux new -s ${1-Main}
   fi
 }
 
