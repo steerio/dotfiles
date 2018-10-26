@@ -1,17 +1,21 @@
 # vim: filetype=zsh
 
 BREW=/usr/local
-EDITOR=$HOME/bin/vim # MacVim
+EDITOR=$HOME/.local/bin/vim # MacVim
 LUA_PATH="$BREW/share/lua/5.1/?.lua;$BREW/share/lua/5.1/?/init.lua;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$BREW/Cellar/luarocks/2.0.12/share/lua/5.1/?.lua;$BREW/Cellar/luarocks/2.0.12/share/lua/5.1/?/init.lua;$BREW/share/lua/5.1/?.lua;$BREW/share/lua/5.1/?/init.lua;$HOME/.luarocks/share/lua/5.1/?.lua;$HOME/.luarocks/share/lua/5.1/?/init.lua;$BREW/Cellar/luarocks/2.0.10/share/lua/5.1/?.lua;$BREW/Cellar/luarocks/2.0.10/share/lua/5.1/?/init.lua;./?.lua;$BREW/Cellar/luajit/2.0.0/share/luajit-2.0.0/?.lua;$BREW/Cellar/luajit/2.0.0/share/lua/5.1/?.lua;$BREW/Cellar/luajit/2.0.0/share/lua/5.1/?/init.lua;;$LUA_PATH"
 LUA_CPATH="$BREW/lib/lua/5.1/?.so;$HOME/.luarocks/lib/lua/5.1/?.so;$BREW/lib/lua/5.1/?.so;$HOME/.luarocks/lib/lua/5.1/?.so;./?.so;$BREW/Cellar/luajit/2.0.0/lib/lua/5.1/?.so;;$LUA_CPATH"
-JAVA_HOME=`/usr/libexec/java_home`
 PATH=$BREW/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 ANDROID_HOME=$HOME/Android
 LSCOLORS=cx
-export ANDROID_HOME BREW EDITOR JAVA_HOME LSCOLORS LUA_PATH LUA_CPATH PATH
+export ANDROID_HOME BREW EDITOR LSCOLORS LUA_PATH LUA_CPATH PATH
 LANG=en_US.UTF-8
 LANGUAGE=$LANG
 LC_ALL=$LANG
 export LANG LANGUAGE LC_ALL
+
+JAVA_HOME=`/usr/libexec/java_home 2>/dev/null`
+if [[ -n "$JAVA_HOME" ]]; then
+  export JAVA_HOME
+fi
 
 alias ls='ls -G'
