@@ -181,8 +181,8 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
-if [[ "$PATH" != *"yarn"* ]]; then
-  export PATH="$HOME/.local/bin:$PATH:node_modules/.bin:$HOME/.yarn/bin"
+if [[ "$PATH" != *"node_modules"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH:node_modules/.bin"
 fi
 
 # First line sets the PATH, let's prefix it with a conditional:

@@ -1,5 +1,8 @@
 # vim: filetype=zsh
 
 export EDITOR=vim
+if [[ "$PATH" != *"yarn"* ]]; then
+  export PATH=$PATH:$HOME/.yarn/bin
+fi
 alias ls='ls --color'
 alias clip='xclip -selection clipboard'
