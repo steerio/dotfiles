@@ -107,10 +107,17 @@ run () {
   PORT=${PORT-3000} $dot_bin/poorman ${1-web}
 }
 
+node () {
+  if [[ $* == "" ]]; then
+    command node --experimental-repl-await -r ~/.noderc
+  else
+    command node $*
+  fi
+}
+
 alias be='bundle exec'
 alias bu=bundle
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
-alias node="node -r ~/.noderc"
 
 alias dssh='docker-machine ssh'
 alias dps='docker ps'
