@@ -1,42 +1,21 @@
 // vim: filetype=javascript
 
-prn = console.log
-log = prn
-err = console.error
+log = print = console.log;
 props = Object.getOwnPropertyNames;
 
-into = function (vn) {
-  return function (obj) {
-    global[vn] = obj;
-  }
-}
-
-Promise.prototype.into = function (vn) {
-  return this.then(function (obj) {
-    global[vn] = obj;
-  });
-}
-
-Promise.prototype.p = function () {
-  return this.then(console.log).fail(function (err) {
-    console.error("ERROR", err);
-  });
-}
-
 Function.prototype.asPromise = function () {
-  var fun = this, args = arguments;
   return new Promise((resolve, reject) => {
-    Array.prototype.push.call(args, function (err, obj) {
+    Array.prototype.push.call(arguments, function (err, obj) {
       if (err === null) {
         resolve(obj);
       } else {
         reject(err);
       }
     });
-    fun.apply(fun, args);
+    this.apply(this, arguments);
   });
 }
 
 Function.prototype.promisify = function () {
-  return this.asPromise.bind(this);
+  return util.promisify(this);
 }
