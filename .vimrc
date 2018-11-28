@@ -102,7 +102,6 @@ endfunction
 
 au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
 au BufNewFile,BufRead *.go setlocal noexpandtab
-au BufNewFile,BufRead *.sol setlocal foldmethod=indent
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
 au BufNewFile,BufRead *.json set filetype=javascript
 au BufNewFile,BufRead *.md set filetype=ghmarkdown wrap linebreak
