@@ -103,10 +103,6 @@ remote-redis () {
   $dot_bin/remote-redis ${1-$heroku_app}
 }
 
-run () {
-  PORT=${PORT-3000} $dot_bin/poorman ${1-web}
-}
-
 node () {
   if [[ $* == "" ]]; then
     command node --experimental-repl-await -r ~/.noderc
@@ -191,6 +187,3 @@ compinit
 if [[ "$PATH" != *"node_modules"* ]]; then
   export PATH="$HOME/.local/bin:$PATH:node_modules/.bin"
 fi
-
-# First line sets the PATH, let's prefix it with a conditional:
-eval "[[ -z \$RBENV_SHELL ]] && $(rbenv init - 2>/dev/null)"
