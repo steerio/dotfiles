@@ -44,7 +44,7 @@ end
 
 last_sw = nil
 opt_line = proc do |key,line|
-  sw = line.scan(/^\s{2}(-[a-z=-]+)/)
+  sw = line.scan(/^\s{2}(-[a-z-]+={0,1})/)
   if sw.any?
     last_sw = sw
     sw.flatten!
@@ -57,11 +57,10 @@ opt_line = proc do |key,line|
       opts[key] ||= {}
       opts[key].store sw, desc
     end
-  elsif line =~ /^\s{2}\s+(.+)$/
+  elsif line =~ /^\s{2}\s+([^\s]+)$/
     begin
       opts[key][last_sw] += " #{$1}"
     rescue
-      STDERR.puts "Opts #{key} #{last_sw} #{line}"
     end
   end
 end
