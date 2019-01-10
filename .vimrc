@@ -6,16 +6,13 @@ call vundle#begin()
 
 " --- Plugins here ---
 Plugin 'bling/vim-airline'
-" Plugin 'edkolev/tmuxline.vim'
-" Plugin 'elixir-lang/vim-elixir'
 Plugin 'guns/vim-clojure-static'
 Plugin 'itchyny/vim-haskell-indent'
+Plugin 'jparise/vim-graphql'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'lambdatoast/elm.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'paredit.vim'
-Plugin 'slim-template/vim-slim.git'
 Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-fugitive'
