@@ -8,6 +8,12 @@ dot_bin=~/.zshrc
 dot_bin=${dot_bin:A:h}/bin
 
 setopt prompt_subst
+setopt hist_ignore_all_dups
+setopt hist_ignore_dups
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt hist_verify
+disable r
 
 if [[ -n $TMUX ]]; then
   export TERM=screen-256color
@@ -111,23 +117,22 @@ node () {
   fi
 }
 
-alias be='bundle exec'
-alias bu=bundle
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
 alias dssh='docker-machine ssh'
 alias dps='docker ps'
+alias dpa='docker ps -a'
 alias hcs="he config -s"
 alias hl='he logs'
 alias hlt='he logs --tail'
 alias hrun='he run'
 alias hsh='he run /bin/bash'
 
+alias run='yarn run start'
+
 alias egrep='egrep --color=auto'
 alias rgrep='egrep -r'
-ngrep () {
-  egrep -r --exclude-dir=node_modules $*
-}
+alias ngrep='egrep -r --exclude-dir=node_modules'
 
 gbc () {
   git branch $1
