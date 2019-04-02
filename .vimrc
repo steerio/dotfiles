@@ -6,7 +6,6 @@ call vundle#begin()
 
 " --- Plugins here ---
 Plugin 'bling/vim-airline'
-Plugin 'guns/vim-clojure-static'
 Plugin 'itchyny/vim-haskell-indent'
 Plugin 'jparise/vim-graphql'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -15,7 +14,9 @@ Plugin 'mxw/vim-jsx'
 Plugin 'paredit.vim'
 Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-fugitive'
+Plugin 'elixir-editors/vim-elixir'
 " --- Plugins until this point ---
 
 call vundle#end()
