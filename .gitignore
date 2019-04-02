@@ -1,3 +1,4 @@
+.DS_Store
 /.vim/.netrwhist
 /.vim/swap/*
 !/.vim/swap/.gitkeep
