@@ -98,6 +98,7 @@ fu! MyCljBindings()
   exe 'nmap <buffer> <LocalLeader>: <Plug>FireplacePrompt' . &cedit . 'i'
 endfunction
 
+au BufNewFile,BufRead *.svelte set filetype=html
 au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
 au BufNewFile,BufRead *.go setlocal noexpandtab
 au BufNewFile,BufRead Jemfile,Buildfile,Capfile,*.framespec,*.rabl,*.prawn set filetype=ruby
