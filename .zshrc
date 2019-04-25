@@ -119,14 +119,15 @@ node () {
 
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
+alias dk='docker'
 alias dssh='docker-machine ssh'
 alias dps='docker ps'
 alias dpa='docker ps -a'
 alias hcs="he config -s"
 alias hl='he logs'
 alias hlt='he logs --tail'
-alias hrun='he run'
 alias hsh='he run /bin/bash'
+alias hyarn='he run yarn'
 
 alias run='yarn run start'
 
