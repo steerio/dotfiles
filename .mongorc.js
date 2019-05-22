@@ -100,6 +100,10 @@ DBCollection.prototype.mr = function () {
   return obj;
 }
 
+DBCollection.prototype.frequencies = function (k) {
+  return this.mr(emit(k), sum);
+}
+
 DBCollection.prototype.upObj = function (obj) {
   arguments[0] = { _id: obj._id };
   return this.update.apply(this, arguments);
