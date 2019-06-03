@@ -10,7 +10,7 @@ Plugin 'itchyny/vim-haskell-indent'
 Plugin 'jparise/vim-graphql'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plugin 'MaxMEllon/vim-jsx-pretty'
 Plugin 'paredit.vim'
 Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-fireplace'
@@ -47,7 +47,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_powerline_fonts = 1
-let g:jsx_ext_required = 1
 syn on
 
 " --- Looks ---
