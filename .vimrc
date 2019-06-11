@@ -6,17 +6,20 @@ call vundle#begin()
 
 " --- Plugins here ---
 Plugin 'bling/vim-airline'
+Plugin 'elixir-editors/vim-elixir'
+Plugin 'hail2u/vim-css3-syntax'
 Plugin 'itchyny/vim-haskell-indent'
 Plugin 'jparise/vim-graphql'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'pangloss/vim-javascript'
+Plugin 'leafgarland/typescript-vim'
 Plugin 'MaxMEllon/vim-jsx-pretty'
+Plugin 'pangloss/vim-javascript'
 Plugin 'paredit.vim'
+" Plugin 'styled-components/vim-styled-components'
 Plugin 'tomlion/vim-solidity'
 Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-fugitive'
-Plugin 'elixir-editors/vim-elixir'
+Plugin 'tpope/vim-salve'
 " --- Plugins until this point ---
 
 call vundle#end()
