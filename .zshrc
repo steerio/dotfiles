@@ -128,6 +128,7 @@ alias hl='he logs'
 alias hlt='he logs --tail'
 alias hsh='he run /bin/bash'
 alias hyarn='he run yarn'
+alias hnode='he run node --experimental-repl-await'
 
 alias run='yarn run start'
 
