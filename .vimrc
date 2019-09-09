@@ -18,6 +18,7 @@ set visualbell
 set mouse=a
 set dir=~/.vim/swap,.,~/tmp,~/
 
+let g:netrw_banner = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
@@ -88,10 +89,10 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au FileType clojure call MyCljBindings()
 au FileType html,xml,eruby source ~/.vim/scripts/closetag.vim
-nnoremap <Leader>s :Sexplore<CR>z10<CR>9Gz<CR>j
-nnoremap <Leader>S :s .<CR>z10<CR>9Gz<CR>j
-nnoremap <Leader>e :Explore<CR>9Gz<CR>j
-nnoremap <Leader>E :e .<CR>9Gz<CR>j
+nnoremap <Leader>s :Sexplore<CR>3G
+nnoremap <Leader>S :s .<CR>3G
+nnoremap <Leader>e :Explore<CR>3G
+nnoremap <Leader>E :e .<CR>3G
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>f :lnf<CR>
