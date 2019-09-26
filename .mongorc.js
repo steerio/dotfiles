@@ -71,10 +71,6 @@ DBCollection.prototype.mget = function (ids) {
   return this.find({ _id: { $in: ids }});
 }
 
-DBCollection.prototype.live = function (q) {
-  return this.find(Object.merge(q, {live:true}));
-}
-
 DBCollection.prototype.mri = function () {
   var args = Array.prototype.slice.call(arguments), keep;
   var opts = { out: { inline: 1 }};
@@ -288,11 +284,4 @@ function wrapInts(obj) {
     default:
       return obj;
   }
-}
-
-if (db.getCollection("_User").exists()) {
-  db.users = db.getCollection("_User");
-  db.installations = db.getCollection("_Installation");
-  db.schema = db.getCollection("_SCHEMA");
-  db.sessions = db.getCollection("_Session");
 }
