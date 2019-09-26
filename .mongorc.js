@@ -100,6 +100,15 @@ DBCollection.prototype.frequencies = function (k) {
   return this.mr(emit(k), sum);
 }
 
+DBCollection.prototype.fieldStats = function (k) {
+  return this.mr(
+    function() {
+      for (let field in this) emit(field, 1);
+    },
+    sum
+  );
+}
+
 DBCollection.prototype.upObj = function (obj) {
   arguments[0] = { _id: obj._id };
   return this.update.apply(this, arguments);
