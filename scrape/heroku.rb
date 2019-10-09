@@ -3,6 +3,12 @@
 # THIS CODE IS UGLY.
 # But so are Heroku's help outputs.
 
+name = ARGV[0]
+unless name
+  STDERR.puts "Specify command name as the sole argument (e.g. hu)"
+  exit 1
+end
+
 HEROKU=`which heroku`.chomp
 unless $?.success?
   STDERR.puts "Heroku CLI is not installed (or not in path)"
@@ -121,7 +127,7 @@ end
 # OUTPUT
 
 puts <<EOF
-#compdef he
+#compdef #{name}
 
 local -a _1st_arguments
 _1st_arguments=(
