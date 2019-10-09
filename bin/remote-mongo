@@ -9,7 +9,7 @@ def read_config app
   info "Reading config from Heroku app #{app}"
   IO.popen "heroku config -s --app #{app}", "r" do |io|
     io.each_line do |line|
-      if m = line.scan(%r{^(MONGO.*?)='{0,1}(mongodb://.+?)'{0,1}$}).first
+      if m = line.scan(%r{^(MONGO.*?)='{0,1}(mongodb(\+[a-z]+){0,1}://.+?)'{0,1}$}).first
         info "Found #{m.first}"
         return m[1].sub(%r{,[^/]+/}, '/')
       end
@@ -20,21 +20,8 @@ def read_config app
 end
 
 if ARGV.empty?
-  STDERR.puts "Specify a MongoDB URL or a Heroku app as the sole argument."
+  STDERR.puts "Specify a Heroku app name as the sole argument."
   exit 1
 end
 
-arg = ARGV[0]
-arg = read_config arg unless arg.include? ?/
-
-require 'uri'
-uri = URI.parse arg
-
-opts = []
-opts << ["-u", uri.user] if uri.user
-opts << ["-p", uri.password] if uri.password
-
-hp = uri.host
-hp += ":#{uri.port}" if uri.port
-
-exec "mongo #{opts.join(' ')} #{hp}#{uri.path} #{ARGV[1..-1].join(' ')}"
+exec "mongo #{read_config(ARGV[0])}"
