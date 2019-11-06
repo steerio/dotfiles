@@ -1,27 +1,22 @@
 #!/usr/bin/env ruby
 # vim: filetype=ruby
 
-def info msg
-  STDERR.puts "=> #{msg}"
-end
-
-def read_config app
-  info "Reading config from Heroku app #{app}"
-  IO.popen "heroku config -s --app #{app}", "r" do |io|
+def read_config
+  opts = ARGV.size == 1 ? "--app #{ARGV[0]}" : ARGV.join(' ')
+  IO.popen "heroku config -s #{opts}", "r" do |io|
     io.each_line do |line|
       if m = line.scan(%r{^(MONGO.*?)='{0,1}(mongodb(\+[a-z]+){0,1}://.+?)'{0,1}$}).first
-        info "Found #{m.first}"
-        return m[1].sub(%r{,[^/]+/}, '/')
+        res = m[1].sub(%r{,[^/]+/}, '/')
+        STDERR.puts "Found #{m.first}: #{res}"
+        return res
       end
     end
-    info "No MongoDB URL found."
-    exit 1
   end
+  nil
 end
 
-if ARGV.empty?
-  STDERR.puts "Specify a Heroku app name as the sole argument."
-  exit 1
+config = read_config
+if config
+  exec "mongo #{config}"
 end
 
-exec "mongo #{read_config(ARGV[0])}"

@@ -102,7 +102,7 @@ load () {
 }
 
 remote-mongo () {
-  $dot_bin/remote-mongo ${1-$heroku_app}
+  $dot_bin/remote-mongo ${*-$heroku_app}
 }
 
 remote-redis () {
