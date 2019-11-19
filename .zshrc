@@ -102,7 +102,11 @@ load () {
 }
 
 remote-mongo () {
-  $dot_bin/remote-mongo ${*-$heroku_app}
+  if [[ -n $1 ]]; then
+    $dot_bin/remote-mongo $*
+  else
+    $dot_bin/remote-mongo $heroku_app
+  fi
 }
 
 remote-redis () {
@@ -129,6 +133,7 @@ alias hlt='hu logs --tail'
 alias hsh='hu run /bin/bash'
 alias hyarn='hu run yarn'
 alias hnode='hu run node --experimental-repl-await'
+alias vi=vim
 
 alias run='yarn run start'
 
@@ -173,7 +178,7 @@ alias gdf='git diff'
 alias gdfc='git diff --cached'
 alias ghi='git log -p'
 alias glg='git log --graph'
-alias glog='git log'
+alias glog='git log --stat'
 alias gst='git status -sb'
 alias pull='git pull'
 alias push='git push'
