@@ -141,6 +141,10 @@ alias egrep='egrep --color=auto'
 alias rgrep='egrep -r'
 alias ngrep='egrep -r --exclude-dir=node_modules'
 
+dangling () {
+  docker $* -f dangling=true
+}
+
 gbc () {
   git branch $1
   git checkout $1
