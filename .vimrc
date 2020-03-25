@@ -106,6 +106,16 @@ nnoremap <C-W>S :exe "res ".line('$')<CR>gg''
 nnoremap du :diffupdate<CR>
 nnoremap dP :.diffput<CR>
 
+if !exists('g:lasttab')
+  let g:lasttab = 1
+endif
+nnoremap <Leader>t gt
+nnoremap <Leader>r gT
+nnoremap gH :-tabnew<CR>
+nnoremap gL :tabnew<CR>
+nnoremap <Leader><Tab> :exe "tabn ".g:lasttab<CR>
+au TabClosed,TabLeave * let g:lasttab = tabpagenr()
+
 let maplocalleader=','
 set lispwords+=GET,POST,PUT,DELETE,HEAD
 let g:clojure_fuzzy_indent = 1
