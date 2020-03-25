@@ -1,0 +1,4 @@
+#!/usr/bin/env -S ruby -p
+
+$_.gsub! /[\xEE\x82\xB0\xEE\x82\xB1]+/, '>'
+$_.gsub! /[\xEE\x82\xB3\xEE\x82\xB2]+/, '<'
