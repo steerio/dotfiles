@@ -109,10 +109,10 @@ nnoremap dP :.diffput<CR>
 if !exists('g:lasttab')
   let g:lasttab = 1
 endif
-nnoremap <Leader>t gt
-nnoremap <Leader>r gT
-nnoremap gH :-tabnew<CR>
-nnoremap gL :tabnew<CR>
+nnoremap <Leader>r gt
+nnoremap <Leader>w gT
+nnoremap gH :-tabfind .<CR>
+nnoremap gL :tabfind .<CR>
 nnoremap <Leader><Tab> :exe "tabn ".g:lasttab<CR>
 au TabClosed,TabLeave * let g:lasttab = tabpagenr()
 
