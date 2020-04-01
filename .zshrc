@@ -141,11 +141,21 @@ alias hyarn='hu run yarn'
 alias hnode='hu run node --experimental-repl-await'
 alias vi=vim
 
-alias run='yarn run start'
-
 alias egrep='egrep --color=auto'
 alias rgrep='egrep -r'
 alias ngrep='egrep -r --exclude-dir=node_modules'
+
+run () {
+  if [[ -f mix.exs ]]; then
+    iex -S mix phx.server
+  elif [[ -f config.ru ]]; then
+    bundle exec ruby config.ru
+  elif [[ -f package.json ]]; then
+    yarn start
+  else
+    echo "I don't know how to start this application." >&2
+  fi
+}
 
 dangling () {
   docker $* -f dangling=true
