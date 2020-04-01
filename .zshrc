@@ -70,14 +70,20 @@ zstyle ':vcs_info:git*' formats '%b %u%c'
 zstyle ':vcs_info:*' check-for-changes true
 precmd () { vcs_info }
 
-PROMPT='%K{23}%F{15} $(__left) %F{23}%k %f'
-RPROMPT='$(__right 23 ${=vcs_info_msg_0_})'
+if [[ $TERM == linux ]]; then
+  PROMPT='%F{cyan} $(__left) %B$ %f'
+  if [[ -n $SSH_TTY ]]; then
+    PROMPT="%F{blue} ${USER:0:2}@%m$PROMPT"
+  fi
+else
+  PROMPT='%K{23}%F{15} $(__left) %F{23}%k %f'
+  RPROMPT='$(__right 23 ${=vcs_info_msg_0_})'
 
-if [[ -n $SSH_TTY ]]; then
-  PROMPT="%K{235}%F{240} ${USER:0:2}@%m %K{23}%F{235}${PROMPT:6}"
+  if [[ -n $SSH_TTY ]]; then
+    PROMPT="%K{235}%F{240} ${USER:0:2}@%m %K{23}%F{235}${PROMPT:6}"
+  fi
 fi
 
-export PROMPT RPROMPT
 
 app () {
   if [[ -n $1 ]]; then
