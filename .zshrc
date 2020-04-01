@@ -218,6 +218,8 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
+export PAGER=`which less`
+
 if [[ "$PATH" != *"node_modules"* ]]; then
   export PATH="$HOME/.local/bin:$PATH:node_modules/.bin"
 fi
