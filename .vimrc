@@ -50,7 +50,9 @@ else
   set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h12
 endif
 
-fu! MyCljBindings()
+fu! ClojureSetup()
+  packadd 'vim-salve'
+  packadd 'vim-fireplace'
   nmap <buffer> <LocalLeader>e <Plug>FireplacePrint
   vmap <buffer> <LocalLeader>e <Plug>FireplacePrint
   nmap <buffer> <LocalLeader>ee <Plug>FireplacePrintip
@@ -91,7 +93,7 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-au FileType clojure call MyCljBindings()
+au FileType clojure call ClojureSetup()
 au FileType html,xml,eruby source ~/.vim/scripts/closetag.vim
 nnoremap <Leader>s :Sexplore<CR>3G
 nnoremap <Leader>S :s .<CR>3G
