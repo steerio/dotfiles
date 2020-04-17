@@ -7,12 +7,13 @@ if has("nvim")
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 endif
 
+set number
 set ttimeoutlen=50
 set bs=2 ts=2 sw=2 expandtab
 set lazyredraw modeline modelines=3
 set nowrap noshowmode nohlsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
-set foldmethod=marker
+set foldmethod=marker foldnestmax=3 foldminlines=3
 set wildmode=longest,list
 set visualbell
 set mouse=a
@@ -32,6 +33,7 @@ syn on
 
 " --- Looks ---
 
+highlight LineNr ctermfg=238 guifg=#444444
 highlight Normal guibg=black guifg=#c7c7c7
 set ruler ls=2 bg=dark guioptions=c
 highlight Folded ctermbg=232 Ctermfg=darkcyan guibg=#0b0b0b guifg=#407040
