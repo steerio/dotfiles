@@ -206,10 +206,16 @@ autoload -U zutil compinit complist
 compinit
 
 export PAGER=`which less`
+
+. ~/.zshrc.local
+
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d'
-. ~/.zshrc.local
+
+_fzf_complete_mosh () {
+  _fzf_complete_ssh $*
+}
 
 if [[ "$PATH" != *"node_modules"* ]]; then
   export PATH="$HOME/.local/bin:$PATH:node_modules/.bin"
