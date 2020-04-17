@@ -99,12 +99,6 @@ hu () {
   fi
 }
 
-load () {
-  for i in `grep -v '^#' $1`; do
-    export $i
-  done
-}
-
 remote-mongo () {
   if [[ -n $1 ]]; then
     $dot_bin/remote-mongo $*
@@ -138,10 +132,6 @@ alias hsh='hu run /bin/bash'
 alias hyarn='hu run yarn'
 alias hnode='hu run node --experimental-repl-await'
 alias vi=vim
-
-alias egrep='egrep --color=auto'
-alias rgrep='egrep -r'
-alias ngrep='egrep -r --exclude-dir=node_modules'
 
 run () {
   if [[ -f mix.exs ]]; then
