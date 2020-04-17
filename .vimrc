@@ -101,8 +101,10 @@ nnoremap <Leader>e :Explore<CR>3G
 nnoremap <Leader>E :e .<CR>3G
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
-nnoremap <Leader>f :lnf<CR>
-nnoremap <Leader>F :lpf<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>f :Files<CR>
+nnoremap <Leader>g :GFiles<CR>
+nnoremap <Leader>G :GFiles?<CR>
 nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>t :set invwrap invlinebreak<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>

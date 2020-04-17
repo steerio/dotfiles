@@ -1,5 +1,3 @@
-. ~/.zshrc.local
-
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
@@ -210,7 +208,6 @@ deploy () {
 bindkey -v
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
-bindkey "^R" history-incremental-search-backward
 setopt noautomenu nobeep
 
 zstyle ':completion:*' completer _expand _complete _files
@@ -219,6 +216,10 @@ autoload -U zutil compinit complist
 compinit
 
 export PAGER=`which less`
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d'
+. ~/.zshrc.local
 
 if [[ "$PATH" != *"node_modules"* ]]; then
   export PATH="$HOME/.local/bin:$PATH:node_modules/.bin"

@@ -1,5 +1,8 @@
 # vim: filetype=zsh
 
+. /usr/share/fzf/completion.zsh
+. /usr/share/fzf/key-bindings.zsh
+
 export EDITOR=vim
 if [[ "$PATH" != *"yarn"* ]]; then
   export PATH=$PATH:$HOME/.yarn/bin
