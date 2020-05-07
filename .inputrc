@@ -1,2 +1,7 @@
 set mark-directories On
 set mark-symlinked-directories On
+set editing-mode vi
+"\C-a": beginning-of-line
+"\C-e": end-of-line
+"\C-l": clear-screen
+"\C-u": unix-line-discard
