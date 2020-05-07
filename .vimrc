@@ -19,7 +19,6 @@ set visualbell
 set mouse=a
 set dir=~/.vim/swap,.,~/tmp,~/
 
-let g:netrw_banner = 0
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
@@ -27,8 +26,6 @@ let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_powerline_fonts = 1
-let g:bufExplorerShowRelativePath = 1
-let g:bufExplorerSplitOutPathName = 0
 syn on
 
 " --- Looks ---
@@ -82,6 +79,8 @@ fu! ClojureSetup()
   exe 'nmap <buffer> <LocalLeader>: <Plug>FireplacePrompt' . &cedit . 'i'
 endfunction
 
+command! -nargs=? -complete=dir SDirvish split | silent Dirvish <args>
+
 au BufNewFile,BufRead *.svelte set filetype=html
 au BufNewFile,BufRead *.lsp,*.jl call PareditInitBuffer()
 au BufNewFile,BufRead *.go setlocal noexpandtab
@@ -95,16 +94,18 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 au FileType clojure call ClojureSetup()
 au FileType html,xml,eruby source ~/.vim/scripts/closetag.vim
-nnoremap <Leader>s :Sexplore<CR>3G
-nnoremap <Leader>S :s .<CR>3G
-nnoremap <Leader>e :Explore<CR>3G
-nnoremap <Leader>E :e .<CR>3G
+nnoremap <Leader>s :SDirvish %<CR>
+nnoremap <Leader>S :SDirvish .<CR>
+nnoremap <Leader>e :Dirvish %<CR>
+nnoremap <Leader>E :Dirvish .<CR>
+nnoremap <Leader>~ :Dirvish ~<CR>
 nnoremap <Leader>n :lne<CR>
 nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>g :GFiles<CR>
 nnoremap <Leader>G :GFiles?<CR>
+nnoremap <Leader>1 :set invnumber<CR>
 nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>t :set invwrap invlinebreak<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
@@ -128,7 +129,6 @@ let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do', '^if-']
 let g:clojure_align_multiline_strings = 1
 let g:paredit_electric_return = 0
-let g:netrw_list_hide = '^\..*swp$,^\.git/$,^\.bundle/$'
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
