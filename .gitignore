@@ -2,6 +2,8 @@
 /.vim/.netrwhist
 /.vim/swap/*
 !/.vim/swap/.gitkeep
-/.zsh/comp/_hu
+/.vim/view
+/.zsh/comp/_he
 /.zsh/comp/_ipfs
+/.zsh/comp/_asdf
 /.vim/pack/plugins

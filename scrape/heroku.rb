@@ -5,7 +5,7 @@
 
 name = ARGV[0]
 unless name
-  STDERR.puts "Specify command name as the sole argument (e.g. hu)"
+  STDERR.puts "Specify command name as the sole argument (e.g. he)"
   exit 1
 end
 

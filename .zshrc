@@ -46,8 +46,8 @@ __right () {
       stable)
         out="S"
         ;;
-      feature[_-]*)
-        out="${2#feature}"
+      feature[_/-]*)
+        out="f${2#feature}"
         ;;
       *?)
         out="$2"
@@ -91,7 +91,7 @@ app () {
   fi
 }
 
-hu () {
+he () {
   if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
     heroku $* --app $heroku_app
   else
@@ -125,12 +125,12 @@ alias dk='docker'
 alias dssh='docker-machine ssh'
 alias dps='docker ps'
 alias dpa='docker ps -a'
-alias hcs="hu config -s"
-alias hl='hu logs'
-alias hlt='hu logs --tail'
-alias hsh='hu run /bin/bash'
-alias hyarn='hu run yarn'
-alias hnode='hu run node --experimental-repl-await'
+alias hcs="he config -s"
+alias hl='he logs'
+alias hlt='he logs --tail'
+alias hsh='he run /bin/bash'
+alias hyarn='he run yarn'
+alias hnode='he run node --experimental-repl-await'
 alias vi=vim
 
 run () {

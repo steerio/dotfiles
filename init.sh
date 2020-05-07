@@ -47,5 +47,5 @@ scrape () {
   fi
 }
 
-scrape heroku hu
+scrape heroku he
 scrape ipfs
