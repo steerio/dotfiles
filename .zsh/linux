@@ -3,6 +3,10 @@
 . /usr/share/fzf/completion.zsh
 . /usr/share/fzf/key-bindings.zsh
 
+if [[ $TERM == xterm ]]; then
+  export TERM=xterm-256color
+fi
+
 export EDITOR=vim
 if [[ "$PATH" != *"yarn"* ]]; then
   export PATH=$PATH:$HOME/.yarn/bin
