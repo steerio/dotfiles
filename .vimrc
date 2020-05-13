@@ -30,14 +30,13 @@ syn on
 
 " --- Looks ---
 
-highlight LineNr ctermfg=238 guifg=#444444
-highlight Normal guibg=black guifg=#c7c7c7
-set ruler ls=2 bg=dark guioptions=c
-highlight Folded ctermbg=232 Ctermfg=darkcyan guibg=#0b0b0b guifg=#407040
+highlight LineNr ctermfg=238
+set ruler ls=2 bg=dark
+highlight Folded ctermbg=232 ctermfg=darkcyan
 highlight StatusLine cterm=NONE ctermbg=235 ctermfg=white
 highlight StatusLineNC cterm=NONE ctermbg=235 ctermfg=darkcyan
-highlight ColorColumn ctermbg=232 guibg=#0b0b0b
-highlight VertSplit cterm=NONE ctermbg=NONE guibg=NONE ctermfg=249
+highlight ColorColumn ctermbg=232
+highlight VertSplit cterm=NONE ctermbg=NONE ctermfg=249
 set fillchars=vert:│,fold:\  " That's an escaped space.
 
 fun! FixSplitColors()
@@ -48,14 +47,6 @@ fun! FixSplitColors()
   exec 'hi StatusLineNC ctermbg=' . l:colors[3] . ' guibg=' . l:colors[1]
 endfun
 au User AirlineAfterInit,AirlineAfterTheme call FixSplitColors()
-
-if has('GUI_GTK')
-  " Linux/BSD
-  set guifont=Droid\ Sans\ Mono\ 9
-else
-  " OS X
-  set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h12
-endif
 
 fu! ClojureSetup()
   packadd 'vim-salve'
