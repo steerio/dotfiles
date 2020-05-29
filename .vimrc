@@ -15,7 +15,7 @@ set nowrap noshowmode nohlsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
 set foldmethod=marker foldnestmax=3 foldminlines=3
 set wildmode=longest,list
-set visualbell
+set bo=all
 set mouse=a
 set dir=~/.vim/swap,.,~/tmp,~/
 
@@ -100,15 +100,13 @@ nnoremap <Leader>S :SDirvish .<CR>
 nnoremap <Leader>e :Dirvish %<CR>
 nnoremap <Leader>E :Dirvish .<CR>
 nnoremap <Leader>~ :Dirvish ~<CR>
-nnoremap <Leader>n :lne<CR>
-nnoremap <Leader>N :lp<CR>
 nnoremap <Leader>b :Buffers<CR>
 nnoremap <Leader>f :Files<CR>
 nnoremap <Leader>g :GFiles<CR>
 nnoremap <Leader>G :GFiles?<CR>
-nnoremap <Leader>1 :set invnumber<CR>
+nnoremap <Leader>n :set invnumber<CR>
 nnoremap <Leader>v :set invpaste<CR>
-nnoremap <Leader>t :set invwrap invlinebreak<CR>
+nnoremap <Leader>m :set invwrap invlinebreak<CR>
 nnoremap <Leader>/ :set invhlsearch<CR>
 nnoremap <C-W>S :exe "res ".line('$')<CR>gg''
 nnoremap du :diffupdate<CR>
@@ -117,10 +115,19 @@ nnoremap dP :.diffput<CR>
 if !exists('g:lasttab')
   let g:lasttab = 1
 endif
-nnoremap <Leader>r gt
-nnoremap <Leader>w gT
-nnoremap gH :-tabfind .<CR>
-nnoremap gL :tabfind .<CR>
+nnoremap <Leader>q @='gT'<CR>
+nnoremap <Leader>w @='gt'<CR>
+nnoremap <Leader>i :-tabfind .<CR>
+nnoremap <Leader>a :tabfind .<CR>
+nnoremap <Leader>I :0tabfind .<CR>
+nnoremap <Leader>A :$tabfind .<CR>
+" The following two are the same thing, but whatever.
+nnoremap <Leader>0 :tabfirst<CR>
+nnoremap <Leader>1 :tabn 1<CR>
+nnoremap <Leader>2 :tabn 2<CR>
+nnoremap <Leader>3 :tabn 3<CR>
+nnoremap <Leader>4 :tabn 4<CR>
+nnoremap <Leader>$ :tablast<CR>
 nnoremap <Leader><Tab> :exe "tabn ".g:lasttab<CR>
 au TabClosed,TabLeave * let g:lasttab = tabpagenr()
 
