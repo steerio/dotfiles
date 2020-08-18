@@ -1,6 +1,8 @@
 set nocompatible
 
-" --- My settings ---
+let mapleader=','
+let maplocalleader='+'
+nnoremap \ ,
 
 if has("nvim")
   set termguicolors
@@ -19,6 +21,14 @@ set bo=all
 set mouse=a
 set dir=~/.vim/swap,.,~/tmp,~/
 
+set lispwords+=GET,POST,PUT,DELETE,HEAD
+let g:clojure_fuzzy_indent = 1
+let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do', '^if-']
+let g:clojure_align_multiline_strings = 1
+let g:paredit_electric_return = 0
+
+" --- Looks ---
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_splits = 0
@@ -27,8 +37,6 @@ let g:airline#extensions#tabline#tab_min_count = 2
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline_powerline_fonts = 1
 syn on
-
-" --- Looks ---
 
 highlight LineNr ctermfg=238
 set ruler ls=2 bg=dark
@@ -48,7 +56,9 @@ fun! FixSplitColors()
 endfun
 au User AirlineAfterInit,AirlineAfterTheme call FixSplitColors()
 
-fu! ClojureSetup()
+" --- Mappings ---
+
+fun! ClojureSetup()
   packadd 'vim-salve'
   packadd 'vim-fireplace'
   nmap <buffer> <LocalLeader>e <Plug>FireplacePrint
@@ -78,7 +88,24 @@ fu! ClojureSetup()
 
   nmap <buffer> <LocalLeader>p <Plug>FireplacePrompt
   exe 'nmap <buffer> <LocalLeader>: <Plug>FireplacePrompt' . &cedit . 'i'
-endfunction
+endfun
+
+fun! WipeBuffers()
+  let l:tablist = []
+  for i in range(tabpagenr('$'))
+    call extend(l:tablist, tabpagebuflist(i + 1))
+  endfor
+
+  let l:nWipeouts = 0
+  for i in range(1, bufnr('$'))
+    " bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+    if bufexists(i) && !getbufvar(i,"&mod") && index(l:tablist, i) == -1
+      silent exec 'bwipeout' i
+      let l:nWipeouts = l:nWipeouts + 1
+    endif
+  endfor
+  echomsg l:nWipeouts . ' buffer(s) wiped out'
+endfun
 
 command! -nargs=? -complete=dir SDirvish split | silent Dirvish <args>
 
@@ -128,15 +155,12 @@ nnoremap <Leader>2 :tabn 2<CR>
 nnoremap <Leader>3 :tabn 3<CR>
 nnoremap <Leader>4 :tabn 4<CR>
 nnoremap <Leader>$ :tablast<CR>
+nnoremap <Leader>h gT
+nnoremap <Leader>l gt
 nnoremap <Leader><Tab> :exe "tabn ".g:lasttab<CR>
+nnoremap <Leader>W :call WipeBuffers()<CR>
+nnoremap <Leader>r :Rg<Space>
 au TabClosed,TabLeave * let g:lasttab = tabpagenr()
-
-let maplocalleader=','
-set lispwords+=GET,POST,PUT,DELETE,HEAD
-let g:clojure_fuzzy_indent = 1
-let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do', '^if-']
-let g:clojure_align_multiline_strings = 1
-let g:paredit_electric_return = 0
 
 if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
