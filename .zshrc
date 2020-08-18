@@ -119,6 +119,29 @@ node () {
   fi
 }
 
+bhead () {
+  zparseopts -D -- n:=n
+  local opt
+  if [[ -n $n ]]; then
+    opt=${n[2]}
+  else
+    opt=10
+  fi
+  bat -r :$opt $*
+}
+
+kubesh () {
+  local pod=${1-$(kubectl get pods -o name|fzf)}
+  if [[ "$pod" != "" ]]; then
+    kubectl exec -ti  $pod -- /bin/sh
+  fi
+}
+alias pods="kubectl get pods"
+alias kcl="kubectl"
+alias kcx="kubectx"
+alias kns="kubens"
+alias ks="kubesh"
+
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
 alias dk='docker'
