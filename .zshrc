@@ -228,7 +228,9 @@ fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
 
+export ERL_AFLAGS="-kernel shell_history enabled"
 export PAGER=`which less`
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 . ~/.zshrc.local
 
