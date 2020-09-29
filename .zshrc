@@ -133,14 +133,53 @@ bhead () {
 kubesh () {
   local pod=${1-$(kubectl get pods -o name|fzf)}
   if [[ "$pod" != "" ]]; then
+    echo Connecting to $pod
     kubectl exec -ti  $pod -- /bin/sh
+    echo
+    echo Disconnected from $pod
   fi
 }
+
+kpwd () {
+  echo $(kubectx -c) '>' $(kubens -c)
+}
+
+kcx () {
+  kubectx $*
+  echo Your path is now $(kpwd)
+}
+
+kyaml () {
+  kubectl get $* -o yaml|bat -l yaml
+}
+
+_kyaml () {
+  words=(kubectl get $words[2,-1])
+  CURRENT=$(($CURRENT+1))
+  _dispatch kubectl kubectl
+}
+
+djson () {
+  docker inspect $*|bat -l json
+}
+
+_djson () {
+  words=(docker inspect $words[2,-1])
+  CURRENT=$(($CURRENT+1))
+  _dispatch docker docker
+}
+
+
+alias byaml="bat -l yaml"
+alias bjson="bat -l json"
+
 alias pods="kubectl get pods"
 alias kcl="kubectl"
-alias kcx="kubectx"
+alias kget="kubectl get"
+alias kdc="kubectl describe"
 alias kns="kubens"
 alias ks="kubesh"
+alias kcp="kubectl cp"
 
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
@@ -227,6 +266,11 @@ zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 compinit
+
+compdef _kubectx kcx
+compdef _kyaml kyaml
+compdef _djson djson
+compdef _docker dangling
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PAGER=`which less`
