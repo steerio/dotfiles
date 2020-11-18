@@ -132,7 +132,7 @@ fun! s:ll_tab(n)
     " Path is within home or empty
     let l:cwd = fnamemodify(getcwd(l:num, a:n), ':~')
 
-    if l:cwd[0] ==# '~' && (l:empty || stridx(l:path, l:cwd) == 0)
+    if l:cwd[0] ==# '~' && strlen(l:cwd) > 2 && (l:empty || stridx(l:path, l:cwd) == 0)
       " Tag needed: cwd is within home, but deeper; file empty or path within cwd
       let l:tag = '[' . fnamemodify(l:cwd, ':t') . ']'
       if l:empty
