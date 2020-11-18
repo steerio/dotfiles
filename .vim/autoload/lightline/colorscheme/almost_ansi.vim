@@ -4,7 +4,7 @@
 " License: MIT License
 " =============================================================================
 
-let s:fallback = (has('nvim') ? $TERM : &term) !=# 'linux'
+let s:fallback = (has('nvim') ? $TERM : &term) ==# 'linux'
 
 let s:black = [ '#000000', 0 ]
 let s:maroon = [ '#bf2900', 1 ]
@@ -22,7 +22,7 @@ let s:blue = [ '#5aa2e0', 12 ]
 let s:fuchsia = [ '#b968d9', 13 ]
 let s:aqua = [ '#15c1bb', 14 ]
 let s:white = [ '#b9cbda', 15 ]
-let s:darkgray = [ '#121212', s:fallback ? 8 : 233 ]
+let s:darkgray = [ '#121212', s:fallback ? 0 : 233 ]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 
