@@ -149,11 +149,11 @@ kcx () {
   echo Your path is now $(kpwd)
 }
 
-kyaml () {
+ky () {
   kubectl get $* -o yaml|bat -l yaml
 }
 
-_kyaml () {
+_ky () {
   words=(kubectl get $words[2,-1])
   CURRENT=$(($CURRENT+1))
   _dispatch kubectl kubectl
@@ -174,12 +174,15 @@ alias byaml="bat -l yaml"
 alias bjson="bat -l json"
 
 alias pods="kubectl get pods"
+alias kup="kubectl apply -f"
 alias kcl="kubectl"
-alias kget="kubectl get"
-alias kdc="kubectl describe"
+alias kg="kubectl get"
+alias kgd="kubectl get deploy"
+alias kd="kubectl describe"
 alias kns="kubens"
 alias ks="kubesh"
 alias kcp="kubectl cp"
+alias kyd="ky deploy"
 
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
@@ -268,7 +271,7 @@ autoload -U zutil compinit complist
 compinit
 
 compdef _kubectx kcx
-compdef _kyaml kyaml
+compdef _ky ky
 compdef _djson djson
 compdef _docker dangling
 
