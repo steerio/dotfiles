@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.md setlocal filetype=ghmarkdown fo+=t tw=80 wrap linebreak
+au BufNewFile,BufRead *.md set ft=ghmarkdown
