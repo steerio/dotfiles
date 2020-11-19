@@ -6,9 +6,6 @@ let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do', '^if-']
 let g:clojure_align_multiline_strings = 1
 let g:paredit_electric_return = 0
 
-packadd 'vim-salve'
-packadd 'vim-fireplace'
-
 nmap <buffer> <LocalLeader>e <Plug>FireplacePrint
 vmap <buffer> <LocalLeader>e <Plug>FireplacePrint
 nmap <buffer> <LocalLeader>ee <Plug>FireplacePrintip
