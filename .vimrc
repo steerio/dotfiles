@@ -248,7 +248,6 @@ let &t_SR = "\e[4 q"
 let &t_ER = "\e[2 q"
 syn on
 
-colorscheme almost_ansi
 set ruler ls=2 bg=dark
 set fillchars=vert:│,fold:\  " That's an escaped space.
 " --- Au --
@@ -274,3 +273,9 @@ let g:rainbow_conf = {
       \ 'separately': {
       \   'elixir': {
       \     'parentheses_options': 'containedin=elixirMap' }}}
+
+if empty($VIM_COLORSCHEME)
+  colorscheme almost_ansi
+else
+  execute 'colorscheme ' . $VIM_COLORSCHEME
+endif
