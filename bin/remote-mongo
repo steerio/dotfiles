@@ -17,6 +17,6 @@ end
 
 config = read_config
 if config
-  exec "mongo #{config}"
+  exec "mongo '#{config}'"
 end
 
