@@ -17,6 +17,8 @@ if [[ -n $TMUX ]]; then
   export TERM=screen-256color
 fi
 
+. ~/.zshrc.theme
+
 __left () {
   case $PWD in
     $HOME/*)
@@ -74,14 +76,13 @@ if [[ $TERM == linux ]]; then
     PROMPT="%F{blue} ${USER:0:2}@%m$PROMPT"
   fi
 else
-  PROMPT='%K{23}%F{15} $(__left) %F{23}%k %f'
-  RPROMPT='$(__right 23 ${=vcs_info_msg_0_})'
+  PROMPT="%K{$_prompt_bg}%F{$_prompt_fg} \$(__left) %F{$_prompt_bg}%k %f"
+  RPROMPT="\$(__right $_prompt_bg \${=vcs_info_msg_0_})"
 
   if [[ -n $SSH_TTY ]]; then
-    PROMPT="%K{235}%F{240} ${USER:0:2}@%m %K{23}%F{235}${PROMPT:6}"
+    PROMPT="%K{$_prompt_bg2}%F{$_prompt_fg2} ${USER:0:2}@%m %F{$_prompt_bg2}%K{$_prompt_bg}$(echo $PROMPT|sed -E 's/^[^}]}//')"
   fi
 fi
-
 
 app () {
   if [[ -n $1 ]]; then
