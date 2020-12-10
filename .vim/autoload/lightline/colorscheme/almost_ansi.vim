@@ -14,7 +14,7 @@ let s:navy = [ '#006fd1', 4 ]
 let s:purple = [ '#8a21bf', 5 ]
 let s:teal = [ '#008585', 6 ]
 let s:silver = [ '#acc1d3', 7 ]
-let s:gray = [ '#283842', 8]
+let s:gray = [ '#283842', 8 ]
 let s:red = [ '#e74d23', 9 ]
 let s:lime = [ '#7dc030', 10 ]
 let s:yellow = [ '#ffc233', 11 ]
@@ -22,7 +22,7 @@ let s:blue = [ '#5aa2e0', 12 ]
 let s:fuchsia = [ '#b968d9', 13 ]
 let s:aqua = [ '#15c1bb', 14 ]
 let s:white = [ '#b9cbda', 15 ]
-let s:darkgray = [ '#121212', s:fallback ? 0 : 233 ]
+let s:darkgray = [ '#121212', 233 ]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
 
