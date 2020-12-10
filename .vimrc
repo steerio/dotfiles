@@ -269,7 +269,7 @@ let g:closetag_xhtml_filetypes = 'html,xhtml,js'
 let g:closetag_regions = { 'javascript': 'jsxRegion' }
 let g:rainbow_active = 0
 let g:rainbow_conf = {
-      \ 'ctermfgs': [129, 39, 48, 190, 202],
+      \ 'ctermfgs': [9, 208, 11, 10, 14, 12, 13],
       \ 'separately': {
       \   'elixir': {
       \     'parentheses_options': 'containedin=elixirMap' }}}
