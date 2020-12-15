@@ -37,9 +37,9 @@ endfun
 
 command! -nargs=? -complete=dir SDirvish split | silent Dirvish <args>
 
-nnoremap <silent><Leader>s :sp %.h<CR>
+nnoremap <silent><Leader>s :sp %:h<CR>
 nnoremap <silent><Leader>S :sp .<CR>
-nnoremap <silent><Leader>e :e %.h<CR>
+nnoremap <silent><Leader>e :e %:h<CR>
 nnoremap <silent><Leader>E :e .<CR>
 nnoremap <silent><Leader>~ :Dirvish ~<CR>
 nnoremap <silent><Leader>b :Buffers<CR>
