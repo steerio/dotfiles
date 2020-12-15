@@ -16,6 +16,14 @@ die "Palette #{pal} doesn't exist." unless File.exist? fname
 
 data = YAML.load_file(fname)
 
+unless Enumerable.method_defined? :filter_map
+  module Enumerable
+    def filter_map &blk
+      map(&blk).compact
+    end
+  end
+end
+
 palette = proc do
   data['colors'].filter_map do |key, value|
     pfx =
