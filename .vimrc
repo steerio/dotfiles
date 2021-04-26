@@ -1,11 +1,11 @@
 set nocompatible
 let mapleader=','
-let maplocalleader='+'
-nnoremap \ ,
+let maplocalleader='\'
+nnoremap ,, ,
+nnoremap q: :q
+nnoremap q<Tab> q:
 
 set vi=<0,'0,/16,f1,h history=100
-set number
-set ttimeoutlen=50
 set bs=2 ts=2 sw=2 expandtab
 set lazyredraw modeline modelines=3
 set nowrap noshowmode nohlsearch nobackup nowritebackup
@@ -15,6 +15,41 @@ set wildmode=longest,list
 set bo=all
 set mouse=v
 set dir=~/.vim/swap,.,~/tmp,~/
+
+set number scl=number
+set shortmess+=c
+set ttimeoutlen=50 updatetime=800
+
+" --- COC ---
+
+fun! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfun
+
+fun! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfun
+
+inoremap <silent><expr> <TAB>
+       \ pumvisible() ? "\<C-n>" :
+       \ <SID>check_back_space() ? "\<TAB>" :
+       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> [e <Plug>(coc-diagnostic-prev)
+nmap <silent> ]e <Plug>(coc-diagnostic-next)
+nmap <silent> <Leader>jd <Plug>(coc-definition)
+nmap <silent> <Leader>jt <Plug>(coc-type-definition)
+nmap <silent> <Leader>ji <Plug>(coc-implementation)
+nmap <silent> <Leader>jr <Plug>(coc-references)
 
 " --- Mappings ---
 
@@ -250,6 +285,7 @@ syn on
 
 set ruler ls=2 bg=dark
 set fillchars=vert:│,fold:\  " That's an escaped space.
+
 " --- Au --
 
 augroup vimrc
