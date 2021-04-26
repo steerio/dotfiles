@@ -91,6 +91,7 @@ nnoremap <silent>du :diffupdate<CR>
 nnoremap <silent>dP :.diffput<CR>
 
 if !exists('s:lasttab')
+  " See augroup vimrc below.
   let s:lasttab = 1
 endif
 
@@ -117,7 +118,6 @@ nnoremap <Leader>r :Rg<Space>
 nnoremap <Leader>c :tcd<Space>
 nnoremap <Leader>C :tcd ../
 nnoremap <silent><Leader>p :echo "Current path:" getcwd()<CR>
-au TabClosed,TabLeave * let s:lasttab = tabpagenr()
 
 nmap SS <Plug>YSsurround
 nmap Ss <Plug>YSsurround
@@ -136,145 +136,6 @@ tnoremap <C-B>% <C-W>:vert rightb term<CR>
 
 vnoremap <Leader>: :normal<Space>
 
-" --- Lightline ---
-
-let s:sid = has('nvim') ? '<SNR>'.(maparg('s','n','',1).sid).'_' : expand('<SID>')
-
-fun! s:maybe_shorten(path)
-  return strlen(a:path) < winwidth(0) - 90 ? a:path : pathshorten(a:path)
-endfun
-
-fun! s:ll_tabmodified(n)
-  for l:i in tabpagebuflist(a:n)
-    if getbufvar(l:i, '&mod')
-      return '+'
-    endif
-  endfor
-endfun
-
-fun! s:ll_tab(n)
-  let l:num = tabpagewinnr(a:n)
-  let l:bufnr = tabpagebuflist(a:n)[l:num - 1]
-  let l:buftype = getbufvar(l:bufnr, '&buftype')
-
-  if empty(l:buftype) || getbufvar(l:bufnr, '&ft') ==# 'dirvish'
-    let l:path = expand('#'.l:bufnr.':p:~')
-    let l:empty = empty(l:path)
-    if !empty && l:path[0] !=# '~'
-      " Path is not within home
-      return pathshorten(l:path)
-    endif
-    " Path is within home or empty
-    let l:cwd = fnamemodify(getcwd(l:num, a:n), ':~')
-
-    if l:cwd[0] ==# '~' && strlen(l:cwd) > 2 && (l:empty || stridx(l:path, l:cwd) == 0)
-      " Tag needed: cwd is within home, but deeper; file empty or path within cwd
-      let l:tag = '[' . fnamemodify(l:cwd, ':t') . ']'
-      if l:empty
-        return l:tag
-      else
-        let l:right = l:path[strlen(l:cwd)+1:]
-        if !strlen(l:right)
-          return l:tag
-        endif
-        return l:tag . ' ' . (l:right[-1:] ==# '/'
-              \ ? pathshorten(l:right[0:-2]).'/'
-              \ : fnamemodify(l:right, ':t'))
-      endif
-    else
-      " No tag
-      return l:empty ? '' : pathshorten(l:path)
-    endif
-  else
-    return expand('#' . l:bufnr . ':t')
-  endif
-endfun
-
-fun! s:ll_status_path()
-  if empty(&buftype)
-    let l:path = expand('%')
-    if empty(l:path)
-      return &mod ? '[+]' : '[-]'
-    endif
-    return s:maybe_shorten(fnamemodify(l:path, ':~:.')) . (&mod ? '[+]' : '')
-  elseif &ft ==# 'dirvish'
-    let _ = expand('%:~:.')
-    return empty(_)
-          \ ? s:maybe_shorten(expand('%:~')) . ' [cwd]'
-          \ : s:maybe_shorten(_)
-  else
-    return expand('%:t')
-  endif
-endfun
-
-fun! s:ll_type_or_branch()
-  if empty(&buftype) || &ft ==# 'dirvish'
-    let l:branch = FugitiveHead()
-    return empty(l:branch)
-          \ ? 'no '
-          \ : ' '.substitute(l:branch, '^feature-', 'f-', '')
-  else
-    return &buftype
-  endif
-endfun
-
-fun! s:ll_filetype()
-  return winwidth(0) > 80 ? &ft : '' 
-endfun
-
-fun! s:ll_fileformat()
-  return winwidth(0) > 80 && &ff != 'unix' ? 'f:'.&ff : '' 
-endfun
-
-fun! s:ll_fileenc()
-  return winwidth(0) > 80 && !empty(&fenc) && &fenc !=# 'utf-8' ? 'e:'.&fenc : '' 
-endfun
-
-fun! s:ll_ro()
-  return (&ro || !&ma ? '' : '')
-endfun
-
-let g:lightline = {
-      \ 'colorscheme': 'almost_ansi',
-      \ 'active': {
-      \   'left': [
-      \     [ 'filename', 'readonly' ],
-      \     [ 'type_or_branch' ]],
-      \   'right': [
-      \     [ 'mode', 'paste' ],
-      \     [ 'lineinfo' ],
-      \     [ 'fileformat', 'fileencoding', 'filetype' ]]},
-      \ 'inactive': {
-      \   'right': [['lineinfo'], ['filetype']]},
-      \ 'tab': {
-      \   'active': [ 'tabnum', 'loc', 'tabmodified' ],
-      \   'inactive': [ 'tabnum', 'loc', 'tabmodified' ]},
-      \ 'component': {
-      \   'lineinfo': '%3l/%L:%2c' },
-      \ 'component_function': {
-      \   'readonly': s:sid.'ll_ro',
-      \   'type_or_branch': s:sid.'ll_type_or_branch',
-      \   'filename': s:sid.'ll_status_path',
-      \   'fileencoding': s:sid.'ll_fileenc',
-      \   'fileformat': s:sid.'ll_fileformat',
-      \   'filetype': s:sid.'ll_filetype' },
-      \ 'mode_map': {
-      \   'n': 'N', 'i': 'I', 'R': 'R', 'v': 'V',
-      \   't': 'TERM', 'c': 'CMD', 's': 'SELECT',
-      \   'V': 'L', "\<C-v>": 'BK',
-      \   'S': 'SELECT/LN', "\<C-s>": 'SELECT/BK' },
-      \ 'tab_component_function': {
-      \   'tabmodified': s:sid.'ll_tabmodified',
-      \   'loc': s:sid.'ll_tab' },
-      \ 'tabline': { 'right': [] }}
-
-unlet s:sid
-
-if (has('nvim') ? $TERM : &term) !=# 'linux'
-  let g:lightline.separator = { 'left': '', 'right': '' }
-  let g:lightline.subseparator = { 'left': '', 'right': '' }
-endif
-
 " --- Looks ---
 
 let &t_SI = "\e[5 q"
@@ -286,10 +147,12 @@ syn on
 set ruler ls=2 bg=dark
 set fillchars=vert:│,fold:\  " That's an escaped space.
 
-" --- Au --
+" --- Autocmd ---
 
 augroup vimrc
+  autocmd!
   au BufNewFile,BufRead * set fo-=o
+  au TabClosed,TabLeave * let s:lasttab = tabpagenr()
 augroup END
 
 " --- Config ---
@@ -298,11 +161,6 @@ if filereadable(expand("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
-let g:closetag_filenames = '*.html,*.xhtml,*.js'
-let g:closetag_xhtml_filenames = '*.xhtml,*.js'
-let g:closetag_filetypes = 'html,xhtml'
-let g:closetag_xhtml_filetypes = 'html,xhtml,js'
-let g:closetag_regions = { 'javascript': 'jsxRegion' }
 let g:rainbow_active = 0
 let g:rainbow_conf = {
       \ 'ctermfgs': [9, 208, 11, 10, 14, 12, 13],
@@ -315,3 +173,5 @@ if empty($VIM_COLORSCHEME)
 else
   execute 'colorscheme ' . $VIM_COLORSCHEME
 endif
+
+runtime scripts/statusline.vim
