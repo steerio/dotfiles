@@ -2,10 +2,22 @@ hi clear
 syntax reset
 let g:colors_name = 'almost_ansi'
 
-hi StatusLineNC     cterm=reverse ctermfg=8 ctermbg=15 guibg=#283842 guifg=White
-hi StatusLine       cterm=reverse ctermfg=7 ctermbg=15 guibg=#acc1d3 guifg=White
-hi StatusLineTermNC cterm=reverse ctermfg=8 ctermbg=15 guibg=#283842 guifg=White
-hi StatusLineTerm   cterm=reverse ctermfg=7 ctermbg=15 guibg=#acc1d3 guifg=White
+hi StatusNormal  ctermbg=15 ctermfg=0
+hi StatusVisual  ctermbg=3  ctermfg=0
+hi StatusInsert  ctermbg=10 ctermfg=0
+hi StatusReplace ctermbg=1  ctermfg=0
+hi StatusTerm    ctermbg=10 ctermfg=0
+hi StatusMid     ctermbg=8  ctermfg=15
+hi StatusNC      ctermbg=8  ctermfg=7
+
+hi! link TabLineFill StatusLine
+hi! link TabLine StatusNC
+hi! link TabLineSel StatusNormal
+
+hi StatusLineNC     cterm=NONE ctermfg=7 ctermbg=233 guibg=#283842 guifg=White
+hi StatusLine       cterm=NONE ctermfg=7 ctermbg=233 guibg=#acc1d3 guifg=White
+hi StatusLineTermNC term=reverse ctermfg=7 ctermbg=233 guibg=#283842 guifg=White
+hi StatusLineTerm   term=reverse ctermfg=7 ctermbg=233 guibg=#acc1d3 guifg=White
 hi VertSplit        cterm=NONE ctermbg=0 ctermfg=8 gui=NONE guibg=Black guifg=#283842
 
 hi SpecialKey       term=bold ctermfg=14 guifg=#15c1bb
@@ -30,19 +42,16 @@ hi DiffAdd          term=bold ctermbg=4 guibg=#006fd1
 hi DiffChange       term=bold ctermbg=5 guibg=#8a21bf
 hi DiffDelete       term=bold ctermfg=12 ctermbg=6 gui=bold guifg=#5aa2e0 guibg=#119c97
 hi DiffText         term=reverse cterm=bold ctermbg=9 gui=bold guibg=#e74d23
-hi SignColumn       term=standout ctermfg=14 ctermbg=242 guifg=#15c1bb guibg=#6c6c6c
+hi SignColumn       term=standout ctermfg=6 ctermbg=0 guifg=#15c1bb guibg=Black
 hi Conceal          ctermfg=7 ctermbg=242 guifg=#acc1d3 guibg=#6c6c6c
 hi SpellBad         term=reverse ctermbg=9 gui=undercurl guisp=#e74d23
 hi SpellCap         term=reverse ctermbg=12 gui=undercurl guisp=#5aa2e0
 hi SpellRare        term=reverse ctermbg=13 gui=undercurl guisp=#b968d9
 hi SpellLocal       term=underline ctermbg=14 gui=undercurl guisp=#15c1bb
-hi Pmenu            ctermfg=0 ctermbg=13 guibg=#b968d9
-hi PmenuSel         ctermfg=242 ctermbg=0 guibg=#6c6c6c
+hi Pmenu            ctermfg=15 ctermbg=8 guibg=#283842 guifg=White
+hi PmenuSel         ctermfg=0 ctermbg=12
 hi PmenuSbar        ctermbg=248 guibg=#a8a8a8
 hi PmenuThumb       ctermbg=15 guibg=White
-hi TabLine          cterm=NONE,reverse ctermbg=15 ctermfg=242 guibg=#6c6c6c
-hi TabLineSel       ctermbg=0 ctermfg=7
-hi TabLineFill      cterm=reverse ctermfg=242
 hi CursorColumn     term=reverse ctermbg=242 guibg=#6c6c6c
 hi CursorLine       term=underline cterm=underline guibg=#6c6c6c
 hi ColorColumn      term=reverse ctermbg=232 guibg=#d12d00
