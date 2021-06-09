@@ -290,6 +290,10 @@ _fzf_complete_mosh () {
   _fzf_complete_ssh $*
 }
 
-if [[ "$PATH" != *"node_modules"* ]]; then
-  export PATH="$HOME/.local/bin:$PATH:node_modules/.bin"
+if [[ "$PATH" != *".local"* ]]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [[ "$PATH" != *"ghcup"* ]]; then
+  export PATH="$HOME/.ghcup/bin:$PATH"
 fi

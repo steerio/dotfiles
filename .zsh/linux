@@ -8,8 +8,8 @@ if [[ $TERM == xterm ]]; then
 fi
 
 export EDITOR=vim
-if [[ "$PATH" != *"yarn"* ]]; then
-  export PATH=$PATH:$HOME/.yarn/bin
+if [[ "$PATH" != *"volta"* ]]; then
+  export PATH=$HOME/.volta/bin:$PATH
 fi
 alias ls='ls --color=auto'
 alias clip='xclip -selection clipboard'
