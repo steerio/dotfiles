@@ -122,7 +122,7 @@ fun! s:type_branch()
   if empty(&buftype) || &ft ==# 'dirvish'
     let branch = FugitiveHead()
     return empty(branch)
-          \ ? 'no '
+          \ ? ''
           \ : ' '.substitute(branch, '^feature-', 'f-', '')
   else
     return &buftype
@@ -148,7 +148,7 @@ let s:highlights = {
 let s:labels = {
       \ 'n': 'N', 'i': 'I',
       \ "\<C-v>": 'VB', "\<C-s>": 'SB',
-      \ 't': 'TERM' }
+      \ 'c': ':', 't': 'TERM' }
 
 let s:highlights.V = s:highlights.v
 let s:highlights["\<C-v>"] = s:highlights.v
