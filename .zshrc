@@ -42,7 +42,7 @@ __right () {
 
   if [[ -n $2 ]]; then
     case $2 in
-      master|staging)
+      main|master|staging)
         out="${2[1]}"
         ;;
       stable)
