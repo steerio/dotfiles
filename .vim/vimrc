@@ -154,10 +154,20 @@ set fillchars=vert:│,fold:\  " That's an escaped space.
 
 " --- Autocmd ---
 
+fun! s:resized()
+  if &co > 200
+    unlet g:fzf_preview_window
+  else
+    let g:fzf_preview_window=['up:40%', 'ctrl-/']
+  endif
+endfun
+call s:resized()
+
 augroup vimrc
   autocmd!
   au BufNewFile,BufRead * set fo-=o
   au TabClosed,TabLeave * let s:lasttab = tabpagenr()
+  au VimResized * call s:resized()
 augroup END
 
 " --- Config ---
