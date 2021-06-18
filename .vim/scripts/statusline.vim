@@ -44,6 +44,7 @@ if (has('nvim') ? $TERM : &term) !=# 'linux'
   let s:rheavy = ''
   let s:lsep = ''
   let s:rsep = ''
+  let s:rsepw = '  '
 
   fun! s:connect(outside, right)
     return '%#Status'.a:outside.'_c#'.(a:right ? s:rheavy : s:lheavy)
@@ -64,6 +65,7 @@ if (has('nvim') ? $TERM : &term) !=# 'linux'
 else
   let s:lsep = '|'
   let s:rsep = s:lsep
+  let s:rsepw = ' | '
 
   fun! s:connect(outside, idx)
     return ''
@@ -138,7 +140,7 @@ fun! s:attributes()
   if !empty(&fenc) && &fenc !=# 'utf-8'
     call add(buf, 'e:'.&fenc)
   endif
-  return join(buf, ' | ')
+  return join(buf, s:rsepw)
 endfun
 
 let s:highlights = {
