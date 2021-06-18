@@ -79,16 +79,21 @@ nnoremap <silent><Leader>E :e .<CR>
 nnoremap <silent><Leader>~ :Dirvish ~<CR>
 nnoremap <silent><Leader>b :Buffers<CR>
 nnoremap <silent><Leader>f :Files<CR>
-nnoremap <silent><Leader>g :GFiles<CR>
-nnoremap <silent><Leader>G :GFiles?<CR>
-nnoremap <silent><Leader>n :set invnumber<CR>
-nnoremap <silent><Leader>v :set invpaste<CR>
-nnoremap <silent><Leader>m :set invwrap invlinebreak<CR>
-nnoremap <silent><Leader>/ :set invhlsearch<CR>
+nnoremap <silent><Leader>g :GFiles?<CR>
+nnoremap <silent><Leader>G :GFiles<CR>
+nnoremap <Leader>/ :BLines<Space>
+nnoremap <Leader>? :Lines<Space>
+nnoremap <Leader>n :set invnumber<CR>
+nnoremap <Leader>v :set invpaste<CR>
+nnoremap <Leader>m :set invwrap invlinebreak<CR>
+nnoremap <Leader>H :set invhlsearch<CR>
 nnoremap <silent><Leader>( :RainbowToggle<CR>
 nnoremap <silent><C-W>S :exe "res ".line('$')<CR>gg''
 nnoremap <silent>du :diffupdate<CR>
 nnoremap <silent>dP :.diffput<CR>
+nnoremap <silent><Leader>d :CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent><Leader>D :CocFzfList diagnostics<CR>
+nnoremap <silent><Leader>o :CocFzfList outline<CR>
 
 if !exists('s:lasttab')
   " See augroup vimrc below.
