@@ -158,8 +158,8 @@ set fillchars=vert:│,fold:\  " That's an escaped space.
 " --- Autocmd ---
 
 fun! s:resized()
-  if &co > 200
-    unlet g:fzf_preview_window
+  if &co > 159
+    let g:fzf_preview_window=['right:60%', 'ctrl-/']
   else
     let g:fzf_preview_window=['up:40%', 'ctrl-/']
   endif
