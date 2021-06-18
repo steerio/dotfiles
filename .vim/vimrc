@@ -43,10 +43,13 @@ inoremap <silent><expr> <TAB>
        \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+nnoremap <silent> [q :cprev<CR>
+nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>jd <Plug>(coc-definition)
+nmap <silent> <Leader>wd :call CocAction('jumpDefinition', 'split')<CR>
 nmap <silent> <Leader>jt <Plug>(coc-type-definition)
 nmap <silent> <Leader>ji <Plug>(coc-implementation)
 nmap <silent> <Leader>jr <Plug>(coc-references)
