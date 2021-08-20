@@ -1,7 +1,7 @@
 hi link StatusActive StatusNormal
 hi link StatusActive_c StatusNormal_c
 
-if (has('nvim') ? $TERM : &term) !=# 'linux'
+if &term !=# 'linux'
   fun! s:connecting_highlight(from, to, ...)
     let name    = get(a:, 1, a:from.'_c')
     let from    = synIDtrans(hlID(a:from))
@@ -177,7 +177,7 @@ endfun
 "" Templates
 
 " No globals!
-let s:sid = has('nvim') ? '<SNR>'.(maparg('s','n','',1).sid).'_' : expand('<SID>')
+let s:sid = expand('<SID>')
 
 let s:templates = [
       \ '%#StatusActive# %{'.s:sid.'filename()} '.s:connect('Active', 0).
@@ -276,7 +276,7 @@ endfun
 augroup status
   autocmd!
   autocmd BufEnter,SessionLoadPost,FileChangedShellPost * call s:update()
-  if (has('nvim') ? $TERM : &term) !=# 'linux'
+  if &term !=# 'linux'
     autocmd ColorScheme * call s:update_highlights()
   endif
 augroup END
