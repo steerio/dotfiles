@@ -43,6 +43,8 @@ inoremap <silent><expr> <TAB>
        \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+nnoremap yY :%yank <c-r>=v:register<cr><cr>
+nnoremap dD :%delete <c-r>=v:register<cr><cr>
 nnoremap <silent> [q :cprev<CR>
 nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
