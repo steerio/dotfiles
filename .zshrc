@@ -170,6 +170,10 @@ _djson () {
   _dispatch docker docker
 }
 
+alias l='exa --group-directories-first'
+alias L='l -l'
+alias la='l -a'
+alias La='l -al'
 
 alias byaml="bat -l yaml"
 alias bjson="bat -l json"
@@ -189,6 +193,10 @@ alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
 alias dk='docker'
 alias dssh='docker-machine ssh'
+alias di='docker image ls'
+alias dai='dangling image ls'
+alias dv='docker volume ls'
+alias dav='dangling volume ls'
 alias dps='docker ps'
 alias dpa='docker ps -a'
 alias hcs="he config -s"
