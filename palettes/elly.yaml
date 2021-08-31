@@ -1,5 +1,5 @@
 name: elly
-bat_theme: ansi-dark
+bat_theme: ansi
 fzf: '--color=fg+:15,preview-fg:15'
 prompt:
   bg: 8

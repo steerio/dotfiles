@@ -23,8 +23,8 @@ set ttimeoutlen=50 updatetime=800
 " --- COC ---
 
 fun! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfun
 
 fun! s:show_documentation()
@@ -43,6 +43,8 @@ inoremap <silent><expr> <TAB>
        \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
+nnoremap yY :%yank <c-r>=v:register<cr><cr>
+nnoremap dD :%delete <c-r>=v:register<cr><cr>
 nnoremap <silent> [q :cprev<CR>
 nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -57,20 +59,36 @@ nmap <silent> <Leader>jr <Plug>(coc-references)
 " --- Mappings ---
 
 fun! s:wipe_buffers()
-  let l:tablist = []
+  let tablist = []
   for i in range(tabpagenr('$'))
-    call extend(l:tablist, tabpagebuflist(i + 1))
+    call extend(tablist, tabpagebuflist(i + 1))
   endfor
 
-  let l:count = 0
+  let bc = 0
   for i in range(1, bufnr('$'))
     " bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
-    if bufexists(i) && !getbufvar(i,"&mod") && index(l:tablist, i) == -1
+    if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
       silent exec 'bwipeout' i
-      let l:count = l:count + 1
+      let bc = bc+1
     endif
   endfor
-  echomsg l:count . ' buffer(s) wiped out.'
+  echomsg bc . ' buffer(s) wiped out.'
+endfun
+
+fun! s:fit_window_to_buffer()
+  let bottom = line('$')
+  let size = &lines
+  let result = 0
+  let i = 0
+  while result < size && i < bottom
+    let result += 1
+    if foldclosed(i) > 0
+      let i = foldclosedend(i)+1
+    else
+      let i += 1
+    endif
+  endw
+  exe 'resize '.result
 endfun
 
 command! -nargs=? -complete=dir SDirvish split | silent Dirvish <args>
@@ -91,7 +109,7 @@ nnoremap <Leader>v :set invpaste<CR>
 nnoremap <Leader>m :set invwrap invlinebreak<CR>
 nnoremap <Leader>H :set invhlsearch<CR>
 nnoremap <silent><Leader>( :RainbowToggle<CR>
-nnoremap <silent><C-W>S :exe "res ".line('$')<CR>gg''
+nnoremap <silent><C-W>S :call <SID>fit_window_to_buffer()<CR>gg''
 nnoremap <silent>du :diffupdate<CR>
 nnoremap <silent>dP :.diffput<CR>
 nnoremap <silent><Leader>d :CocFzfList diagnostics --current-buf<CR>

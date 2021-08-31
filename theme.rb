@@ -42,6 +42,7 @@ end
 puts ERB.new(DATA.read, nil, '-').result(binding)
 
 __END__
+# Theme: <%= pal %>
 if infocmp | grep -q 'initc='; then
   <%= palette.().join("\n  ") %>
 fi
