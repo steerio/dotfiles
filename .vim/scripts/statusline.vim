@@ -135,11 +135,11 @@ fun! s:attributes()
   if winwidth(0) < 80 | return '' | endif
 
   let buf = []
-  if &ft !=# ''    | call add(buf, &ft)      | endif
   if &ff != 'unix' | call add(buf, 'f:'.&ff) | endif
   if !empty(&fenc) && &fenc !=# 'utf-8'
     call add(buf, 'e:'.&fenc)
   endif
+  if &ft !=# '' | call add(buf, &ft) | endif
   return join(buf, s:rsepw)
 endfun
 
