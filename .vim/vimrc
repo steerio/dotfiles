@@ -58,6 +58,10 @@ nmap <silent> <Leader>jr <Plug>(coc-references)
 
 " --- Mappings ---
 
+fun! s:buffer_dir()
+  return expand(&ft == 'dirvish' ? '%' : '%:h')
+endfun
+
 fun! s:wipe_buffers()
   let tablist = []
   for i in range(tabpagenr('$'))
@@ -143,6 +147,7 @@ nnoremap <silent><Leader>W :call <SID>wipe_buffers()<CR>
 nnoremap <Leader>r :Rg<Space>
 nnoremap <Leader>c :tcd<Space>
 nnoremap <Leader>C :tcd ../
+nnoremap <silent><Leader>. :execute("tcd ".<SID>buffer_dir())<CR>
 nnoremap <silent><Leader>p :echo "Current path:" getcwd()<CR>
 
 nmap SS <Plug>YSsurround
