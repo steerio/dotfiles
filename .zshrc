@@ -191,7 +191,6 @@ alias kyd="ky deploy"
 
 alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
-alias dk='docker'
 alias dssh='docker-machine ssh'
 alias di='docker image ls'
 alias dai='dangling image ls'
@@ -199,6 +198,10 @@ alias dv='docker volume ls'
 alias dav='dangling volume ls'
 alias dps='docker ps'
 alias dpa='docker ps -a'
+alias drmi='docker rmi'
+alias drm='docker rm'
+
+alias apps="heroku apps -A"
 alias hcs="he config -s"
 alias hl='he logs'
 alias hlt='he logs --tail'
