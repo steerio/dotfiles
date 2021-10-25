@@ -250,7 +250,7 @@ ta () {
   if tmux has-session -t $n 2>/dev/null; then
     exec tmux a -t $n
   else
-    exec tmux new -s ${1-Main}
+    exec tmux new -s $n
   fi
 }
 
