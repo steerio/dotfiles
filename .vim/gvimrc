@@ -1,3 +1,5 @@
+set guioptions-=r
+
 if has('gui_macvim')
   " macOS
   set linespace=-3
