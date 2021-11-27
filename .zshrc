@@ -310,4 +310,10 @@ if [[ "$PATH" != *"ghcup"* ]]; then
   export PATH="$HOME/.ghcup/bin:$PATH"
 fi
 
-. $HOME/.asdf/asdf.sh
+export ASDF_DIR=$HOME/.asdf
+if [[ "$PATH" != *".asdf/bin"* ]]; then
+  export PATH=$ASDF_DIR/bin:$PATH
+fi
+if [[ "$PATH" != *".asdf/shims"* ]]; then
+  export PATH=$ASDF_DIR/shims:$PATH
+fi
