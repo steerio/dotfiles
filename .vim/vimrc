@@ -198,10 +198,6 @@ augroup END
 
 " --- Config ---
 
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
 let g:rainbow_active = 0
 let g:rainbow_conf = {
       \ 'ctermfgs': [9, 208, 11, 10, 14, 12, 13],
@@ -209,10 +205,16 @@ let g:rainbow_conf = {
       \   'elixir': {
       \     'parentheses_options': 'containedin=elixirMap' }}}
 
-if empty($VIM_COLORSCHEME)
-  colorscheme almost_ansi
-else
+if !empty($VIM_COLORSCHEME)
   execute 'colorscheme ' . $VIM_COLORSCHEME
+elseif has('gui_running')
+  colorscheme gui_gruvbox
+else
+  colorscheme almost_ansi
+endif
+
+if has('macunix')
+  set rtp+=/opt/homebrew/opt/fzf
 endif
 
 runtime scripts/statusline.vim

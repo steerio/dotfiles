@@ -1,0 +1,10 @@
+if has('gui_macvim')
+  " macOS
+  set linespace=-3
+  set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h12
+  let $PATH=$HOME.'/.asdf/shims:/opt/homebrew/bin:'.$PATH
+  let $BAT_THEME='gruvbox-dark'
+else
+  " Linux, etc.
+  set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline\ 8
+endif

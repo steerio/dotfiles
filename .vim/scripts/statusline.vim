@@ -1,28 +1,26 @@
 hi link StatusActive StatusNormal
 hi link StatusActive_c StatusNormal_c
 
+let s:disp = has('gui_running') ? 'gui' : 'cterm'
+
 if &term !=# 'linux'
   fun! s:connecting_highlight(from, to, ...)
     let name    = get(a:, 1, a:from.'_c')
     let from    = synIDtrans(hlID(a:from))
     let to      = synIDtrans(hlID(a:to))
 
-    let reverse = synIDattr(a:from, 'reverse', 'cterm')
-    let ctermfg = synIDattr(from, l:reverse                           ? 'fg'  : 'bg',  'cterm')
-    let guifg   = synIDattr(from, synIDattr(from, 'reverse', 'gui')   ? 'fg#' : 'bg#', 'gui')
-    let ctermbg = synIDattr(to,   synIDattr(to,   'reverse', 'cterm') ? 'fg'  : 'bg',  'cterm')
-    let guibg   = synIDattr(to,   synIDattr(to,   'reverse', 'gui'  ) ? 'fg#' : 'bg#', 'gui')
+    let reverse = synIDattr(a:from, 'reverse', s:disp)
+    let fg = synIDattr(from, l:reverse                        ? 'fg' : 'bg', s:disp)
+    let bg = synIDattr(to,   synIDattr(to, 'reverse', s:disp) ? 'fg' : 'bg', s:disp)
 
-    if l:ctermfg ==# '' || l:ctermbg ==# ''
+    if l:fg ==# '' || l:bg ==# ''
       exe printf('hi link %s %s', name, a:from)
     else
-      exe printf('hi %s cterm=%s gui=NONE cterm%s=%s cterm%s=%s%s%s',
+      exe printf('hi %s %s=%s %sfg=%s %sbg=%s',
             \ name,
-            \ reverse ? 'reverse' : 'NONE',
-            \ reverse ? 'bg' : 'fg', ctermfg,
-            \ reverse ? 'fg' : 'bg', ctermbg,
-            \ (guifg ==# '' ? '' : ' guifg='.guifg),
-            \ (guibg ==# '' ? '' : ' guibg='.guibg))
+            \ s:disp, reverse ? 'reverse' : 'NONE',
+            \ s:disp, reverse ? bg : fg,
+            \ s:disp, reverse ? fg : bg)
     endif
   endfun
 

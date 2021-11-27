@@ -14,59 +14,59 @@ hi! link TabLineFill StatusLine
 hi! link TabLine StatusNC
 hi! link TabLineSel StatusNormal
 
-hi StatusLineNC     cterm=NONE ctermfg=7 ctermbg=233 guibg=#283842 guifg=White
-hi StatusLine       cterm=NONE ctermfg=7 ctermbg=233 guibg=#acc1d3 guifg=White
-hi StatusLineTermNC term=reverse ctermfg=7 ctermbg=233 guibg=#283842 guifg=White
-hi StatusLineTerm   term=reverse ctermfg=7 ctermbg=233 guibg=#acc1d3 guifg=White
-hi VertSplit        cterm=NONE ctermbg=0 ctermfg=8 gui=NONE guibg=Black guifg=#283842
+hi StatusLineNC     cterm=NONE ctermfg=7 ctermbg=233 
+hi StatusLine       cterm=NONE ctermfg=7 ctermbg=233
+hi StatusLineTermNC term=reverse ctermfg=7 ctermbg=233
+hi StatusLineTerm   term=reverse ctermfg=7 ctermbg=233
+hi VertSplit        cterm=NONE ctermbg=0 ctermfg=8
 
-hi SpecialKey       term=bold ctermfg=14 guifg=#15c1bb
-hi NonText          term=bold ctermfg=12 gui=bold guifg=#5aa2e0
-hi Directory        term=bold ctermfg=12 guifg=#5aa2e0
-hi ErrorMsg         term=standout ctermfg=15 ctermbg=1 guifg=White guibg=#d12d00
-hi IncSearch        term=reverse cterm=reverse gui=reverse
-hi Search           term=reverse ctermfg=0 ctermbg=11 guifg=Black guibg=#ffc233
-hi MoreMsg          term=bold ctermfg=10 gui=bold guifg=#7dc030
-hi ModeMsg          term=bold cterm=bold gui=bold
-hi LineNr           term=underline ctermfg=238 guifg=#444444
-hi CursorLineNr     term=bold cterm=underline ctermfg=11 gui=bold guifg=#ffc233
-hi Question         term=standout ctermfg=10 gui=bold guifg=#7dc030
-hi Title            term=bold ctermfg=11 gui=bold guifg=#ffc233
-hi Visual           term=reverse ctermbg=243 guibg=DarkGrey
-hi VisualNOS        term=bold,underline cterm=bold,underline gui=bold,underline
-hi WarningMsg       term=standout ctermfg=9 guifg=#e74d23
-hi WildMenu         term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=#ffc233
-hi Folded           term=standout ctermfg=10 ctermbg=234 guifg=#7dc030 guibg=#080808
-hi FoldColumn       term=standout ctermfg=14 ctermbg=234 guifg=#15c1bb guibg=#6c6c6c
-hi DiffAdd          term=bold ctermbg=4 guibg=#006fd1
-hi DiffChange       term=bold ctermbg=5 guibg=#8a21bf
-hi DiffDelete       term=bold ctermfg=12 ctermbg=6 gui=bold guifg=#5aa2e0 guibg=#119c97
-hi DiffText         term=reverse cterm=bold ctermbg=9 gui=bold guibg=#e74d23
-hi SignColumn       term=standout ctermfg=6 ctermbg=0 guifg=#15c1bb guibg=Black
-hi Conceal          ctermfg=7 ctermbg=242 guifg=#acc1d3 guibg=#6c6c6c
-hi SpellBad         term=reverse ctermbg=9 gui=undercurl guisp=#e74d23
-hi SpellCap         term=reverse ctermbg=12 gui=undercurl guisp=#5aa2e0
-hi SpellRare        term=reverse ctermbg=13 gui=undercurl guisp=#b968d9
-hi SpellLocal       term=underline ctermbg=14 gui=undercurl guisp=#15c1bb
-hi Pmenu            ctermfg=15 ctermbg=8 guibg=#283842 guifg=White
+hi SpecialKey       term=bold ctermfg=14
+hi NonText          term=bold ctermfg=12
+hi Directory        term=bold ctermfg=12
+hi ErrorMsg         term=standout ctermfg=15 ctermbg=1
+hi IncSearch        term=reverse cterm=reverse
+hi Search           term=reverse ctermfg=0 ctermbg=11
+hi MoreMsg          term=bold ctermfg=10
+hi ModeMsg          term=bold cterm=bold
+hi LineNr           term=underline ctermfg=238
+hi CursorLineNr     term=bold cterm=underline ctermfg=11
+hi Question         term=standout ctermfg=10
+hi Title            term=bold ctermfg=11
+hi Visual           term=reverse ctermbg=243
+hi VisualNOS        term=bold,underline cterm=bold,underline
+hi WarningMsg       term=standout ctermfg=9
+hi WildMenu         term=standout ctermfg=0 ctermbg=11
+hi Folded           term=standout ctermfg=10 ctermbg=234
+hi FoldColumn       term=standout ctermfg=14 ctermbg=234
+hi DiffAdd          term=bold ctermbg=4
+hi DiffChange       term=bold ctermbg=5
+hi DiffDelete       term=bold ctermfg=12 ctermbg=6
+hi DiffText         term=reverse cterm=bold ctermbg=9
+hi SignColumn       term=standout ctermfg=6 ctermbg=0
+hi Conceal          ctermfg=7 ctermbg=242
+hi SpellBad         term=reverse ctermbg=9
+hi SpellCap         term=reverse ctermbg=12
+hi SpellRare        term=reverse ctermbg=13
+hi SpellLocal       term=underline ctermbg=14
+hi Pmenu            ctermfg=15 ctermbg=8
 hi PmenuSel         ctermfg=0 ctermbg=12
-hi PmenuSbar        ctermbg=248 guibg=#a8a8a8
-hi PmenuThumb       ctermbg=15 guibg=White
-hi CursorColumn     term=reverse ctermbg=242 guibg=#6c6c6c
-hi CursorLine       term=underline cterm=underline guibg=#6c6c6c
-hi ColorColumn      term=reverse ctermbg=232 guibg=#d12d00
-hi MatchParen       term=reverse ctermbg=6 guibg=#008585
-hi ToolbarLine      term=underline ctermbg=242 guibg=#6c6c6c
-hi ToolbarButton    cterm=bold ctermfg=0 ctermbg=7 gui=bold guifg=Black guibg=#acc1d3
-hi Comment          term=bold ctermfg=6 guifg=#15c1bb
-hi Constant         term=underline ctermfg=13 guifg=#b968d9
-hi Identifier       term=underline cterm=bold ctermfg=14 guifg=#15c1bb
-hi Statement        term=bold ctermfg=12 gui=bold guifg=#ffc233
-hi Underlined       term=underline cterm=underline ctermfg=14 gui=underline guifg=#15c1bb
-hi Ignore           ctermfg=0 guifg=bg
-hi Error            term=reverse ctermfg=15 ctermbg=9 guifg=White guibg=#e74d23
-hi Todo             term=standout ctermfg=0 ctermbg=11 guifg=Black guibg=#ffc233
+hi PmenuSbar        ctermbg=248
+hi PmenuThumb       ctermbg=15
+hi CursorColumn     term=reverse ctermbg=242
+hi CursorLine       term=underline cterm=underline
+hi ColorColumn      term=reverse ctermbg=232
+hi MatchParen       term=reverse ctermbg=6
+hi ToolbarLine      term=underline ctermbg=242
+hi ToolbarButton    cterm=bold ctermfg=0 ctermbg=7
+hi Comment          term=bold ctermfg=6
+hi Constant         term=underline ctermfg=13
+hi Identifier       term=underline cterm=bold ctermfg=14
+hi Statement        term=bold ctermfg=12
+hi Underlined       term=underline cterm=underline ctermfg=14
+hi Ignore           ctermfg=0
+hi Error            term=reverse ctermfg=15 ctermbg=9
+hi Todo             term=standout ctermfg=0 ctermbg=11
 
-hi Special          term=bold ctermfg=223 guifg=Orange
-hi Type             term=underline ctermfg=14 gui=bold guifg=#60ff60
-hi PreProc          term=underline ctermfg=12 guifg=#5fd7ff
+hi Special          term=bold ctermfg=223
+hi Type             term=underline ctermfg=14
+hi PreProc          term=underline ctermfg=12

@@ -1,11 +1,15 @@
 # vim: filetype=zsh
 
-BREW=/usr/local
-EDITOR=$HOME/.local/bin/vim # MacVim
+BREW=/opt/homebrew
 PATH=$BREW/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
-ANDROID_HOME=$HOME/Android
-LSCOLORS=cx
-export ANDROID_HOME BREW EDITOR LSCOLORS PATH
+
+fzf_path=/opt/homebrew/Cellar/fzf/`fzf --version|cut -d' ' -f1`/shell
+. $fzf_path/completion.zsh
+. $fzf_path/key-bindings.zsh
+unset fzf_path
+
+# EDITOR=$HOME/.local/bin/vim # MacVim
+export BREW EDITOR PATH
 LANG=en_US.UTF-8
 LANGUAGE=$LANG
 LC_ALL=$LANG
@@ -15,5 +19,3 @@ JAVA_HOME=`/usr/libexec/java_home 2>/dev/null`
 if [[ -n "$JAVA_HOME" ]]; then
   export JAVA_HOME
 fi
-
-alias ls='ls -G'
