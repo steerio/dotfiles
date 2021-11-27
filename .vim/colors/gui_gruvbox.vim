@@ -15,7 +15,7 @@ hi! link TabLineFill StatusLine
 hi! link TabLine StatusNC
 hi! link TabLineSel StatusNormal
 
-hi StatusLineNC     gui=NONE guibg=#1d2021 guifg=#a89984
+hi StatusLineNC     gui=NONE guibg=#121212 guifg=#a89984
 hi StatusLine       gui=NONE guibg=#1d2021 guifg=#a89984
 hi VertSplit        gui=NONE guibg=Black guifg=#504945
 

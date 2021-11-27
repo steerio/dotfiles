@@ -14,10 +14,10 @@ hi! link TabLineFill StatusLine
 hi! link TabLine StatusNC
 hi! link TabLineSel StatusNormal
 
-hi StatusLineNC     cterm=NONE ctermfg=7 ctermbg=233 
-hi StatusLine       cterm=NONE ctermfg=7 ctermbg=233
+hi StatusLineNC     cterm=NONE ctermfg=7 ctermbg=233
+hi StatusLine       cterm=NONE ctermfg=7 ctermbg=234
 hi StatusLineTermNC term=reverse ctermfg=7 ctermbg=233
-hi StatusLineTerm   term=reverse ctermfg=7 ctermbg=233
+hi StatusLineTerm   term=reverse ctermfg=7 ctermbg=234
 hi VertSplit        cterm=NONE ctermbg=0 ctermfg=8
 
 hi SpecialKey       term=bold ctermfg=14
