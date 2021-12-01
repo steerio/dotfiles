@@ -1,4 +1,4 @@
-set guioptions-=r
+set guioptions=gmL
 
 if has('gui_macvim')
   " macOS
