@@ -4,8 +4,9 @@ if has('gui_macvim')
   " macOS
   set linespace=-3
   set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline:h12
-  let $PATH=$HOME.'/.asdf/shims:/opt/homebrew/bin:'.$PATH
+  let $PATH=$HOME.'/.ghcup/bin:'.$HOME.'/.asdf/shims:/opt/homebrew/bin:'.$PATH
   let $BAT_THEME='gruvbox-dark'
+  let $FZF_DEFAULT_COMMAND='fd --type f'
 else
   " Linux, etc.
   set guifont=Droid\ Sans\ Mono\ Slashed\ for\ Powerline\ 8
