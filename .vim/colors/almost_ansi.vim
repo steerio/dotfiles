@@ -33,7 +33,7 @@ hi CursorLineNr     term=bold cterm=underline ctermfg=11
 hi Question         term=standout ctermfg=10
 hi Title            term=bold ctermfg=11
 hi Visual           term=reverse ctermbg=243
-hi VisualNOS        term=bold,underline cterm=bold,underline
+hi VisualNOS        term=bold,underline cterm=bold
 hi WarningMsg       term=standout ctermfg=9
 hi WildMenu         term=standout ctermfg=0 ctermbg=11
 hi Folded           term=standout ctermfg=10 ctermbg=234
@@ -58,7 +58,7 @@ hi ColorColumn      term=reverse ctermbg=232
 hi MatchParen       term=reverse ctermbg=6
 hi ToolbarLine      term=underline ctermbg=242
 hi ToolbarButton    cterm=bold ctermfg=0 ctermbg=7
-hi Comment          ctermfg=7
+hi Comment          ctermfg=243
 hi Constant         term=underline ctermfg=13
 hi Identifier       term=bold ctermfg=12
 hi Function         term=bold cterm=bold ctermfg=10
@@ -75,8 +75,11 @@ hi PreProc          term=underline ctermfg=14
 
 hi String           ctermfg=10
 hi Structure        ctermfg=14
+hi Number           ctermfg=14
 
 hi rubyInterpolation ctermfg=6
 hi rubyInterpolationDelimiter ctermfg=14
-hi rubyInteger ctermfg=14
-hi link rubyFloat rubyInteger
+hi link rubyInteger Number
+hi link rubyFloat Number
+hi link jsonNumber Number
+hi link jsonKeyword Constant

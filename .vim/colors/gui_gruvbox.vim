@@ -1,5 +1,4 @@
-hi clear
-syntax reset
+runtime almost_ansi
 let g:colors_name = 'gui_gruvbox'
 
 hi Normal guibg=black guifg=#eddbb2
@@ -10,10 +9,6 @@ hi StatusReplace guibg=#cc241d guifg=#282828
 hi StatusTerm    guibg=#b8bb26 guifg=#282828
 hi StatusMid     guibg=#504945 guifg=#ebdbb2
 hi StatusNC      guibg=#504945 guifg=#a89984
-
-hi! link TabLineFill StatusLine
-hi! link TabLine StatusNC
-hi! link TabLineSel StatusNormal
 
 hi StatusLineNC     gui=NONE guibg=#121212 guifg=#a89984
 hi StatusLine       gui=NONE guibg=#1d2021 guifg=#a89984
@@ -57,7 +52,7 @@ hi ColorColumn      guibg=#d12d00
 hi MatchParen       guibg=#689d6a
 hi ToolbarLine      guibg=#6c6c6c
 hi ToolbarButton    gui=bold guifg=#282828 guibg=#a89984
-hi Comment          guifg=#a89984
+hi Comment          guifg=#7c6f64
 hi Constant         guifg=#d3869b
 hi Identifier       guifg=#83a598
 hi Function         guifg=#b8bb26
@@ -74,8 +69,7 @@ hi PreProc          guifg=#8ec07c
 
 hi String           guifg=#b8bb26
 hi Structure        guifg=#8ec07c
+hi Number           guifg=#8ec07c
 
 hi rubyInterpolation guifg=#689d6a
 hi rubyInterpolationDelimiter guifg=#8ec07c
-hi rubyInteger guifg=#8ec07c
-hi link rubyFloat rubyInteger
