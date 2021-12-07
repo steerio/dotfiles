@@ -58,15 +58,25 @@ hi ColorColumn      term=reverse ctermbg=232
 hi MatchParen       term=reverse ctermbg=6
 hi ToolbarLine      term=underline ctermbg=242
 hi ToolbarButton    cterm=bold ctermfg=0 ctermbg=7
-hi Comment          term=bold ctermfg=6
+hi Comment          ctermfg=7
 hi Constant         term=underline ctermfg=13
-hi Identifier       term=underline cterm=bold ctermfg=14
-hi Statement        term=bold ctermfg=12
+hi Identifier       term=bold ctermfg=12
+hi Function         term=bold cterm=bold ctermfg=10
+hi Statement        term=bold ctermfg=9
 hi Underlined       term=underline cterm=underline ctermfg=14
 hi Ignore           ctermfg=0
 hi Error            term=reverse ctermfg=15 ctermbg=9
 hi Todo             term=standout ctermfg=0 ctermbg=11
 
 hi Special          term=bold ctermfg=223
-hi Type             term=underline ctermfg=14
-hi PreProc          term=underline ctermfg=12
+hi Type             term=underline ctermfg=11
+hi StorageClass     ctermfg=208
+hi PreProc          term=underline ctermfg=14
+
+hi String           ctermfg=10
+hi Structure        ctermfg=14
+
+hi rubyInterpolation ctermfg=6
+hi rubyInterpolationDelimiter ctermfg=14
+hi rubyInteger ctermfg=14
+hi link rubyFloat rubyInteger

@@ -57,15 +57,25 @@ hi ColorColumn      guibg=#d12d00
 hi MatchParen       guibg=#689d6a
 hi ToolbarLine      guibg=#6c6c6c
 hi ToolbarButton    gui=bold guifg=#282828 guibg=#a89984
-hi Comment          guifg=#689d6a
+hi Comment          guifg=#a89984
 hi Constant         guifg=#d3869b
-hi Identifier       guifg=#8ec07c
-hi Statement        gui=bold guifg=#83a598
+hi Identifier       guifg=#83a598
+hi Function         guifg=#b8bb26
+hi Statement        guifg=#fb4934
 hi Underlined       gui=underline guifg=#8ec07c
 hi Ignore           guifg=#282828
 hi Error            guifg=#ebdbb2 guibg=#fb4934
 hi Todo             guifg=#282828 guibg=#fabd2f
 
 hi Special          guifg=#ebdbb2
-hi Type             gui=bold guifg=#8ec07c
-hi PreProc          guifg=#83a598
+hi Type             guifg=#fabd2f
+hi StorageClass     guifg=#fe8019
+hi PreProc          guifg=#8ec07c
+
+hi String           guifg=#b8bb26
+hi Structure        guifg=#8ec07c
+
+hi rubyInterpolation guifg=#689d6a
+hi rubyInterpolationDelimiter guifg=#8ec07c
+hi rubyInteger guifg=#8ec07c
+hi link rubyFloat rubyInteger
