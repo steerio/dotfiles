@@ -175,6 +175,11 @@ alias L='l -l'
 alias la='l -a'
 alias La='l -al'
 
+alias be='bundle exec'
+alias bu='bundle'
+alias rails='bundle exec rails'
+alias rake='bundle exec rake'
+
 alias byaml="bat -l yaml"
 alias bjson="bat -l json"
 
@@ -209,18 +214,6 @@ alias hsh='he run /bin/bash'
 alias hyarn='he run yarn'
 alias hnode='he run node --experimental-repl-await'
 alias vi=vim
-
-run () {
-  if [[ -f mix.exs ]]; then
-    iex -S mix phx.server
-  elif [[ -f config.ru ]]; then
-    bundle exec ruby config.ru
-  elif [[ -f package.json ]]; then
-    yarn start
-  else
-    echo "I don't know how to start this application." >&2
-  fi
-}
 
 dangling () {
   docker $* -f dangling=true
