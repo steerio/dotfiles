@@ -10,9 +10,12 @@ hi StatusTerm    ctermbg=10 ctermfg=0
 hi StatusMid     ctermbg=8  ctermfg=15
 hi StatusNC      ctermbg=8  ctermfg=7
 
-hi! link TabLineFill StatusLine
-hi! link TabLine StatusNC
-hi! link TabLineSel StatusNormal
+hi clear TabLineFill
+hi link TabLineFill StatusLine
+hi clear TabLine
+hi link TabLine StatusNC
+hi clear TabLineSel
+hi link TabLineSel StatusNormal
 
 hi StatusLineNC     cterm=NONE ctermfg=7 ctermbg=233
 hi StatusLine       cterm=NONE ctermfg=7 ctermbg=234

@@ -1,4 +1,4 @@
-runtime almost_ansi
+runtime colors/almost_ansi.vim
 let g:colors_name = 'gui_gruvbox'
 
 hi Normal guibg=black guifg=#eddbb2
