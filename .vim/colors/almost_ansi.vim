@@ -51,7 +51,8 @@ hi SpellBad         term=reverse ctermbg=9
 hi SpellCap         term=reverse ctermbg=12
 hi SpellRare        term=reverse ctermbg=13
 hi SpellLocal       term=underline ctermbg=14
-hi Pmenu            ctermfg=15 ctermbg=8
+hi Pmenu            ctermfg=15 ctermbg=240
+hi FgCocErrorFloatBgCocFloating ctermfg=1 ctermbg=240
 hi PmenuSel         ctermfg=0 ctermbg=12
 hi PmenuSbar        ctermbg=248
 hi PmenuThumb       ctermbg=15

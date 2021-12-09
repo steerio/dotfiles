@@ -42,10 +42,11 @@ hi SpellBad         gui=undercurl guisp=#fb4934
 hi SpellCap         gui=undercurl guisp=#83a598
 hi SpellRare        gui=undercurl guisp=#d3869b
 hi SpellLocal       gui=undercurl guisp=#8ec07c
-hi Pmenu            guifg=#ebdbb2
+hi Pmenu            guifg=#ebdbb2 guibg=#504945
 hi PmenuSel         guibg=#83a598 guifg=#282828
 hi PmenuSbar        guibg=#bdae93
 hi PmenuThumb       guibg=#ebdbb2
+hi FgCocErrorFloatBgCocFloating guibg=#504945 guifg=#fb4934
 hi CursorColumn     guibg=#6c6c6c
 hi CursorLine       guibg=#6c6c6c
 hi ColorColumn      guibg=#d12d00
