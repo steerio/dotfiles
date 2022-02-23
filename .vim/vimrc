@@ -1,5 +1,5 @@
 set nocompatible
-let mapleader=','
+let mapleader='\'
 let maplocalleader='\'
 nnoremap ,, ,
 nnoremap q: :q
@@ -14,7 +14,6 @@ set foldmethod=marker foldnestmax=3 foldminlines=3
 set wildmode=longest,list
 set bo=all
 set mouse=v
-set dir=~/.vim/swap,.,~/tmp,~/
 
 set number scl=number
 set shortmess+=c
@@ -50,11 +49,11 @@ nnoremap <silent> ]q :cnext<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> [e <Plug>(coc-diagnostic-prev)
 nmap <silent> ]e <Plug>(coc-diagnostic-next)
-nmap <silent> <Leader>jd <Plug>(coc-definition)
-nmap <silent> <Leader>wd :call CocAction('jumpDefinition', 'split')<CR>
-nmap <silent> <Leader>jt <Plug>(coc-type-definition)
-nmap <silent> <Leader>ji <Plug>(coc-implementation)
-nmap <silent> <Leader>jr <Plug>(coc-references)
+nmap <silent> ,jd <Plug>(coc-definition)
+nmap <silent> ,wd :call CocAction('jumpDefinition', 'split')<CR>
+nmap <silent> ,jt <Plug>(coc-type-definition)
+nmap <silent> ,ji <Plug>(coc-implementation)
+nmap <silent> ,jr <Plug>(coc-references)
 
 " --- Mappings ---
 
@@ -97,28 +96,28 @@ endfun
 
 command! -nargs=? -complete=dir SDirvish split | silent Dirvish <args>
 
-nnoremap <silent><Leader>s :sp %:h<CR>
-nnoremap <silent><Leader>S :sp .<CR>
-nnoremap <silent><Leader>e :e %:h<CR>
-nnoremap <silent><Leader>E :e .<CR>
-nnoremap <silent><Leader>~ :Dirvish ~<CR>
-nnoremap <silent><Leader>b :Buffers<CR>
-nnoremap <silent><Leader>f :Files<CR>
-nnoremap <silent><Leader>g :GFiles?<CR>
-nnoremap <silent><Leader>G :GFiles<CR>
-nnoremap <Leader>/ :BLines<Space>
-nnoremap <Leader>? :Lines<Space>
-nnoremap <Leader>n :set invnumber<CR>
-nnoremap <Leader>v :set invpaste<CR>
-nnoremap <Leader>m :set invwrap invlinebreak<CR>
-nnoremap <Leader>H :set invhlsearch<CR>
-nnoremap <silent><Leader>( :RainbowToggle<CR>
+nnoremap <silent>,s :sp %:h<CR>
+nnoremap <silent>,S :sp .<CR>
+nnoremap <silent>,e :e %:h<CR>
+nnoremap <silent>,E :e .<CR>
+nnoremap <silent>,~ :Dirvish ~<CR>
+nnoremap <silent>,b :Buffers<CR>
+nnoremap <silent>,f :Files<CR>
+nnoremap <silent>,g :GFiles?<CR>
+nnoremap <silent>,G :GFiles<CR>
+nnoremap ,/ :BLines<Space>
+nnoremap ,? :Lines<Space>
+nnoremap ,n :set invnumber<CR>
+nnoremap ,v :set invpaste<CR>
+nnoremap ,m :set invwrap invlinebreak<CR>
+nnoremap ,H :set invhlsearch<CR>
+nnoremap <silent>,( :RainbowToggle<CR>
 nnoremap <silent><C-W>S :call <SID>fit_window_to_buffer()<CR>gg''
 nnoremap <silent>du :diffupdate<CR>
 nnoremap <silent>dP :.diffput<CR>
-nnoremap <silent><Leader>d :CocFzfList diagnostics --current-buf<CR>
-nnoremap <silent><Leader>D :CocFzfList diagnostics<CR>
-nnoremap <silent><Leader>o :CocFzfList outline<CR>
+nnoremap <silent>,d :CocFzfList diagnostics --current-buf<CR>
+nnoremap <silent>,D :CocFzfList diagnostics<CR>
+nnoremap <silent>,o :CocFzfList outline<CR>
 
 if !exists('s:lasttab')
   " See augroup vimrc below.
@@ -129,26 +128,26 @@ fun! s:rotate_tab()
   exe "tabn " . s:lasttab
 endfun
 
-nnoremap <silent><Leader>i :-tabnew<CR>
-nnoremap <silent><Leader>a :tabnew<CR>
-nnoremap <silent><Leader>I :0tabnew<CR>
-nnoremap <silent><Leader>A :$tabnew<CR>
+nnoremap <silent>,i :-tabnew<CR>
+nnoremap <silent>,a :tabnew<CR>
+nnoremap <silent>,I :0tabnew<CR>
+nnoremap <silent>,A :$tabnew<CR>
 " The following two are the same thing, but whatever.
-nnoremap <silent><Leader>0 :tabfirst<CR>
-nnoremap <silent><Leader>1 :tabn 1<CR>
-nnoremap <silent><Leader>2 :tabn 2<CR>
-nnoremap <silent><Leader>3 :tabn 3<CR>
-nnoremap <silent><Leader>4 :tabn 4<CR>
-nnoremap <silent><Leader>$ :tablast<CR>
-nnoremap <Leader>h gT
-nnoremap <Leader>l gt
-nnoremap <silent><Leader><Tab> :call <SID>rotate_tab()<CR>
-nnoremap <silent><Leader>W :call <SID>wipe_buffers()<CR>
-nnoremap <Leader>r :Rg<Space>
-nnoremap <Leader>c :tcd<Space>
-nnoremap <Leader>C :tcd ../
-nnoremap <silent><Leader>. :execute("tcd ".<SID>buffer_dir())<CR>
-nnoremap <silent><Leader>p :echo "Current path:" getcwd()<CR>
+nnoremap <silent>,0 :tabfirst<CR>
+nnoremap <silent>,1 :tabn 1<CR>
+nnoremap <silent>,2 :tabn 2<CR>
+nnoremap <silent>,3 :tabn 3<CR>
+nnoremap <silent>,4 :tabn 4<CR>
+nnoremap <silent>,$ :tablast<CR>
+nnoremap ,h gT
+nnoremap ,l gt
+nnoremap <silent>,<Tab> :call <SID>rotate_tab()<CR>
+nnoremap <silent>,W :call <SID>wipe_buffers()<CR>
+nnoremap ,r :Rg<Space>
+nnoremap ,c :tcd<Space>
+nnoremap ,C :tcd ../
+nnoremap <silent>,. :execute("tcd ".<SID>buffer_dir())<CR>
+nnoremap <silent>,p :echo "Current path:" getcwd()<CR>
 
 nmap SS <Plug>YSsurround
 nmap Ss <Plug>YSsurround
@@ -165,7 +164,7 @@ nnoremap <C-W>% :vert rightb term<CR>
 tnoremap <C-B>" <C-W>:term<CR>
 tnoremap <C-B>% <C-W>:vert rightb term<CR>
 
-vnoremap <Leader>: :normal<Space>
+vnoremap ,: :normal<Space>
 
 " --- Looks ---
 
@@ -180,24 +179,35 @@ set fillchars=vert:│,fold:\  " That's an escaped space.
 
 " --- Autocmd ---
 
-fun! s:resized()
-  if &co > 159
-    let g:fzf_preview_window=['right:60%', 'ctrl-/']
-  else
-    let g:fzf_preview_window=['up:40%', 'ctrl-/']
-  endif
-endfun
-call s:resized()
+if exists('$TMUX')
+  let g:fzf_layout = { 'tmux': '-p90%,60%' }
+  let g:fzf_preview_window=['right:60%', 'ctrl-/']
+else
+  let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+  fun! s:resized()
+    if &co > 159
+      let g:fzf_preview_window=['right:60%', 'ctrl-/']
+    else
+      let g:fzf_preview_window=['up:40%', 'ctrl-/']
+    endif
+  endfun
+
+  call s:resized()
+endif
 
 augroup vimrc
   autocmd!
   au BufNewFile,BufRead * set fo-=o
   au TabClosed,TabLeave * let s:lasttab = tabpagenr()
-  au VimResized * call s:resized()
+  if !exists('$TMUX')
+    au VimResized * call s:resized()
+  endif
 augroup END
 
 " --- Config ---
 
+let g:paredit_leader = '\'
 let g:rainbow_active = 0
 let g:rainbow_conf = {
       \ 'ctermfgs': [9, 208, 11, 10, 14, 12, 13],
@@ -217,4 +227,10 @@ if has('macunix')
   set rtp+=/opt/homebrew/opt/fzf
 endif
 
-runtime scripts/statusline.vim
+if has('nvim')
+  set pp^=~/.vim/nvim
+  set dir^=~/.vim/nvim/swap
+else
+  set pp^=~/.vim/vim8
+  set dir^=~/.vim/vim8/swap
+endif
