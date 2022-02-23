@@ -1,9 +1,11 @@
 .DS_Store
-/.vim/.netrwhist
-/.vim/swap/*
-!/.vim/swap/.gitkeep
-/.vim/view
 /.zsh/comp/_he
 /.zsh/comp/_ipfs
 /.zsh/comp/_asdf
-/.vim/pack/plugins
+.netrwhist
+/.vim/view
+/.vim/pack
+/.vim/nvim/pack
+/.vim/vim8/pack
+!/.vim/nvim/swap/.gitkeep
+!/.vim/vim8/swap/.gitkeep

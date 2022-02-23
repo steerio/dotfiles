@@ -20,6 +20,9 @@ for i in (.*~.git*~.*.swp); do
   ln -s $src/$i $HOME/
 done
 
+mkdir -p ~/.config/nvim
+ln -s $src/.vim/init.vim ~/.config/nvim/
+
 # Set up tmux
 
 tmux=$HOME/.tmux.conf

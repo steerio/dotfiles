@@ -1,21 +1,20 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
-root='.vim/pack/plugins'
-cd $root
+cd `dirname $0`/.vim
 
-process () {
-  cd $1
-  for i in */.git; do
-    cd $(dirname $i)
-    echo git clone $(git remote get-url origin)
-    cd ..
-  done
-  cd ..
-}
+echo '#!/usr/bin/env zsh'
+echo "mkdir -p ~/.vim; cd ~/.vim"
 
-echo '#!/bin/zsh'
-echo "mkdir -p ~/$root/{start,opt}"
-echo "cd ~/$root/start"
-process start
-echo "cd ../opt"
-process opt
+prev=''
+
+for i in $(find pack nvim vim8 -name .git -type d|sort); do
+  folder=`dirname $i`
+  name=`basename $folder`
+  parent=`dirname $folder`
+  if [[ $prev != $parent ]]; then
+    [[ -n $prev ]] && echo "cd -"
+    echo "mkdir -p $parent; cd $parent"
+  fi
+  prev=$parent
+  echo "git clone $(git --git-dir=$i remote get-url origin) $name"
+done

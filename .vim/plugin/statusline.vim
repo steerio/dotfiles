@@ -1,3 +1,7 @@
+if hlID('StatusActive')
+  finish
+endif
+
 hi link StatusActive StatusNormal
 hi link StatusActive_c StatusNormal_c
 

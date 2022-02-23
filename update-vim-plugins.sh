@@ -1,16 +1,15 @@
 #!/usr/bin/env zsh
 
-cd $(dirname $0)/.vim/pack/plugins
-for i in */*; do
-  cd $i
-  echo '>>>' Checking $i
-  if [[ -d .git ]]; then
-    git pull
-    if [[ -f yarn.lock ]]; then
-      yarn install
-    else
-      [[ -f package-lock.json ]] && npm install
-    fi
+cd ~/.vim
+for i in $(find pack vim8 nvim -name .git -type d); do
+  folder=`dirname $i`
+  echo '>>>' Checking $folder
+  cd $folder
+  git pull
+  if [[ -f yarn.lock ]]; then
+    yarn install
+  else
+    [[ -f package-lock.json ]] && npm install
   fi
   cd -
 done
