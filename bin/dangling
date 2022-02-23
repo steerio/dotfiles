@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+
+sw='ls -f dangling=true'
+
+echo Dangling Images:
+docker image ${=sw}
+echo "\nDangling Volumes:"
+docker volume ${=sw}

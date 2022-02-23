@@ -198,9 +198,7 @@ alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
 alias dssh='docker-machine ssh'
 alias di='docker image ls'
-alias dai='dangling image ls'
 alias dv='docker volume ls'
-alias dav='dangling volume ls'
 alias dps='docker ps'
 alias dpa='docker ps -a'
 alias drmi='docker rmi'
@@ -214,10 +212,6 @@ alias hsh='he run /bin/bash'
 alias hyarn='he run yarn'
 alias hnode='he run node --experimental-repl-await'
 alias vi=vim
-
-dangling () {
-  docker $* -f dangling=true
-}
 
 gbc () {
   git branch $1
