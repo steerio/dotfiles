@@ -52,7 +52,6 @@ hi SpellCap         term=reverse ctermbg=12
 hi SpellRare        term=reverse ctermbg=13
 hi SpellLocal       term=underline ctermbg=14
 hi Pmenu            ctermfg=15 ctermbg=240
-hi FgCocErrorFloatBgCocFloating ctermfg=1 ctermbg=240
 hi PmenuSel         ctermfg=0 ctermbg=12
 hi PmenuSbar        ctermbg=248
 hi PmenuThumb       ctermbg=15
@@ -81,9 +80,16 @@ hi String           ctermfg=10
 hi Structure        ctermfg=14
 hi Number           ctermfg=14
 
+hi CocFloating ctermbg=234
+hi FgCocErrorFloatBgCocFloating ctermfg=9 ctermbg=234
+hi FgCocHintFloatBgCocFloating ctermfg=4 ctermbg=234
+
 hi rubyInterpolation ctermfg=6
 hi rubyInterpolationDelimiter ctermfg=14
 hi link rubyInteger Number
 hi link rubyFloat Number
 hi link jsonNumber Number
 hi link jsonKeyword Constant
+hi jsxOpenPunct ctermfg=4
+hi link jsxClosePunct jsxOpenPunct
+hi link jsxCloseString jsxOpenPunct
