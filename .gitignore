@@ -3,9 +3,10 @@
 /.zsh/comp/_ipfs
 /.zsh/comp/_asdf
 .netrwhist
-/.vim/view
 /.vim/pack
 /.vim/nvim/pack
 /.vim/vim8/pack
+/.vim/vim8/swap
+/.vim/nvim/swap
 !/.vim/nvim/swap/.gitkeep
 !/.vim/vim8/swap/.gitkeep
