@@ -265,6 +265,21 @@ bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 setopt noautomenu nobeep
 
+function zle-line-init zle-keymap-select () {
+  case $KEYMAP in
+    vicmd) print -n -- "\x1b[2 q";;
+    viins|main) print -n -- "\x1b[6 q";;
+  esac
+}
+
+function zle-line-finish () {
+  print -n -- "\x1b[1 q"
+}
+
+zle -N zle-keymap-select
+zle -N zle-line-init
+zle -N zle-line-finish
+
 zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
