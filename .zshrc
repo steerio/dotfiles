@@ -275,7 +275,7 @@ function zle-line-init zle-keymap-select () {
 }
 
 function zle-line-finish () {
-  print -n -- "\x1b[1 q"
+  print -n -- "\x1b[2 q"
 }
 
 zle -N zle-keymap-select
