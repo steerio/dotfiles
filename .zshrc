@@ -213,6 +213,8 @@ alias hyarn='he run yarn'
 alias hnode='he run node --experimental-repl-await'
 alias vi=vim
 
+alias ts-node='npx ts-node'
+
 gbc () {
   git branch $1
   git checkout $1
