@@ -267,15 +267,20 @@ bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
 setopt noautomenu nobeep
 
-function zle-line-init zle-keymap-select () {
+function zle-line-init () {
+  print -n "\e[?1000l"
+  zle-keymap-select
+}
+function zle-keymap-select () {
   case $KEYMAP in
-    vicmd) print -n -- "\x1b[2 q";;
-    viins|main) print -n -- "\x1b[6 q";;
+    vicmd) print -n -- "\e[2 q";;
+    viins|main) print -n -- "\e[6 q";;
   esac
 }
 
 function zle-line-finish () {
-  print -n -- "\x1b[2 q"
+  print -n "\e[?1000h"
+  print -n -- "\e[2 q"
 }
 
 zle -N zle-keymap-select
