@@ -149,11 +149,14 @@ nnoremap ,C :tcd ../
 nnoremap <silent>,. :execute("tcd ".<SID>buffer_dir())<CR>
 nnoremap <silent>,p :echo "Current path:" getcwd()<CR>
 
-nmap SS <Plug>YSsurround
-nmap Ss <Plug>YSsurround
-nmap ss <Plug>Yssurround
-nmap S <Plug>YSurround
-nmap s <Plug>Ysurround
+xmap ii <Plug>(indent-object_linewise-none)
+omap ii <Plug>(indent-object_blockwise-none)
+xmap ai <Plug>(indent-object_linewise-start)
+omap ai <Plug>(indent-object_linewise-start)
+xmap iI <Plug>(indent-object_linewise-end)
+omap iI <Plug>(indent-object_linewise-end)
+xmap aI <Plug>(indent-object_linewise-both)
+omap aI <Plug>(indent-object_linewise-both)
 
 nnoremap <Up> <C-W>+
 nnoremap <Down> <C-W>-
