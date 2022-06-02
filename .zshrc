@@ -279,7 +279,6 @@ function zle-keymap-select () {
 }
 
 function zle-line-finish () {
-  print -n "\e[?1000h"
   print -n -- "\e[2 q"
 }
 

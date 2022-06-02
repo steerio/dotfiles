@@ -1,6 +1,8 @@
 set mark-directories On
 set mark-symlinked-directories On
 set editing-mode vi
+set vi-ins-mode-string \1\e[6 q\2
+set vi-cmd-mode-string \1\e[2 q\2
 "\C-a": beginning-of-line
 "\C-e": end-of-line
 "\C-l": clear-screen
