@@ -38,9 +38,9 @@ function! <SID>to_indent_end(up, vis)
     endwhile
 endfunction
 
-nnoremap <silent> ]= :call <SID>to_indent_end(0, 0)<CR>
-nnoremap <silent> [= :call <SID>to_indent_end(1, 0)<CR>
-onoremap <silent> ]= V:call <SID>to_indent_end(0, 0)<CR>
-onoremap <silent> [= V:call <SID>to_indent_end(1, 0)<CR>
-vnoremap <silent> ]= :call <SID>to_indent_end(0, 1)<CR>
-vnoremap <silent> [= :call <SID>to_indent_end(1, 1)<CR>
+nmap <silent> <Plug>(indent-start) :call <SID>to_indent_end(1, 0)<CR>
+nmap <silent> <Plug>(indent-end) :call <SID>to_indent_end(0, 0)<CR>
+onoremap <silent> <Plug>(indent-line-start) V:call <SID>to_indent_end(1, 0)<CR>
+onoremap <silent> <Plug>(indent-line-end) V:call <SID>to_indent_end(0, 0)<CR>
+vmap <silent> <Plug>(indent-visual-start) :call <SID>to_indent_end(1, 1)<CR>
+vmap <silent> <Plug>(indent-visual-end) :call <SID>to_indent_end(0, 1)<CR>

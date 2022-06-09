@@ -153,6 +153,12 @@ xmap i= <Plug>(indent-object_linewise-none)
 omap i= <Plug>(indent-object_linewise-none)
 xmap a= <Plug>(indent-object_linewise-end)
 omap a= <Plug>(indent-object_linewise-end)
+nmap <silent> [= <Plug>(indent-start)
+nmap <silent> ]= <Plug>(indent-end)
+omap <silent> [= <Plug>(indent-line-start)
+omap <silent> ]= <Plug>(indent-line-end)
+vmap <silent> [= <Plug>(indent-visual-start)
+vmap <silent> ]= <Plug>(indent-visual-end)
 
 nnoremap <Up> <C-W>+
 nnoremap <Down> <C-W>-
