@@ -149,14 +149,10 @@ nnoremap ,C :tcd ../
 nnoremap <silent>,. :execute("tcd ".<SID>buffer_dir())<CR>
 nnoremap <silent>,p :echo "Current path:" getcwd()<CR>
 
-xmap ii <Plug>(indent-object_linewise-none)
-omap ii <Plug>(indent-object_blockwise-none)
-xmap ai <Plug>(indent-object_linewise-start)
-omap ai <Plug>(indent-object_linewise-start)
-xmap iI <Plug>(indent-object_linewise-end)
-omap iI <Plug>(indent-object_linewise-end)
-xmap aI <Plug>(indent-object_linewise-both)
-omap aI <Plug>(indent-object_linewise-both)
+xmap i= <Plug>(indent-object_linewise-none)
+omap i= <Plug>(indent-object_linewise-none)
+xmap a= <Plug>(indent-object_linewise-end)
+omap a= <Plug>(indent-object_linewise-end)
 
 nnoremap <Up> <C-W>+
 nnoremap <Down> <C-W>-
