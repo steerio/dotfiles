@@ -227,11 +227,6 @@ gru () {
   git remote prune $remote
 }
 
-gsu () {
-  local br=`git rev-parse --abbrev-ref HEAD`
-  git branch --set-upstream $br origin/$br
-}
-
 alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
 
 ta () {
