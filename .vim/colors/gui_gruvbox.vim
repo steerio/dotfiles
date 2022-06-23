@@ -37,7 +37,7 @@ hi DiffChange       guibg=#b16286
 hi DiffDelete       gui=bold guifg=#83a598 guibg=#689d6a
 hi DiffText         gui=bold guibg=#fb4934
 hi SignColumn       guifg=#689d6a guibg=Black
-hi Conceal          guifg=#a89984 guisp=#6c6c6c
+hi Conceal          guifg=#a89984 guisp=#6c6c6c guibg=#3c3836
 hi SpellBad         gui=undercurl guisp=#fb4934
 hi SpellCap         gui=undercurl guisp=#83a598
 hi SpellRare        gui=undercurl guisp=#d3869b
