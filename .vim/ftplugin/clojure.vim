@@ -1,6 +1,5 @@
 RainbowToggleOn
 
-set lispwords+=GET,POST,PUT,DELETE,HEAD
 let g:clojure_fuzzy_indent = 1
 let g:clojure_fuzzy_indent_patterns = ['^with-', '^def', '^do', '^if-']
 let g:clojure_align_multiline_strings = 1

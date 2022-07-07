@@ -1,1 +1,1 @@
-set fo+=t tw=80 wrap linebreak
+setl fo+=t tw=80 wrap linebreak

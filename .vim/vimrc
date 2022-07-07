@@ -2,8 +2,6 @@ set nocompatible
 let mapleader='\'
 let maplocalleader='\'
 nnoremap ,, ,
-nnoremap q: :q
-nnoremap q<Tab> q:
 
 set vi=<0,'0,/16,f1,h history=100
 set bs=2 ts=2 sw=2 expandtab
@@ -18,6 +16,7 @@ set mouse=v
 set number scl=number
 set shortmess+=c
 set ttimeoutlen=50 updatetime=800
+filetype plugin on
 
 " --- COC ---
 
@@ -239,3 +238,6 @@ else
   set pp^=~/.vim/vim8
   set dir^=~/.vim/vim8/swap
 endif
+
+nnoremap q: :q
+nnoremap q<Tab> q:
