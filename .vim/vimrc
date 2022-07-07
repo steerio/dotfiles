@@ -118,15 +118,6 @@ nnoremap <silent>,d :CocFzfList diagnostics --current-buf<CR>
 nnoremap <silent>,D :CocFzfList diagnostics<CR>
 nnoremap <silent>,o :CocFzfList outline<CR>
 
-if !exists('s:lasttab')
-  " See augroup vimrc below.
-  let s:lasttab = 1
-endif
-
-fun! s:rotate_tab()
-  exe "tabn " . s:lasttab
-endfun
-
 nnoremap <silent>,i :-tabnew<CR>
 nnoremap <silent>,a :tabnew<CR>
 nnoremap <silent>,I :0tabnew<CR>
@@ -140,7 +131,7 @@ nnoremap <silent>,4 :tabn 4<CR>
 nnoremap <silent>,$ :tablast<CR>
 nnoremap ,h gT
 nnoremap ,l gt
-nnoremap <silent>,<Tab> :call <SID>rotate_tab()<CR>
+nnoremap <silent>,<Tab> g<Tab>
 nnoremap <silent>,W :call <SID>wipe_buffers()<CR>
 nnoremap ,r :Rg<Space>
 nnoremap ,c :tcd<Space>
@@ -203,7 +194,6 @@ endif
 augroup vimrc
   autocmd!
   au BufNewFile,BufRead * set fo-=o
-  au TabClosed,TabLeave * let s:lasttab = tabpagenr()
   if !exists('$TMUX')
     au VimResized * call s:resized()
   endif
