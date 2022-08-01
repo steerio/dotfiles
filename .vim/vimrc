@@ -36,10 +36,10 @@ fun! s:show_documentation()
 endfun
 
 inoremap <silent><expr> <TAB>
-       \ pumvisible() ? "\<C-n>" :
+       \ coc#pum#visible() ? "\<C-n>" :
        \ <SID>check_back_space() ? "\<TAB>" :
-       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+       \ "\<C-n>"
+inoremap <expr><S-TAB> coc#pum#visible() ? "\<C-p>" : "\<C-h>"
 
 nnoremap yY :%yank <c-r>=v:register<cr><cr>
 nnoremap dD :%delete <c-r>=v:register<cr><cr>
