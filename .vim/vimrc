@@ -1,10 +1,9 @@
-set nocompatible
 let mapleader='\'
 let maplocalleader='\'
 nnoremap ,, ,
 
 set vi=<0,'0,/16,f1,h history=100
-set bs=2 ts=2 sw=2 expandtab
+set bs=indent sts=2 sw=2 expandtab
 set lazyredraw modeline modelines=3
 set nowrap noshowmode nohlsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
@@ -16,13 +15,13 @@ set mouse=v
 set number scl=number
 set shortmess+=c
 set ttimeoutlen=50 updatetime=800
-filetype plugin on
+filetype plugin indent on
 
 " --- COC ---
 
 fun! s:check_back_space() abort
   let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+  return !col || getline('.')[col - 1] =~# '\s'
 endfun
 
 fun! s:show_documentation()
