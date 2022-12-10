@@ -7,7 +7,7 @@ echo "mkdir -p ~/.vim; cd ~/.vim"
 
 prev=''
 
-for i in $(find pack nvim vim8 -name .git -type d|sort); do
+for i in $(find pack nvim vim90 -name .git -type d|sort); do
   folder=`dirname $i`
   name=`basename $folder`
   parent=`dirname $folder`

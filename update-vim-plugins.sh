@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 cd ~/.vim
-for i in $(find pack vim8 nvim -name .git -type d); do
+for i in $(find pack vim90 nvim -name .git -type d); do
   folder=`dirname $i`
   echo '>>>' Checking $folder
   cd $folder

@@ -224,8 +224,8 @@ if has('nvim')
   set pp^=~/.vim/nvim
   set dir^=~/.vim/nvim/swap
 else
-  set pp^=~/.vim/vim8
-  set dir^=~/.vim/vim8/swap
+  set pp^=~/.vim/vim90
+  set dir^=~/.vim/vim90/swap
 endif
 
 nnoremap q: :q

@@ -5,8 +5,8 @@
 .netrwhist
 /.vim/pack
 /.vim/nvim/pack
-/.vim/vim8/pack
-/.vim/vim8/swap
+/.vim/vim90/pack
+/.vim/vim90/swap
 /.vim/nvim/swap
 !/.vim/nvim/swap/.gitkeep
-!/.vim/vim8/swap/.gitkeep
+!/.vim/vim90/swap/.gitkeep
