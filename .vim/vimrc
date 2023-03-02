@@ -40,6 +40,9 @@ inoremap <silent><expr> <TAB>
        \ "\<C-n>"
 inoremap <expr><S-TAB> coc#pum#visible() ? "\<C-p>" : "\<C-h>"
 
+nnoremap <silent> <C-c> <Plug>OSCYank
+nmap <silent> <C-c><C-c> <C-c>_
+nmap <silent> <C-c>C :call OSCYankString(join(getline(1, '$'), "\n")
 nnoremap yY :%yank <c-r>=v:register<cr><cr>
 nnoremap dD :%delete <c-r>=v:register<cr><cr>
 nnoremap <silent> [q :cprev<CR>
@@ -200,6 +203,7 @@ augroup END
 
 " --- Config ---
 
+let g:oscyank_term = 'default'
 let g:paredit_leader = '\'
 let g:rainbow_active = 0
 let g:rainbow_conf = {
