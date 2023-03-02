@@ -218,6 +218,8 @@ endif
 
 if has('macunix')
   set rtp+=/opt/homebrew/opt/fzf
+elseif isdirectory("/usr/share/vim/vimfiles")
+  set rtp+=/usr/share/vim/vimfiles
 endif
 
 if has('nvim')
