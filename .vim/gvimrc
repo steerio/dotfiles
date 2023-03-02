@@ -1,4 +1,4 @@
-set guioptions=gmL
+set guioptions=gL
 let &guicursor = substitute(&guicursor, 'n-v-c:', '&blinkon0-', '')
 
 if has('gui_macvim')

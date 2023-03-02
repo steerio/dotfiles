@@ -13,7 +13,7 @@ set bo=all
 set mouse=v
 
 set number scl=number
-set shortmess+=c
+set shortmess=atToscC
 set ttimeoutlen=50 updatetime=800
 filetype plugin indent on
 
