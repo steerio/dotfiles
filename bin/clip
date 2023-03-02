@@ -1,0 +1,9 @@
+#!/usr/bin/env zsh
+
+if [[ -n $DISPLAY ]]; then
+  xclip -selection clipboard
+else
+  printf "\033]52;cp;"
+  base64 -w0
+  printf "\a"
+fi
