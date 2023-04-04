@@ -3,7 +3,7 @@ let maplocalleader='\'
 nnoremap ,, ,
 
 set vi=<0,'0,/16,f1,h history=100
-set bs=indent sts=2 sw=2 expandtab
+set bs=indent sts=2 sw=2 expandtab nojoinspaces
 set lazyredraw modeline modelines=3
 set nowrap noshowmode nohlsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
