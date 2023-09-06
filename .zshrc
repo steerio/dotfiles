@@ -51,6 +51,9 @@ __right () {
       feature[_/-]*)
         out="f${2#feature}"
         ;;
+      issue-*)
+        out="#${2#issue-}"
+        ;;
       *?)
         out="$2"
         ;;
