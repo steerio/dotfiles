@@ -96,10 +96,14 @@ app () {
 }
 
 he () {
-  if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
-    heroku $* --app $heroku_app
-  else
+  if [[ $1 == "help" ]]; then
     heroku $*
+  else
+    if [[ -n $heroku_app && ! "$*" =~ ' --app ' ]]; then
+      heroku $* --app $heroku_app
+    else
+      heroku $*
+    fi
   fi
 }
 
