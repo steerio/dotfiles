@@ -6,6 +6,7 @@ hi link StatusActive StatusNormal
 hi link StatusActive_c StatusNormal_c
 
 let s:disp = has('gui_running') ? 'gui' : 'cterm'
+let s:ambiguous = ["be", "fe", "bo", "new", "old", "app", "site", "web"]
 
 if &term !=# 'linux'
   fun! s:connecting_highlight(from, to, ...)
@@ -223,7 +224,12 @@ fun! s:tab_label(n)
 
     if cwd[0] ==# '~' && strlen(cwd) > 2 && (empty || stridx(path, cwd) == 0)
       " Tag needed: cwd is within home but deeper; file empty or path within cwd
-      let tag = '[' . fnamemodify(cwd, ':t') . ']'
+      let tag = fnamemodify(cwd, ':t')
+      if index(s:ambiguous, tag) >= 0
+        let tag = fnamemodify(fnamemodify(cwd, ':h'), ':t') . '/' . tag
+      endif
+      let tag = '[' . tag . ']'
+
       if empty
         return tag
       else
