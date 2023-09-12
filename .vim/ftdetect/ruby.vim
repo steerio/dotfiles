@@ -1,1 +1,1 @@
-au BufNewFile,BufRead *.arb set ft=ruby
+au BufNewFile,BufRead *.arb,*.jbuilder set ft=ruby
