@@ -177,7 +177,7 @@ _djson () {
   _dispatch docker docker
 }
 
-alias l='exa --group-directories-first'
+alias l='eza --group-directories-first'
 alias L='l -l'
 alias la='l -a'
 alias La='l -al'
@@ -218,7 +218,6 @@ alias hlt='he logs --tail'
 alias hsh='he run /bin/bash'
 alias hyarn='he run yarn'
 alias hnode='he run node --experimental-repl-await'
-alias vi=vim
 
 alias ts-node='npx ts-node'
 
