@@ -29,10 +29,6 @@ fun! s:check_back_space() abort
 endfun
 
 if has('nvim')
-  set pp^=~/.vim/nvim
-  set dir^=~/.vim/nvim/swap
-  lua package.path = package.path .. ';' .. os.getenv("HOME") .. '/.vim/nvim/lua/?.lua'
-  lua require'vimrc'
   inoremap <silent><expr> <TAB> <SID>check_back_space() ? "\<TAB>" : "\<C-n>"
   inoremap <silent><expr> <S-TAB> <SID>check_back_space() ? "\<C-h>" : "\<C-p>"
 else

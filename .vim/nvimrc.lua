@@ -1,3 +1,5 @@
+package.path = package.path .. ';' .. os.getenv("HOME") .. '/.vim/nvim/lua/?.lua'
+
 require'nvim-treesitter.configs'.setup {
   highlight = {
     enable = true
@@ -7,8 +9,9 @@ require'nvim-treesitter.configs'.setup {
 local lsp = require('lspconfig')
 lsp.tsserver.setup {}
 lsp.ruby_ls.setup {}
+lsp.hls.setup {}
 
--- vim.keymap.set('n', ',d', vim.diagnostic.open_float)
+vim.keymap.set('n', ',d', vim.diagnostic.open_float)
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next)
 vim.keymap.set('n', ',q', vim.diagnostic.setloclist)
