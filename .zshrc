@@ -220,11 +220,7 @@ alias hyarn='he run yarn'
 alias hnode='he run node --experimental-repl-await'
 
 alias ts-node='npx ts-node'
-
-gbc () {
-  git branch $1
-  git checkout $1
-}
+alias gbc='git checkout -b'
 
 gru () {
   local remote=${1-origin}
@@ -315,14 +311,20 @@ if [[ "$PATH" != *".local"* ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [[ "$PATH" != *"ghcup"* ]]; then
+if [[ -d .ghcup && "$PATH" != *"ghcup"* ]]; then
   export PATH="$HOME/.ghcup/bin:$PATH"
 fi
 
-export ASDF_DIR=$HOME/.asdf
-if [[ "$PATH" != *".asdf/bin"* ]]; then
-  export PATH=$ASDF_DIR/bin:$PATH
+if [[ -d .cargo && "$PATH" != *"cargo"* ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
 fi
-if [[ "$PATH" != *".asdf/shims"* ]]; then
-  export PATH=$ASDF_DIR/shims:$PATH
+
+if [[ -d .asdf ]]; then
+  export ASDF_DIR=$HOME/.asdf
+  if [[ "$PATH" != *".asdf/bin"* ]]; then
+    export PATH=$ASDF_DIR/bin:$PATH
+  fi
+  if [[ "$PATH" != *".asdf/shims"* ]]; then
+    export PATH=$ASDF_DIR/shims:$PATH
+  fi
 fi
