@@ -9,3 +9,5 @@ fi
 
 export EDITOR=vim
 alias ls='ls --color=auto'
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
