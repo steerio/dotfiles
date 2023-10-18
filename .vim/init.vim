@@ -1,6 +1,5 @@
 set rtp^=~/.vim
 set pp^=~/.vim,~/.vim/nvim
-set dir^=~/.vim/nvim/swap
 source ~/.vim/nvimrc.lua
 source ~/.vim/vimrc
 

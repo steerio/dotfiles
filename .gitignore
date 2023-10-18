@@ -4,6 +4,4 @@
 /.vim/nvim/pack
 /.vim/vim90/pack
 /.vim/vim90/swap
-/.vim/nvim/swap
-!/.vim/nvim/swap/.gitkeep
 !/.vim/vim90/swap/.gitkeep
