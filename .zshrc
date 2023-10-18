@@ -286,12 +286,18 @@ zle -N zle-line-finish
 zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
+
+if [ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]; then
+  source $HOME/.cache/heroku/autocomplete/zsh_setup
+fi
+
 compinit
 
 compdef _kubectx kcx
 compdef _ky ky
 compdef _djson djson
 compdef _docker dangling
+compdef _heroku he
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PAGER=`which less`

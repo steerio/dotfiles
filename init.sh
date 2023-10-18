@@ -40,15 +40,3 @@ echo 'Setting up local zshrc'
 if [[ ! -f $HOME/.zshrc.local ]]; then
   echo . $HOME/.zsh/$system > $HOME/.zshrc.local
 fi
-
-# Completion
-
-scrape () {
-  if type $1 &>/dev/null; then
-    local name=${2-$1}
-    ruby scrape/$1.rb $name >.zsh/comp/_$name
-  fi
-}
-
-scrape heroku he
-scrape ipfs
