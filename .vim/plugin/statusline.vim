@@ -128,7 +128,7 @@ fun! s:type_branch()
     let branch = FugitiveHead()
     return empty(branch)
           \ ? ''
-          \ : ' '.substitute(branch, '^feature-', 'f-', '')
+          \ : ' '.branch->substitute('^feature\([-/]\)', 'f\1', '')->substitute('^issue[-/]', '#', '')
   else
     return &buftype
   endif
