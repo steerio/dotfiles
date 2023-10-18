@@ -284,7 +284,7 @@ zle -N zle-line-init
 zle -N zle-line-finish
 
 zstyle ':completion:*' completer _expand _complete _files
-fpath=(~/.zsh/comp $fpath)
+fpath=(~/.local/share/zsh/functions ~/.zsh/comp $fpath)
 autoload -U zutil compinit complist
 
 if [ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]; then
