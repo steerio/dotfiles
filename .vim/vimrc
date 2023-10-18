@@ -139,9 +139,15 @@ nnoremap <silent>,A :$tabnew<CR>
 " The following two are the same thing, but whatever.
 nnoremap <silent>,0 :tabfirst<CR>
 nnoremap <silent>,1 :tabn 1<CR>
+nnoremap <silent><M-1> :tabn 1<CR>
 nnoremap <silent>,2 :tabn 2<CR>
+nnoremap <silent><M-2> :tabn 2<CR>
 nnoremap <silent>,3 :tabn 3<CR>
+nnoremap <silent><M-3> :tabn 3<CR>
 nnoremap <silent>,4 :tabn 4<CR>
+nnoremap <silent><M-4> :tabn 4<CR>
+nnoremap <silent>,5 :tabn 5<CR>
+nnoremap <silent><M-5> :tabn 5<CR>
 nnoremap <silent>,$ :tablast<CR>
 nnoremap ,h gT
 nnoremap ,l gt
@@ -168,6 +174,10 @@ nnoremap <Up> <C-W>+
 nnoremap <Down> <C-W>-
 nnoremap <Left> <C-W><
 nnoremap <Right> <C-W>>
+nnoremap <M-k> <C-W>k
+nnoremap <M-j> <C-W>j
+nnoremap <M-h> <C-W>h
+nnoremap <M-l> <C-W>l
 nnoremap <C-W>" :term<CR>
 nnoremap <C-W>% :vert rightb term<CR>
 tnoremap <C-B>" <C-W>:term<CR>
