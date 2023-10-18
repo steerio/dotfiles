@@ -4,7 +4,7 @@ nnoremap ,, ,
 
 set vi=<0,'0,/16,f1,h history=100
 set bs=indent sts=2 sw=2 expandtab nojoinspaces
-set lazyredraw modeline modelines=3 winminheight=1
+set lazyredraw modeline modelines=3 winminheight=1 noshowcmd
 set nowrap noshowmode nohlsearch noincsearch nobackup nowritebackup
 set ignorecase smartcase autoindent
 set foldmethod=marker foldnestmax=3 foldminlines=3
