@@ -1,6 +1,6 @@
-#!/usr/bin/env zsh
+# vim: ft=zsh
 
-sw='ls -f dangling=true'
+local sw='ls -f dangling=true'
 
 echo Dangling Images:
 docker image ${=sw}

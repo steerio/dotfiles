@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-# vim: filetype=ruby
 
 def read_config
   opts = ARGV.size == 1 ? "--app #{ARGV[0]}" : ARGV.join(' ')

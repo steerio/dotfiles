@@ -1,0 +1,5 @@
+#compdef djson
+
+words=(docker inspect $words[2,-1])
+CURRENT=$(($CURRENT+1))
+_dispatch docker docker

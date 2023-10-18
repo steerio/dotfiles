@@ -2,8 +2,8 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
-dot_bin=~/.zshrc
-dot_bin=${dot_bin:A:h}/bin
+scripts=~/.zshrc
+scripts=${scripts:A:h}/scripts
 
 setopt prompt_subst
 setopt hist_ignore_all_dups
@@ -109,42 +109,17 @@ he () {
 
 remote-mongo () {
   if [[ -n $1 ]]; then
-    $dot_bin/remote-mongo $*
+    $scripts/remote-mongo $*
   else
-    $dot_bin/remote-mongo $heroku_app
+    $scripts/remote-mongo $heroku_app
   fi
-}
-
-remote-redis () {
-  $dot_bin/remote-redis ${1-$heroku_app}
 }
 
 node () {
   if [[ $* == "" ]]; then
-    command node --experimental-repl-await -r ~/.noderc
+    command node -r ~/.noderc
   else
     command node $*
-  fi
-}
-
-bhead () {
-  zparseopts -D -- n:=n
-  local opt
-  if [[ -n $n ]]; then
-    opt=${n[2]}
-  else
-    opt=10
-  fi
-  bat -r :$opt $*
-}
-
-kubesh () {
-  local pod=${1-$(kubectl get pods -o name|fzf)}
-  if [[ "$pod" != "" ]]; then
-    echo Connecting to $pod
-    kubectl exec -ti  $pod -- /bin/sh
-    echo
-    echo Disconnected from $pod
   fi
 }
 
@@ -152,30 +127,15 @@ kpwd () {
   echo $(kubectx -c) '>' $(kubens -c)
 }
 
-kcx () {
-  kubectx $*
-  echo Your path is now $(kpwd)
-}
-
 ky () {
   kubectl get $* -o yaml|bat -l yaml
-}
-
-_ky () {
-  words=(kubectl get $words[2,-1])
-  CURRENT=$(($CURRENT+1))
-  _dispatch kubectl kubectl
 }
 
 djson () {
   docker inspect $*|bat -l json
 }
 
-_djson () {
-  words=(docker inspect $words[2,-1])
-  CURRENT=$(($CURRENT+1))
-  _dispatch docker docker
-}
+autoload bhead clip dangling kubesh
 
 alias l='eza --group-directories-first'
 alias L='l -l'
@@ -193,6 +153,7 @@ alias bjson="bat -l json"
 alias pods="kubectl get pods"
 alias kup="kubectl apply -f"
 alias kcl="kubectl"
+alias kcx="kubectx"
 alias kg="kubectl get"
 alias kgd="kubectl get deploy"
 alias kd="kubectl describe"
@@ -252,6 +213,8 @@ alias glg='git log --graph'
 alias glog='git log --stat'
 alias grv='git remote -v'
 alias gst='git status -sb'
+alias merge='git merge'
+alias fetch='git fetch'
 alias pull='git pull'
 alias push='git push'
 
@@ -284,7 +247,7 @@ zle -N zle-line-init
 zle -N zle-line-finish
 
 zstyle ':completion:*' completer _expand _complete _files
-fpath=(~/.local/share/zsh/functions ~/.zsh/comp $fpath)
+fpath=(~/.local/share/zsh/functions ~/.zsh/functions ~/.asdf/completions $fpath)
 autoload -U zutil compinit complist
 
 if [ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]; then
@@ -292,10 +255,6 @@ if [ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]; then
 fi
 
 compinit
-
-compdef _kubectx kcx
-compdef _ky ky
-compdef _djson djson
 compdef _docker dangling
 compdef _heroku he
 

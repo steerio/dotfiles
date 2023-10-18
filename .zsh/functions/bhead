@@ -1,0 +1,10 @@
+# vim: ft=zsh
+
+zparseopts -D -- n:=n
+local opt
+if [[ -n $n ]]; then
+  opt=${n[2]}
+else
+  opt=10
+fi
+bat -r :$opt $*

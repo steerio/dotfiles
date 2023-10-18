@@ -1,6 +1,4 @@
 .DS_Store
-/.zsh/comp/_ipfs
-/.zsh/comp/_asdf
 .netrwhist
 /.vim/pack
 /.vim/nvim/pack

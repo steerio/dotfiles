@@ -1,0 +1,5 @@
+#compdef ky
+
+words=(kubectl get $words[2,-1])
+CURRENT=$(($CURRENT+1))
+_dispatch kubectl kubectl

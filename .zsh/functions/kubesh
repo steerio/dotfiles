@@ -1,0 +1,9 @@
+# vim: ft=zsh
+
+local pod=${1-$(kubectl get pods -o name|fzf)}
+if [[ "$pod" != "" ]]; then
+  echo Connecting to $pod
+  kubectl exec -ti  $pod -- /bin/sh
+  echo
+  echo Disconnected from $pod
+fi
