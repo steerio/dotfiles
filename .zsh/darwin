@@ -21,4 +21,8 @@ if [[ -n "$JAVA_HOME" ]]; then
   export JAVA_HOME
 fi
 
+if [[ -f $HOME/Library/Caches/heroku/autocomplete/zsh_setup ]]; then
+  source $HOME/Library/Caches/heroku/autocomplete/zsh_setup
+fi
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

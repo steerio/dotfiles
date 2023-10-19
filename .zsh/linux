@@ -10,4 +10,8 @@ fi
 export EDITOR=vim
 alias ls='ls --color=auto'
 
+if [[ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]]; then
+  source $HOME/.cache/heroku/autocomplete/zsh_setup
+fi
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

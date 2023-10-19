@@ -250,10 +250,6 @@ zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.local/share/zsh/functions ~/.zsh/functions ~/.asdf/completions $fpath)
 autoload -U zutil compinit complist
 
-if [ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]; then
-  source $HOME/.cache/heroku/autocomplete/zsh_setup
-fi
-
 compinit
 compdef _docker dangling
 compdef _heroku he
