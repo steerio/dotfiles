@@ -2,6 +2,7 @@
 
 BREW=/opt/homebrew
 PATH=$BREW/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+fpath=($BREW/completions/zsh $fpath)
 
 fzf_path=/opt/homebrew/Cellar/fzf/`fzf --version|cut -d' ' -f1`/shell
 . $fzf_path/completion.zsh
