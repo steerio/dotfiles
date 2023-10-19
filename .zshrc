@@ -135,7 +135,11 @@ djson () {
   docker inspect $*|bat -l json
 }
 
-autoload bhead clip dangling kubesh
+deploy () {
+  git push ${1-heroku} $(git branch --show-current):master
+}
+
+autoload bhead clip dangling gru kubesh ta
 
 alias l='eza --group-directories-first'
 alias L='l -l'
@@ -183,23 +187,7 @@ alias hnode='he run node --experimental-repl-await'
 alias ts-node='npx ts-node'
 alias gbc='git checkout -b'
 
-gru () {
-  local remote=${1-origin}
-  git remote update $remote
-  echo Pruning $remote
-  git remote prune $remote
-}
-
 alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
-
-ta () {
-  local n=${1-Main}
-  if tmux has-session -t $n 2>/dev/null; then
-    exec tmux a -t $n
-  else
-    exec tmux new -s $n
-  fi
-}
 
 alias g=git
 alias ga='git add'
@@ -217,10 +205,6 @@ alias merge='git merge'
 alias fetch='git fetch'
 alias pull='git pull'
 alias push='git push'
-
-deploy () {
-  git push ${1-heroku} $(git branch --show-current):master
-}
 
 bindkey -v
 bindkey "^A" vi-beginning-of-line

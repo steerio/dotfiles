@@ -1,0 +1,8 @@
+# vim: ft=zsh
+
+local n=${1-Main}
+if tmux has-session -t $n 2>/dev/null; then
+  exec tmux a -t $n
+else
+  exec tmux new -s $n
+fi
