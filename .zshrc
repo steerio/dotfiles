@@ -232,17 +232,17 @@ zle -N zle-line-finish
 
 zstyle ':completion:*' completer _expand _complete _files
 fpath=(~/.local/share/zsh/functions ~/.zsh/functions ~/.asdf/completions $fpath)
-autoload -U zutil compinit complist
-
-compinit
-compdef _docker dangling
-compdef _heroku he
+autoload -U zutil complist compinit
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PAGER=`which less`
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 . ~/.zshrc.local
+
+type compdef >/dev/null || compinit
+compdef _docker dangling
+compdef _heroku he
 
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
