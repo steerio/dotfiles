@@ -240,6 +240,13 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 . ~/.zshrc.local
 
+# Heroku goes a bit too far, let's undo some of its stuff.
+if type expand-or-complete-with-dots >/dev/null; then
+  bindkey "^I" fzf-completion
+  zle -D expand-or-complete-with-dots
+  unset -f expand-or-complete-with-dots
+fi
+
 type compdef >/dev/null || compinit
 compdef _docker dangling
 compdef _heroku he
