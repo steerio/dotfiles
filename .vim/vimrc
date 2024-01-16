@@ -35,9 +35,6 @@ nnoremap <silent> ]q :cnext<CR>
 nnoremap <C-J> <C-W>j
 nnoremap <C-K> <C-W>k
 
-nnoremap <silent> Y <Plug>OSCYank
-nmap <silent> YY <C-c>_
-nmap <silent> Yy :call OSCYankString(join(getline(1, '$'), "\n")
 nnoremap yY :%yank <c-r>=v:register<cr><cr>
 nnoremap dD :%delete <c-r>=v:register<cr><cr>
 

@@ -24,3 +24,7 @@ nmap <silent> ,jr <Plug>(coc-references)
 nnoremap <silent>,d :CocFzfList diagnostics --current-buf<CR>
 nnoremap <silent>,D :CocFzfList diagnostics<CR>
 nnoremap <silent>,o :CocFzfList outline<CR>
+
+nnoremap <silent> Y <Plug>OSCYank
+nmap <silent> YY <C-c>_
+nmap <silent> Yy :call OSCYankString(join(getline(1, '$'), "\n")

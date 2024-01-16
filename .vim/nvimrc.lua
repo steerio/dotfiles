@@ -16,6 +16,12 @@ vim.keymap.set('n', '[e', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next)
 vim.keymap.set('n', ',q', vim.diagnostic.setloclist)
 
+if pcall(require, 'osc52') then
+  vim.keymap.set('n', 'Y', require('osc52').copy_operator, {expr = true})
+  vim.keymap.set('n', 'YY', 'Y_', {remap = true})
+  vim.keymap.set('v', 'Y', require('osc52').copy_visual)
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
