@@ -141,6 +141,13 @@ deploy () {
 
 autoload bhead clip dangling gru kubesh ta
 
+if `command -v nvim >/dev/null`; then
+  export EDITOR=nvim
+  alias vim=nvim
+else
+  export EDITOR=vim
+fi
+
 alias l='eza --group-directories-first'
 alias L='l -l'
 alias la='l -a'
