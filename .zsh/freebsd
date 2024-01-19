@@ -1,0 +1,29 @@
+# vim: filetype=zsh
+
+. /usr/local/share/examples/fzf/shell/completion.zsh
+. /usr/local/share/examples/fzf/shell/key-bindings.zsh
+
+if [[ $TERM == rxvt || $TERM == xterm ]]; then
+  export TERM=$TERM-256color
+fi
+
+if [[ -n $DISPLAY ]]; then
+  clear
+fi
+
+PATH=${PATH%:$HOME/bin}
+
+if [[ -n $JAVA_HOME ]]; then
+  PATH=$JAVA_HOME/bin:$PATH
+  export JAVA_HOME
+fi
+export PATH
+
+LANG=en_US.UTF-8
+LANGUAGE=$LANG
+LC_ALL=$LANG
+export LANG LANGUAGE LC_ALL
+
+alias l='exa --group-directories-first'
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
