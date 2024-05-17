@@ -8,7 +8,7 @@ require'nvim-treesitter.configs'.setup {
 
 local lsp = require('lspconfig')
 lsp.tsserver.setup {}
-lsp.ruby_ls.setup {}
+lsp.ruby_lsp.setup {}
 lsp.hls.setup {}
 
 vim.keymap.set('n', ',d', vim.diagnostic.open_float)
