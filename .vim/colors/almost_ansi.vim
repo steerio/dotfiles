@@ -1,5 +1,6 @@
 hi clear
 syntax reset
+set notermguicolors
 let g:colors_name = 'almost_ansi'
 
 hi StatusNormal  ctermbg=15 ctermfg=0
