@@ -137,6 +137,7 @@ omap <silent> ]= <Plug>(indent-line-end)
 vmap <silent> [= <Plug>(indent-visual-start)
 vmap <silent> ]= <Plug>(indent-visual-end)
 
+nnoremap <BS> <Plug>(dirvish_up)
 nnoremap <Up> <C-W>+
 nnoremap <Down> <C-W>-
 nnoremap <Left> <C-W><
