@@ -271,11 +271,11 @@ if [[ "$PATH" != *".local"* ]]; then
 fi
 
 if [[ -d .ghcup && "$PATH" != *"ghcup"* ]]; then
-  export PATH="$HOME/.ghcup/bin:$PATH"
+  export PATH="$PATH:$HOME/.ghcup/bin"
 fi
 
 if [[ -d .cargo && "$PATH" != *"cargo"* ]]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
+  export PATH="$PATH:$HOME/.cargo/bin"
 fi
 
 if [[ -d .asdf ]]; then
