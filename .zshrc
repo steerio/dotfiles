@@ -161,6 +161,10 @@ alias rake='bundle exec rake'
 alias byaml="bat -l yaml"
 alias bjson="bat -l json"
 
+help () {
+  $1 --help|bat -lhelp --style=plain
+}
+
 alias pods="kubectl get pods"
 alias kup="kubectl apply -f"
 alias kcl="kubectl"
@@ -243,7 +247,8 @@ autoload -U zutil complist compinit
 
 export ERL_AFLAGS="-kernel shell_history enabled"
 export PAGER=`which less`
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANPAGER="sh -c 'col -bx | bat -lman -p'"
+export MANROFFOPT='-c'
 
 . ~/.zshrc.local
 
