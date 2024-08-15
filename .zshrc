@@ -158,8 +158,17 @@ alias bu='bundle'
 alias rails='bundle exec rails'
 alias rake='bundle exec rake'
 
-alias byaml="bat -l yaml"
-alias bjson="bat -l json"
+alias pat='bat --style=plain'
+alias yat='bat -lyaml'
+alias pyat='pat -lyaml'
+
+jat () {
+  jq . $*|bat -ljson
+}
+
+pjat () {
+  jq . $*|pat -ljson
+}
 
 help () {
   $1 --help|bat -lhelp --style=plain
