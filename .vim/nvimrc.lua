@@ -7,7 +7,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 local lsp = require('lspconfig')
-lsp.tsserver.setup {}
+lsp.ts_ls.setup {}
 lsp.ruby_lsp.setup {}
 lsp.hls.setup {}
 
