@@ -158,20 +158,21 @@ alias bu='bundle'
 alias rails='bundle exec rails'
 alias rake='bundle exec rake'
 
-alias pat='bat --style=plain'
+alias bat='bat -p'
+alias batn='\bat'
 alias yat='bat -lyaml'
-alias pyat='pat -lyaml'
+alias yatn='batn -lyaml'
 
 jat () {
   jq . $*|bat -ljson
 }
 
-pjat () {
-  jq . $*|pat -ljson
+jatl () {
+  jq . $*|batn -ljson
 }
 
 help () {
-  $1 --help|bat -lhelp --style=plain
+  $1 --help|bat -lhelp
 }
 
 alias pods="kubectl get pods"
@@ -255,7 +256,7 @@ fpath=(~/.local/share/zsh/functions ~/.zsh/functions ~/.asdf/completions $fpath)
 autoload -U zutil complist compinit
 
 export ERL_AFLAGS="-kernel shell_history enabled"
-export PAGER=`which less`
+export PAGER='bat -p'
 export MANPAGER="sh -c 'col -bx | bat -lman -p'"
 export MANROFFOPT='-c'
 
