@@ -6,7 +6,7 @@ hi link StatusActive StatusNormal
 hi link StatusActive_c StatusNormal_c
 
 let s:disp = has('gui_running') ? 'gui' : 'cterm'
-let s:ambiguous = ["be", "fe", "bo", "new", "old", "app", "site", "web"]
+let s:ambiguous = ["be", "fe", "bo", "app", "site", "web"]
 
 if &term !=# 'linux'
   fun! s:connecting_highlight(from, to, ...)
