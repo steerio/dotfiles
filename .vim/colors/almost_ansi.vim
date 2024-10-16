@@ -62,6 +62,7 @@ hi ColorColumn      term=reverse ctermbg=232
 hi MatchParen       term=reverse ctermbg=6
 hi ToolbarLine      term=underline ctermbg=242
 hi ToolbarButton    cterm=bold ctermfg=0 ctermbg=7
+
 hi Comment          ctermfg=243
 hi Constant         term=underline ctermfg=13
 hi Identifier       term=bold ctermfg=12
@@ -81,16 +82,21 @@ hi String           ctermfg=10
 hi Structure        ctermfg=14
 hi Number           ctermfg=14
 
-hi CocFloating ctermbg=234
-hi FgCocErrorFloatBgCocFloating ctermfg=9 ctermbg=234
-hi FgCocHintFloatBgCocFloating ctermfg=4 ctermbg=234
+if !has('nvim')
+  hi CocFloating ctermbg=234
+  hi FgCocErrorFloatBgCocFloating ctermfg=9 ctermbg=234
+  hi FgCocHintFloatBgCocFloating ctermfg=4 ctermbg=234
 
-hi rubyInterpolation ctermfg=6
-hi rubyInterpolationDelimiter ctermfg=14
-hi link rubyInteger Number
-hi link rubyFloat Number
-hi link jsonNumber Number
-hi link jsonKeyword Constant
-hi jsxOpenPunct ctermfg=4
-hi link jsxClosePunct jsxOpenPunct
-hi link jsxCloseString jsxOpenPunct
+  hi rubyInterpolation ctermfg=6
+  hi rubyInterpolationDelimiter ctermfg=14
+  hi link rubyInteger Number
+  hi link rubyFloat Number
+  hi link jsonNumber Number
+  hi link jsonKeyword Constant
+  hi jsxOpenPunct ctermfg=4
+  hi link jsxClosePunct jsxOpenPunct
+  hi link jsxCloseString jsxOpenPunct
+endif
+
+hi QuickScopePrimary ctermfg=82 ctermbg=239
+hi QuickScopeSecondary ctermfg=71 ctermbg=239
