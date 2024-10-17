@@ -193,6 +193,7 @@ augroup END
 
 " --- Config ---
 
+let g:dirvish_mode = ':sort | sort ,^.*/,i'
 let g:oscyank_term = 'default'
 let g:paredit_leader = '\'
 let g:rainbow_active = 0
