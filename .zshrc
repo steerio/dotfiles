@@ -286,7 +286,7 @@ if [[ "$PATH" != *".local"* ]]; then
 fi
 
 if [[ -d .ghcup && "$PATH" != *"ghcup"* ]]; then
-  export PATH="$PATH:$HOME/.ghcup/bin"
+  export PATH="$HOME/.ghcup/bin:$PATH"
 fi
 
 if [[ -d .cargo && "$PATH" != *"cargo"* ]]; then
