@@ -1,8 +1,5 @@
 # vim: filetype=zsh
 
-. /usr/share/fzf/completion.zsh
-. /usr/share/fzf/key-bindings.zsh
-
 if [[ $TERM == xterm ]]; then
   export TERM=xterm-256color
 fi

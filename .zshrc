@@ -258,6 +258,8 @@ export MANROFFOPT='-c'
 
 . ~/.zshrc.local
 
+type fzf >/dev/null 2>&1 && source <(fzf --zsh)
+
 # Heroku goes a bit too far, let's undo some of its stuff.
 if type expand-or-complete-with-dots >/dev/null; then
   bindkey "^I" fzf-completion
