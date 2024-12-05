@@ -4,11 +4,6 @@ BREW=/opt/homebrew
 PATH=/usr/local/bin:$BREW/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 fpath=($BREW/share/zsh/site-functions $fpath)
 
-fzf_path=/opt/homebrew/Cellar/fzf/`fzf --version|cut -d' ' -f1`/shell
-. $fzf_path/completion.zsh
-. $fzf_path/key-bindings.zsh
-unset fzf_path
-
 # EDITOR=$HOME/.local/bin/vim # MacVim
 export BREW EDITOR PATH
 LANG=en_US.UTF-8
