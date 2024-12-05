@@ -53,6 +53,6 @@ fi
 for vim in vim nvim; do
   if whence -p $vim >/dev/null; then
     echo "Installing plugins in $vim"
-    $vim -u NONE -c "so $plug | ru ./plugins.vim | PlugInstall | qa"
+    $vim -u NONE -c "so $plug | so .vim/plugins.vim | PlugInstall | qa"
   fi
 done
