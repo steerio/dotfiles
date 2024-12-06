@@ -258,14 +258,14 @@ export MANROFFOPT='-c'
 
 . ~/.zshrc.local
 
-type fzf >/dev/null 2>&1 && source <(fzf --zsh)
-
 # Heroku goes a bit too far, let's undo some of its stuff.
 if type expand-or-complete-with-dots >/dev/null; then
-  bindkey "^I" fzf-completion
+  bindkey -r "^I"
   zle -D expand-or-complete-with-dots
   unset -f expand-or-complete-with-dots
 fi
+
+type fzf >/dev/null 2>&1 && source <(fzf --zsh)
 
 type compdef >/dev/null || compinit
 compdef _docker dangling
