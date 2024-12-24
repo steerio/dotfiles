@@ -77,7 +77,7 @@ local complete = function(fallback)
   if cmp.visible() then
     -- The option list is already open, just select the next item
     cmp.select_next_item()
-  elseif vim.fn.mode() == "c" or has_words_before() then
+  elseif has_words_before() then
     cmp.complete()
     local entries = cmp.get_entries()
 
@@ -111,7 +111,7 @@ local back = function(callback)
   end
 end
 
-local modes = { "i", "c", "s" }
+local modes = { "i" }
 
 local mapping = {
   ['<C-e>'] = cmp.mapping.abort(),
@@ -146,32 +146,26 @@ cmp.setup({
 })
 require("cmp_git").setup() ]]-- 
 
--- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline({ '/', '?' }, {
-  mapping = cmp.mapping.preset.cmdline(mapping),
-  sources = {
-    { name = 'buffer' }
-  }
-})
-
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(mapping),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  }),
-  matching = {
-    disallow_symbol_nonprefix_matching = false,
-    disallow_fuzzy_matching = true
-  }
-})
-
--- Command to get current syntax engine
+-- Syntax engine helpers
 
 local helpers = require'helpers'
 
 vim.api.nvim_create_user_command("SyntaxEngine", function()
   print(helpers.is_treesitter_active() and "Treesitter" or "Standard")
 end, {})
+
+local ts_utils = require("nvim-treesitter.ts_utils")
+
+function print_ts_node()
+  local node = ts_utils.get_node_at_cursor()
+  if not node then
+    print("No Tree-Sitter node found under cursor.")
+    return
+  end
+
+  local node_type = node:type()
+  local node_range = { node:range() }
+  print(string.format("Node: %s [%d, %d] - [%d, %d]", node_type, node_range[1], node_range[2], node_range[3], node_range[4]))
+end
+
+vim.keymap.set('n', ',N', print_ts_node, { noremap = true, silent = true })
