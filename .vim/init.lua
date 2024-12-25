@@ -38,17 +38,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(ev)
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', ',jd', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', ',jD', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', ',jt', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', ',ji', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', ',jr', vim.lsp.buf.references, opts)
+
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', ',wd', ':split | lua vim.lsp.buf.definition()<CR>', opts)
-    vim.keymap.set('n', ',wD', ':split | lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.keymap.set('n', ',wt', ':split | lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.keymap.set('n', ',wi', ':split | lua vim.lsp.buf.implementation()<CR>', opts)
-    vim.keymap.set('n', ',wr', ':split | lua vim.lsp.buf.references()<CR>', opts)
+    vim.keymap.set('n', ',t', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', ',!', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', ',R', vim.lsp.buf.references, opts)
+
+    vim.keymap.set('n', '<C-W>gd', ':split | lua vim.lsp.buf.definition()<CR>', opts)
+    vim.keymap.set('n', '<C-W>gD', ':split | lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.keymap.set('n', '<C-W>,t', ':split | lua vim.lsp.buf.type_definition()<CR>', opts)
   end
 })
 
