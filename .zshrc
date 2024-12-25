@@ -248,7 +248,7 @@ zle -N zle-line-init
 zle -N zle-line-finish
 
 zstyle ':completion:*' completer _expand _complete _files
-fpath=(~/.local/share/zsh/functions ~/.zsh/functions ~/.asdf/completions $fpath)
+fpath=(~/.local/share/zsh/functions ~/.zsh/functions $fpath)
 autoload -U zutil complist compinit
 
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -289,14 +289,4 @@ fi
 
 if [[ -d .cargo && "$PATH" != *"cargo"* ]]; then
   export PATH="$PATH:$HOME/.cargo/bin"
-fi
-
-if [[ -d .asdf ]]; then
-  export ASDF_DIR=$HOME/.asdf
-  if [[ "$PATH" != *".asdf/bin"* ]]; then
-    export PATH=$ASDF_DIR/bin:$PATH
-  fi
-  if [[ "$PATH" != *".asdf/shims"* ]]; then
-    export PATH=$ASDF_DIR/shims:$PATH
-  fi
 fi

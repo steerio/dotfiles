@@ -20,4 +20,8 @@ if [[ -f $HOME/Library/Caches/heroku/autocomplete/zsh_setup ]]; then
   source $HOME/Library/Caches/heroku/autocomplete/zsh_setup
 fi
 
+if [[ -f /opt/homebrew/opt/asdf/libexec/asdf.sh ]]; then
+  source /opt/homebrew/opt/asdf/libexec/asdf.sh
+fi
+
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -8,4 +8,8 @@ if [[ -f $HOME/.cache/heroku/autocomplete/zsh_setup ]]; then
   source $HOME/.cache/heroku/autocomplete/zsh_setup
 fi
 
+if [[ -f /usr/share/zsh/site-functions/asdf.zsh ]]; then
+  source /usr/share/zsh/site-functions/asdf.zsh
+fi
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
