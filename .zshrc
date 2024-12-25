@@ -2,9 +2,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
-scripts=~/.zshrc
-scripts=${scripts:A:h}/scripts
-
 setopt prompt_subst
 setopt hist_ignore_all_dups
 setopt hist_ignore_dups
@@ -103,22 +100,6 @@ he () {
   fi
 }
 
-remote-mongo () {
-  if [[ -n $1 ]]; then
-    $scripts/remote-mongo $*
-  else
-    $scripts/remote-mongo $heroku_app
-  fi
-}
-
-node () {
-  if [[ $* == "" ]]; then
-    command node -r ~/.noderc
-  else
-    command node $*
-  fi
-}
-
 kpwd () {
   echo $(kubectx -c) '>' $(kubens -c)
 }
@@ -127,15 +108,15 @@ ky () {
   kubectl get $* -o yaml|bat -l yaml
 }
 
-djson () {
+dj () {
   docker inspect $*|bat -l json
 }
 
 deploy () {
-  git push ${1-heroku} $(git branch --show-current):master
+  git push ${1-heroku} $(git branch --show-current):main
 }
 
-autoload bhead clip dangling gru kubesh ta
+autoload bhead clip dangling gru kubesh remote-mongo ta
 
 if `command -v nvim >/dev/null`; then
   export EDITOR=nvim
@@ -163,7 +144,7 @@ jat () {
   jq . $*|bat -ljson
 }
 
-jatl () {
+jatn () {
   jq . $*|batn -ljson
 }
 

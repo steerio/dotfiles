@@ -18,4 +18,3 @@ config = read_config
 if config
   exec "mongo '#{config}'"
 end
-
