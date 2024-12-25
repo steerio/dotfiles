@@ -1,0 +1,5 @@
+# vim: ft=zsh
+
+source $1/bin/activate
+export VIRTUAL_ENV_PROMPT="%K{4} $(basename $(realpath $(dirname $1))) "
+export PROMPT="$VIRTUAL_ENV_PROMPT$_OLD_VIRTUAL_PS1"

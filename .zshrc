@@ -116,7 +116,7 @@ deploy () {
   git push ${1-heroku} $(git branch --show-current):main
 }
 
-autoload bhead clip dangling gru kubesh remote-mongo ta
+autoload activate bhead clip dangling gru kubesh remote-mongo ta
 
 if `command -v nvim >/dev/null`; then
   export EDITOR=nvim
