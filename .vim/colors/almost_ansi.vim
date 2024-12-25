@@ -82,7 +82,9 @@ hi String           ctermfg=10
 hi Structure        ctermfg=14
 hi Number           ctermfg=14
 
-if !has('nvim')
+if has('nvim')
+  hi NormalFloat ctermbg=235
+else
   hi rubyInterpolation ctermfg=6
   hi rubyInterpolationDelimiter ctermfg=14
   hi link rubyInteger Number
