@@ -83,10 +83,6 @@ hi Structure        ctermfg=14
 hi Number           ctermfg=14
 
 if !has('nvim')
-  hi CocFloating ctermbg=234
-  hi FgCocErrorFloatBgCocFloating ctermfg=9 ctermbg=234
-  hi FgCocHintFloatBgCocFloating ctermfg=4 ctermbg=234
-
   hi rubyInterpolation ctermfg=6
   hi rubyInterpolationDelimiter ctermfg=14
   hi link rubyInteger Number

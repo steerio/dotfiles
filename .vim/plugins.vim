@@ -21,16 +21,14 @@ if has('nvim')
   Plug 'ojroques/nvim-osc52'
   Plug 'nvim-treesitter/nvim-treesitter'
 else
-  Plug 'elixir-editors/vim-elixir.git'
-  Plug 'jparise/vim-graphql.git'
-  Plug 'antoinemadec/coc-fzf.git'
-  Plug 'neoclide/coc.nvim'
+  Plug 'MaxMEllon/vim-jsx-pretty'
+  Plug 'elixir-editors/vim-elixir'
+  Plug 'hail2u/vim-css3-syntax'
+  Plug 'jparise/vim-graphql'
+  Plug 'leafgarland/typescript-vim'
   Plug 'neovimhaskell/haskell-vim'
-  Plug 'leafgarland/typescript-vim.git'
-  Plug 'hail2u/vim-css3-syntax.git'
-  Plug 'yuezk/vim-js'
-  Plug 'MaxMEllon/vim-jsx-pretty.git'
   Plug 'ojroques/vim-oscyank'
+  Plug 'yuezk/vim-js'
 endif
 
 call plug#end()
