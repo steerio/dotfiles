@@ -3,6 +3,6 @@ set dir^=~/.vim/vim90/swap
 
 runtime ./shared.vim
 
-nnoremap <silent> Y <Plug>OSCYank
-nmap <silent> YY <C-c>_
-nmap <silent> Yy :call OSCYankString(join(getline(1, '$'), "\n")
+nnoremap <silent> gy <Plug>OSCYankOperator
+nmap <silent> gyy gy_
+nmap <silent> gY gy$

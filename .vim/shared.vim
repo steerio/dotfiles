@@ -122,6 +122,7 @@ nnoremap ,c :tcd<Space>
 nnoremap ,C :tcd ../
 nnoremap <silent>,. :execute("tcd ".<SID>buffer_dir())<CR>
 nnoremap <silent>,p :echo "Current path:" getcwd()<CR>
+nnoremap ,B :Git blame<CR>
 
 xmap i= <Plug>(indent-object_linewise-none)
 omap i= <Plug>(indent-object_linewise-none)
@@ -208,5 +209,43 @@ else
   colorscheme almost_ansi
 endif
 
-nnoremap q: :q
-nnoremap q<Tab> q:
+function! s:toggle_quick_fix()
+  let l:qf_is_open = len(filter(getwininfo(), 'v:val.quickfix'))
+  if l:qf_is_open
+    cclose
+  else
+    let l:winview = winsaveview()
+    botright copen
+    call winrestview(l:winview)
+    wincmd p
+  endif
+endfunction
+
+nnoremap ,Q :call <SID>toggle_quick_fix()<CR>
+nnoremap ,q <C-w>c
+
+function! s:max_or_equal()
+  " Save the current height of the window
+  let current_height = winheight(0)
+
+  " Maximize the window height
+  wincmd _
+
+  " If the height didn't change, perform equalize windows
+  if winheight(0) == current_height
+    wincmd =
+  endif
+endfunction
+
+nnoremap <silent> <M--> :call <SID>max_or_equal()<CR>
+nnoremap <M-n> <C-w>n
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <M-h> :<C-U>TmuxNavigateLeft<CR>
+nnoremap <silent> <M-j> :<C-U>TmuxNavigateDown<CR>
+nnoremap <silent> <M-k> :<C-U>TmuxNavigateUp<CR>
+nnoremap <silent> <M-l> :<C-U>TmuxNavigateRight<CR>
+nnoremap <silent> <M-\> :<C-U>TmuxNavigatePrevious<CR>
+nmap <M-J> <M-j><C-W>_
+nmap <M-K> <M-k><C-W>_

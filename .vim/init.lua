@@ -22,15 +22,19 @@ lsp.ts_ls.setup(lsp_opts)
 lsp.ruby_lsp.setup(lsp_opts)
 lsp.hls.setup(lsp_opts)
 
-vim.keymap.set('n', ',d', vim.diagnostic.open_float)
+vim.keymap.set('n', ',D', vim.diagnostic.open_float)
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']e', vim.diagnostic.goto_next)
-vim.keymap.set('n', ',q', vim.diagnostic.setloclist)
+vim.keymap.set('n', ',L', vim.diagnostic.setloclist)
 
 if pcall(require, 'osc52') then
-  vim.keymap.set('n', 'Y', require('osc52').copy_operator, {expr = true})
-  vim.keymap.set('n', 'YY', 'Y_', {remap = true})
-  vim.keymap.set('v', 'Y', require('osc52').copy_visual)
+  vim.keymap.set('n', '<C-c>', require('osc52').copy_operator, {expr = true})
+  vim.keymap.set('n', 'gy', require('osc52').copy_operator, {expr = true})
+  vim.keymap.set('n', 'gyy', 'gy_', {remap = true})
+  vim.keymap.set('n', '<C-c><C-c>', 'gy_', {remap = true})
+  vim.keymap.set('n', 'gY', 'gy$', {remap = true})
+  vim.keymap.set('v', 'gy', require('osc52').copy_visual)
+  vim.keymap.set('v', '<C-c>', require('osc52').copy_visual)
 end
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -39,16 +43,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.type_definition, opts)
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', '<C-]>', vim.lsp.buf.definition, opts)
-    vim.keymap.set('n', ',t', vim.lsp.buf.type_definition, opts)
-    vim.keymap.set('n', ',!', vim.lsp.buf.implementation, opts)
-    vim.keymap.set('n', ',R', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', 'g!', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'g>', vim.lsp.buf.references, opts)
 
-    vim.keymap.set('n', '<C-W>gd', ':split | lua vim.lsp.buf.definition()<CR>', opts)
+    vim.keymap.set('n', '<C-W>gd', ':split | lua vim.lsp.buf.type_definition()<CR>', opts)
+    vim.keymap.set('n', '<C-W><C-]>', ':split | lua vim.lsp.buf.definition()<CR>', opts)
     vim.keymap.set('n', '<C-W>gD', ':split | lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.keymap.set('n', '<C-W>,t', ':split | lua vim.lsp.buf.type_definition()<CR>', opts)
   end
 })
 
