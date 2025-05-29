@@ -55,6 +55,11 @@ fun! s:wipe_buffers()
       let bc = bc+1
     endif
   endfor
+  if &filetype == 'dirvish'
+    let l:view = winsaveview()
+    e!
+    call winrestview(l:view)
+  endif
   echomsg bc . ' buffer(s) wiped out.'
 endfun
 
@@ -74,13 +79,37 @@ fun! s:fit_window_to_buffer()
   exe 'resize '.result
 endfun
 
-command! -nargs=? -complete=dir SDirvish split | silent Dirvish <args>
+if index(g:plugs_order, 'vim-fern') != -1
+  fun! s:buffer_dir()
+    if &ft == 'fern'
+      return b:fern.root._path
+    else
+      return expand('%:h')
+    endif
+  endfun
 
-nnoremap <silent>,s :sp %:h<CR>
-nnoremap <silent>,S :sp .<CR>
-nnoremap <silent>,e :e %:h<CR>
-nnoremap <silent>,E :e .<CR>
-nnoremap <silent>,~ :Dirvish ~<CR>
+  command! -nargs=? -complete=dir SFern split | silent Fern <args>
+
+  nnoremap <silent>,s :SFern %:h<CR>
+  nnoremap <silent>,S :SFern .<CR>
+  nnoremap <silent><BS> :Fern %:h<CR>
+  nnoremap <silent>,e :Fern . -reveal=%<CR>
+  nnoremap <silent>,d :Fern . -drawer -toggle -width=40 -reveal=%<CR>
+  nnoremap <silent>,E :Fern .<CR>
+  nnoremap <silent>,~ :Fern ~<CR>
+elseif index(g:plugs_order, 'vim-dirvish') != -1
+  let g:dirvish_mode = ':sort | sort ,^.*/,i'
+  fun! s:buffer_dir()
+    return expand(&ft == 'dirvish' ? '%' : '%:h')
+  endfun
+
+  nnoremap <silent>,s :sp %:h<CR>
+  nnoremap <silent>,S :sp .<CR>
+  nnoremap <silent><BS> <Plug>(dirvish_up)
+  nnoremap <silent>,e :e %:h<CR>
+  nnoremap <silent>,E :e .<CR>
+  nnoremap <silent>,~ :e ~<CR>
+endif
 nnoremap <silent>,b :Buffers<CR>
 nnoremap <silent>,f :Files<CR>
 nnoremap <silent>,g :GFiles?<CR>
@@ -135,7 +164,6 @@ omap <silent> ]= <Plug>(indent-line-end)
 vmap <silent> [= <Plug>(indent-visual-start)
 vmap <silent> ]= <Plug>(indent-visual-end)
 
-nnoremap <BS> <Plug>(dirvish_up)
 nnoremap <Up> <C-W>+
 nnoremap <Down> <C-W>-
 nnoremap <Left> <C-W><
@@ -191,7 +219,6 @@ augroup END
 
 " --- Config ---
 
-let g:dirvish_mode = ':sort | sort ,^.*/,i'
 let g:oscyank_term = 'default'
 let g:paredit_leader = '\'
 let g:rainbow_active = 0

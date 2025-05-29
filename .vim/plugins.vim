@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
+" Plug 'lambdalisue/vim-fern'
 Plug 'luochen1990/rainbow'
 Plug 'machakann/vim-sandwich'
 Plug 'mechatroner/rainbow_csv'

@@ -100,6 +100,48 @@ fun! s:maybe_shorten(path)
   return strlen(a:path) < winwidth(0) - 90 ? a:path : pathshorten(a:path)
 endfun
 
+if index(g:plugs_order, 'vim-fern') != -1
+  fun! s:nav_path()
+    if &ft == 'fern'
+      return b:fern.root._path
+    endif
+  endfun
+
+  fun! s:tab_path(bufnr)
+    if getbufvar(a:bufnr, '&ft') == 'fern'
+      return fnamemodify(getbufvar(a:bufnr, 'fern.root._path'), ':p:~')
+    elseif empty(getbufvar(a:bufnr, '&buftype'))
+      return expand('#'.a:bufnr.':p:~')
+    endif
+  endfun
+elseif index(g:plugs_order, 'vim-dirvish') != -1
+  fun! s:nav_path()
+    if &ft == 'dirvish'
+      let path = expand('%:~:.')
+      return empty(path) ? expand('%:~') : path
+    endif
+  endfun
+
+  fun! s:tab_path(bufnr)
+    if empty(getbufvar(a:bufnr, '&buftype')) || getbufvar(a:bufnr, '&ft') ==# 'dirvish'
+      return expand('#'.a:bufnr.':p:~')
+    endif
+  endfun
+else
+  fun! s:nav_path()
+    if &buftype == 'netrw'
+      return expand('%')
+    endif
+  endfun
+
+  fun! s:tab_path(bufnr)
+    let buftype = getbufvar(a:bufnr, '&buftype')
+    if empty(buftype) || buftype ==# 'netrw'
+      return expand('#'.a:bufnr.':p:~')
+    endif
+  endfun
+endif
+
 "" Elements
 
 fun! s:ro()
@@ -107,19 +149,19 @@ fun! s:ro()
 endfun
 
 fun! s:filename()
-  if empty(&buftype)
-    let path = expand('%')
-    if empty(path)
-      return &mod ? '[+]' : '[-]'
+  let path = s:nav_path()
+  if empty(path)
+    if empty(&buftype)
+      let path = expand('%')
+      if empty(path)
+        return &mod ? '[+]' : '[-]'
+      endif
+      return s:maybe_shorten(expand('%')) . (&mod ? '[+]' : '').s:ro()
+    else
+      return expand('%:t').s:ro()
     endif
-    return s:maybe_shorten(fnamemodify(path, ':~:.')) . (&mod ? '[+]' : '').s:ro()
-  elseif &ft ==# 'dirvish'
-    let path = expand('%:~:.')
-    return empty(path)
-          \ ? s:maybe_shorten(expand('%:~')) . ' [cwd]'
-          \ : s:maybe_shorten(path)
   else
-    return expand('%:t').s:ro()
+    return s:maybe_shorten(path)
   endif
 endfun
 
@@ -212,41 +254,47 @@ fun! s:tab_label(n)
   let bufnr = tabpagebuflist(a:n)[tabnum - 1]
   let buftype = getbufvar(bufnr, '&buftype')
 
-  if empty(buftype) || getbufvar(bufnr, '&ft') ==# 'dirvish'
-    let path = expand('#'.bufnr.':p:~')
-    let empty = empty(path)
-    if !empty && path[0] !=# '~'
-      " Path is not within home
-      return pathshorten(path)
+  if buftype == 'terminal'
+    let path = ''
+    let empty = 1
+  else
+    let path = s:tab_path(bufnr)
+    if path == v:null
+      return expand('#' . bufnr . ':t')
     endif
-    " Path is within home or empty
-    let cwd = fnamemodify(getcwd(tabnum, a:n), ':~')
+    let empty = empty(path)
+  endif
 
-    if cwd[0] ==# '~' && strlen(cwd) > 2 && (empty || stridx(path, cwd) == 0)
-      " Tag needed: cwd is within home but deeper; file empty or path within cwd
-      let tag = fnamemodify(cwd, ':t')
-      if index(s:ambiguous, tag) >= 0
-        let tag = fnamemodify(fnamemodify(cwd, ':h'), ':t') . '/' . tag
-      endif
-      let tag = '[' . tag . ']'
 
-      if empty
-        return tag
-      else
-        let right = path[strlen(cwd)+1:]
-        if !strlen(right)
-          return tag
-        endif
-        return tag . ' ' . (right[-1:] ==# '/'
-              \ ? pathshorten(right[0:-2]).'/'
-              \ : fnamemodify(right, ':t'))
-      endif
+  if !empty && path[0] !=# '~'
+    " Path is not within home
+    return pathshorten(path)
+  endif
+  " Path is within home or empty
+
+  let cwd = fnamemodify(getcwd(tabnum, a:n), ':~')
+  if cwd[0] ==# '~' && strlen(cwd) > 2 && (empty || stridx(path, cwd) == 0)
+    " Tag needed: cwd is within home but deeper; file empty or path within cwd
+    let tag = fnamemodify(cwd, ':t')
+    if index(s:ambiguous, tag) >= 0
+      let tag = fnamemodify(fnamemodify(cwd, ':h'), ':t') . '/' . tag
+    endif
+    let tag = '[' . tag . ']'
+
+    if empty
+      return tag
     else
-      " No tag
-      return empty ? '' : pathshorten(path)
+      let right = path[strlen(cwd)+1:]
+      if !strlen(right)
+        return tag
+      endif
+      return tag . ' ' . (right[-1:] ==# '/'
+            \ ? pathshorten(right[0:-2]).'/'
+            \ : fnamemodify(right, ':t'))
     endif
   else
-    return expand('#' . bufnr . ':t')
+    " No tag
+    return empty ? '' : pathshorten(path)
   endif
 endfun
 
