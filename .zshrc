@@ -10,7 +10,11 @@ setopt hist_save_no_dups
 setopt hist_verify
 disable r
 
-. ~/.zshrc.theme
+_prompt_bg=8
+_prompt_fg=15
+_prompt_bg2=235
+_prompt_fg2=243
+[[ -f ~/.zshrc.theme ]] && . ~/.zshrc.theme
 
 __left () {
   case $PWD in
