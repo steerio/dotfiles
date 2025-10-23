@@ -33,8 +33,6 @@ nnoremap <C-K> <C-W>k
 nnoremap yY :%yank <c-r>=v:register<cr><cr>
 nnoremap dD :%delete <c-r>=v:register<cr><cr>
 
-" --- Plugins ---
-
 " --- Mappings ---
 
 fun! s:buffer_dir()
@@ -152,6 +150,7 @@ nnoremap ,C :tcd ../
 nnoremap <silent>,. :execute("tcd ".<SID>buffer_dir())<CR>
 nnoremap <silent>,p :echo "Current path:" getcwd()<CR>
 nnoremap ,B :Git blame<CR>
+nnoremap <silent>,J :set ft=json \| %!jq .<CR>
 
 xmap i= <Plug>(indent-object_linewise-none)
 omap i= <Plug>(indent-object_linewise-none)
