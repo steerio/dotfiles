@@ -7,20 +7,25 @@ require'nvim-treesitter.configs'.setup { highlight = { enable = true }}
 
 -- Set up LSP
 
-local lsp = require('lspconfig')
-local lsp_opts = {
-  capabilities = require('cmp_nvim_lsp').default_capabilities()
-}
+local util = require("lspconfig.util")
 
-lsp.elixirls.setup {
-  cmd = { "elixir-ls" },
-  capabilities = lsp_opts.capabilities
-}
-lsp.pyright.setup {}
-lsp.rust_analyzer.setup {}
-lsp.ts_ls.setup(lsp_opts)
-lsp.ruby_lsp.setup(lsp_opts)
-lsp.hls.setup(lsp_opts)
+-- vim.lsp.config("elixirls", { cmd = { "elixir-ls" } })
+-- vim.lsp.enable("elixirls")
+vim.lsp.enable("pyright")
+-- lsp.rust_analyzer.setup {}
+vim.lsp.enable("ts_ls")
+vim.lsp.config("ruby_lsp", {
+  root_dir = util.root_pattern("Gemfile")
+})
+vim.lsp.enable("ruby_lsp")
+vim.lsp.config("biome", {
+  -- Biome’s LSP binary
+  cmd = { "npx", "biome", "lsp-proxy" },
+  root_dir = util.root_pattern("biome.json", "biome.jsonc", ".biome.json"),
+  single_file_support = false,
+})
+vim.lsp.enable("biome")
+vim.lsp.enable("hls")
 
 vim.keymap.set('n', ',D', vim.diagnostic.open_float)
 vim.keymap.set('n', '[e', vim.diagnostic.goto_prev)
@@ -36,6 +41,16 @@ if pcall(require, 'osc52') then
   vim.keymap.set('v', 'gy', require('osc52').copy_visual)
   vim.keymap.set('v', '<C-c>', require('osc52').copy_visual)
 end
+
+vim.keymap.set("n", ",lf", function()
+  vim.lsp.buf.code_action({
+    apply = true,
+    context = {
+      only = { "quickfix" },
+      diagnostics = vim.lsp.diagnostic.get_line_diagnostics()
+    },
+  })
+end)
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -54,6 +69,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<C-W>gD', ':split | lua vim.lsp.buf.declaration()<CR>', opts)
   end
 })
+
+vim.g.copilot_no_tab_map = true
+vim.keymap.set('i', '<C-j>', 'copilot#Accept("\\<CR>")', { expr = true, silent = true, script = true, replace_keycodes = false })
 
 -- Set up nvim-cmp
 
