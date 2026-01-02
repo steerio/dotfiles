@@ -84,6 +84,8 @@ hi Number           ctermfg=14
 
 if has('nvim')
   hi NormalFloat ctermbg=235
+  hi link @tag.tsx Function
+  hi link @tag.builtin.tsx Identifier
 else
   hi rubyInterpolation ctermfg=6
   hi rubyInterpolationDelimiter ctermfg=14
