@@ -20,8 +20,8 @@ for i in (.*~.git*~.*.swp); do
   ln -s $src/$i $HOME/
 done
 
-mkdir -p ~/.config/nvim
-ln -s $src/.vim/init.lua ~/.config/nvim/init.lua
+mkdir -p $HOME/.config
+ln -s ../.vim/nvim $HOME/.config/nvim
 
 # Set up tmux
 
@@ -40,19 +40,3 @@ echo 'Setting up local zshrc'
 if [[ ! -f $HOME/.zshrc.local ]]; then
   echo . $HOME/.zsh/$system > $HOME/.zshrc.local
 fi
-
-# Vim plugins
-
-plug=".vim/autoload/plug.vim"
-
-if [[ ! -f $plug ]]; then
-  mkdir -p $(dirname $plug)
-  curl 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' > $plug
-fi
-
-for vim in vim nvim; do
-  if whence -p $vim >/dev/null; then
-    echo "Installing plugins in $vim"
-    $vim -u NONE -c "so $plug | so .vim/plugins.vim | PlugInstall | qa"
-  fi
-done

@@ -1,9 +1,3 @@
 .DS_Store
 .netrwhist
-/.vim/autoload/plug.vim
-/.vim/pack
-/.vim/nvim/pack
-/.vim/vim90/pack
-/.vim/vim90/swap
-/.vim/plugged
-!/.vim/vim90/swap/.gitkeep
+/.vim/nvim/lazy-lock.json

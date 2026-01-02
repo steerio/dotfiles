@@ -2,6 +2,9 @@ if hlID('StatusActive')
   finish
 endif
 
+let g:StatuslineBranchFn = get(g:, "StatuslineBranchFn", {-> ''})
+let g:StatuslineFlagsFn = get(g:, "StatuslineSynFlagsFn", {-> ''})
+
 hi link StatusActive StatusNormal
 hi link StatusActive_c StatusNormal_c
 
@@ -100,47 +103,18 @@ fun! s:maybe_shorten(path)
   return strlen(a:path) < winwidth(0) - 90 ? a:path : pathshorten(a:path)
 endfun
 
-if index(g:plugs_order, 'vim-fern') != -1
-  fun! s:nav_path()
-    if &ft == 'fern'
-      return b:fern.root._path
-    endif
-  endfun
+fun! s:nav_path()
+  if &ft == 'dirvish'
+    let path = expand('%:~:.')
+    return empty(path) ? expand('%:~') : path
+  endif
+endfun
 
-  fun! s:tab_path(bufnr)
-    if getbufvar(a:bufnr, '&ft') == 'fern'
-      return fnamemodify(getbufvar(a:bufnr, 'fern.root._path'), ':p:~')
-    elseif empty(getbufvar(a:bufnr, '&buftype'))
-      return expand('#'.a:bufnr.':p:~')
-    endif
-  endfun
-elseif index(g:plugs_order, 'vim-dirvish') != -1
-  fun! s:nav_path()
-    if &ft == 'dirvish'
-      let path = expand('%:~:.')
-      return empty(path) ? expand('%:~') : path
-    endif
-  endfun
-
-  fun! s:tab_path(bufnr)
-    if empty(getbufvar(a:bufnr, '&buftype')) || getbufvar(a:bufnr, '&ft') ==# 'dirvish'
-      return expand('#'.a:bufnr.':p:~')
-    endif
-  endfun
-else
-  fun! s:nav_path()
-    if &buftype == 'netrw'
-      return expand('%')
-    endif
-  endfun
-
-  fun! s:tab_path(bufnr)
-    let buftype = getbufvar(a:bufnr, '&buftype')
-    if empty(buftype) || buftype ==# 'netrw'
-      return expand('#'.a:bufnr.':p:~')
-    endif
-  endfun
-endif
+fun! s:tab_path(bufnr)
+  if empty(getbufvar(a:bufnr, '&buftype')) || getbufvar(a:bufnr, '&ft') ==# 'dirvish'
+    return expand('#'.a:bufnr.':p:~')
+  endif
+endfun
 
 "" Elements
 
@@ -167,7 +141,7 @@ endfun
 
 fun! s:type_branch()
   if empty(&buftype) || &ft ==# 'dirvish'
-    let branch = FugitiveHead()
+    let branch = g:StatuslineBranchFn()
     return empty(branch)
           \ ? ''
           \ : ' '.branch->substitute('^feature\([-/]\)', 'f\1', '')->substitute('^issue[-/]', '#', '')
@@ -180,9 +154,9 @@ fun! s:attributes()
   if winwidth(0) < 80 | return '' | endif
 
   let buf = []
-  if &ff != 'unix' | call add(buf, 'f:'.&ff) | endif
+  if &ff != 'unix' | call add(buf, &ff) | endif
   if !empty(&fenc) && &fenc !=# 'utf-8'
-    call add(buf, 'e:'.&fenc)
+    call add(buf, &fenc)
   endif
   if &ft !=# '' | call add(buf, &ft) | endif
   return join(buf, s:rsepw)
@@ -194,14 +168,20 @@ let s:highlights = {
 
 let s:labels = {
       \ 'n': 'N', 'i': 'I',
-      \ "\<C-v>": 'VB', "\<C-s>": 'SB',
-      \ 'c': ':', 't': 'TERM' }
+      \ "\<C-v>": 'B', "\<C-s>": 'S',
+      \ 'c': 'C', 't': 'T' }
 
 let s:highlights.V = s:highlights.v
 let s:highlights["\<C-v>"] = s:highlights.v
 let s:highlights.s = s:highlights.v
 let s:highlights.S = s:highlights.v
 let s:highlights["\<C-s>"] = s:highlights.v
+
+fun! s:flags()
+  let f = g:StatuslineFlagsFn()
+  if f == "" | return f | endif
+  return f.s:rsepw
+endfun
 
 let s:m = ''
 fun! s:mode()
@@ -228,9 +208,9 @@ let s:templates = [
       \ '%#StatusActive# %{'.s:sid.'filename()} '.s:connect('Active', 0).
       \ '%#StatusMid# %{'.s:sid.'type_branch()} '.s:connect('Mid', 0).
       \ '%#StatusLine#%='.
-      \ '%{'.s:sid.'attributes()} '.s:connect('Mid', 1).
+      \ ' %{'.s:sid.'attributes()} '.s:connect('Mid', 1).
       \ '%#StatusMid# %3l/%L:%2c '.s:connect('Active', 1).
-      \ '%#StatusActive# %{'.s:sid.'mode()} ',
+      \ '%#StatusActive# %{g:StatuslineFlagsFn()}%{'.s:sid.'mode()} ',
       \
       \ '%#StatusNC# %{'.s:sid.'filename()} '.s:connect('NC', 0).
       \ '%#StatusLineNC#%='.
