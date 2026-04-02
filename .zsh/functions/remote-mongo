@@ -1,8 +1,0 @@
-scripts=~/.zshrc
-scripts=${scripts:A:h}/scripts
-
-if [[ -n $1 ]]; then
-  ~/.dotfiles/scripts/remote-mongo $*
-else
-  ~/.dotfiles/scripts/remote-mongo $heroku_app
-fi

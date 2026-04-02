@@ -1,6 +1,0 @@
-# vim: ft=zsh
-
-local remote=${1-origin}
-git remote update $remote
-echo Pruning $remote
-git remote prune $remote

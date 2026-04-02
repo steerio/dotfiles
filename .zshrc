@@ -14,7 +14,6 @@ _prompt_bg=8
 _prompt_fg=15
 _prompt_bg2=235
 _prompt_fg2=243
-[[ -f ~/.zshrc.theme ]] && . ~/.zshrc.theme
 
 __left () {
   case $PWD in
@@ -116,18 +115,11 @@ dj () {
   docker inspect $*|bat -l json
 }
 
-deploy () {
-  git push ${1-heroku} $(git branch --show-current):main
+gh () {
+  git clone git@github.com:$1.git $2
 }
 
-autoload activate bhead clip dangling gru kubesh remote-mongo ta
-
-if `command -v nvim >/dev/null`; then
-  export EDITOR=nvim
-  alias vim=nvim
-else
-  export EDITOR=vim
-fi
+autoload activate clip dangling kubesh ta conda
 
 alias l='eza --group-directories-first'
 alias L='l -l'
@@ -166,30 +158,30 @@ alias kd="kubectl describe"
 alias kns="kubens"
 alias ks="kubesh"
 alias kcp="kubectl cp"
-alias kyd="ky deploy"
-
-alias clj="rlwrap java -cp ~/.m2/clojure-current.jar:. clojure.main"
 
 alias dssh='docker-machine ssh'
 alias di='docker image ls'
 alias dv='docker volume ls'
 alias dps='docker ps'
 alias dpa='docker ps -a'
-alias drmi='docker rmi'
-alias drm='docker rm'
 
 alias apps="heroku apps -A"
 alias hcs="he config -s"
-alias hl='he logs'
-alias hlt='he logs --tail'
 alias hsh='he run /bin/bash'
-alias hyarn='he run yarn'
-alias hnode='he run node --experimental-repl-await'
+alias hrc='he run env PAGER=cat rails c'
 
 alias ts-node='npx ts-node'
-alias gbc='git checkout -b'
+alias gbc='git switch -c'
 
 alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
+
+gbs () {
+  if [[ -n $1 ]]; then
+    git switch $1
+  else
+    git branch --list|fzf|sed 's/^[ *]*//'|xargs git switch
+  fi
+}
 
 alias g=git
 alias ga='git add'
@@ -198,20 +190,23 @@ alias gci='git commit'
 alias gco='git checkout'
 alias gdf='git diff'
 alias gdfc='git diff --cached'
-alias ghi='git log -p'
+alias ghi='git log -p --no-textconv'
 alias glg='git log --graph'
 alias glog='git log --stat'
 alias grv='git remote -v'
 alias gst='git status -sb'
+alias amend='git commit --amend'
+alias main='git switch main'
 alias merge='git merge'
 alias fetch='git fetch'
+alias rebase='git rebase'
 alias pull='git pull'
 alias push='git push'
 
 bindkey -v
 bindkey "^A" vi-beginning-of-line
 bindkey "^E" vi-end-of-line
-setopt noautomenu nobeep
+setopt noautomenu nobeep hist_ignore_space
 
 function zle-line-init () {
   print -n "\e[?1000l"
@@ -237,7 +232,9 @@ fpath=(~/.local/share/zsh/functions ~/.zsh/functions $fpath)
 autoload -U zutil complist compinit
 
 export ERL_AFLAGS="-kernel shell_history enabled"
+export BAT_THEME=ansi
 export PAGER='bat -p'
+export DELTA_PAGER=$PAGER
 export MANPAGER="sh -c 'col -bx | bat -lman -p'"
 export MANROFFOPT='-c'
 
@@ -250,6 +247,13 @@ if type expand-or-complete-with-dots >/dev/null; then
   unset -f expand-or-complete-with-dots
 fi
 
+if `command -v nvim >/dev/null`; then
+  export EDITOR=nvim
+  alias vim=nvim
+else
+  export EDITOR=vim
+fi
+
 type fzf >/dev/null 2>&1 && source <(fzf --zsh)
 
 type compdef >/dev/null || compinit
@@ -259,6 +263,7 @@ compdef _heroku he
 export FZF_DEFAULT_COMMAND='fd --type f'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d'
+export FZF_DEFAULT_OPTS='--color=fg+:15,preview-fg:15'
 
 _fzf_complete_mosh () {
   _fzf_complete_ssh $*
