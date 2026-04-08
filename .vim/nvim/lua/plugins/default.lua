@@ -19,13 +19,13 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    branch = "master",
     lazy = false,
     config = function()
       local enable = { enable = true }
-      require("nvim-treesitter.configs").setup({
+      local no_ruby = vim.tbl_extend("force", enable, { disable = { "ruby" }})
+      require("nvim-treesitter.config").setup({
         highlight = enable,
-        indent = enable,
+        indent = no_ruby,
         matchup = enable,
       })
     end,
