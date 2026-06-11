@@ -9,6 +9,8 @@ map('n', ',D', vim.diagnostic.open_float)
 map('n', '[e', vim.diagnostic.goto_prev)
 map('n', ']e', vim.diagnostic.goto_next)
 map('n', ',L', vim.diagnostic.setloclist)
+map('n', ',B', ':Gitsigns blame<CR>')
+map('n', ',r', ':Rg ')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),

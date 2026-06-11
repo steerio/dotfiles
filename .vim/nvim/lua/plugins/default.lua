@@ -39,10 +39,49 @@ return {
     end,
   },
   {
-    "tpope/vim-fugitive",
+    "lewis6991/gitsigns.nvim",
     lazy = false,
-    config = function()
-      vim.g.StatuslineBranchFn = vim.fn.FugitiveHead
+    config = function ()
+      vim.g.StatuslineBranchFn = function()
+        return vim.b.gitsigns_head
+      end
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "GitSignsUpdate",
+        callback = function(args)
+          if vim.b[args.buf].gitsigns_head then
+            vim.wo.signcolumn = "yes"
+          else
+            vim.wo.signcolumn = "number"
+          end
+        end,
+      })
+
+      local gs = require("gitsigns")
+      gs.setup({
+        signcolumn = true,
+        numhl = false
+      })
+
+      vim.keymap.set("n", "]c", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "]c", bang = true })
+        else
+          gs.next_hunk()
+        end
+      end, { desc = "Next hunk" })
+
+      vim.keymap.set("n", "[c", function()
+        if vim.wo.diff then
+          vim.cmd.normal({ "[c", bang = true })
+        else
+          gs.prev_hunk()
+        end
+      end, { desc = "Previous hunk" })
+
+      vim.keymap.set("n", ",>", gs.stage_hunk)
+      vim.keymap.set("n", ",<", gs.reset_hunk)
+      vim.keymap.set("n", ",P", gs.preview_hunk)
     end,
   },
   {

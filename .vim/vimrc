@@ -96,15 +96,11 @@ nnoremap <silent><M-4> :tabn 4<CR>
 nnoremap <silent>,5 :tabn 5<CR>
 nnoremap <silent><M-5> :tabn 5<CR>
 nnoremap <silent>,$ :tablast<CR>
-nnoremap ,h gT
-nnoremap ,l gt
 nnoremap <silent>,<Tab> g<Tab>
 nnoremap <silent>,W :call <SID>wipe_buffers()<CR>
-nnoremap ,r :Rg<Space>
 nnoremap ,c :tcd<Space>
 nnoremap ,C :tcd ../
 nnoremap <silent>,p :echo "Current path:" getcwd()<CR>
-nnoremap ,B :Git blame<CR>
 nnoremap <silent>,J :set ft=json \| %!jq .<CR>
 
 nnoremap <Up> <C-W>+
