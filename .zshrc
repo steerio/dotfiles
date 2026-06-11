@@ -115,7 +115,7 @@ dj () {
   docker inspect $*|bat -l json
 }
 
-gh () {
+clone () {
   git clone git@github.com:$1.git $2
 }
 
@@ -171,7 +171,6 @@ alias hsh='he run /bin/bash'
 alias hrc='he run env PAGER=cat rails c'
 
 alias ts-node='npx ts-node'
-alias gbc='git switch -c'
 
 alias rmux="tmux -f ~/.tmux/remote.conf -L remote"
 
@@ -185,23 +184,29 @@ gbs () {
 
 alias g=git
 alias ga='git add'
+alias gbc='git switch -c'
 alias gbr='git branch'
 alias gci='git commit'
 alias gco='git checkout'
 alias gdf='git diff'
 alias gdfc='git diff --cached'
+alias gdfn='git diff --name-status'
 alias ghi='git log -p --no-textconv'
-alias glg='git log --graph'
 alias glog='git log --stat'
 alias grv='git remote -v'
 alias gst='git status -sb'
+
+alias ours='git checkout --ours'
+alias theirs='git checkout --theirs'
+
 alias amend='git commit --amend'
-alias main='git switch main'
 alias merge='git merge'
 alias fetch='git fetch'
+alias prune='git fetch --prune'
 alias rebase='git rebase'
 alias pull='git pull'
 alias push='git push'
+alias show='git show'
 
 bindkey -v
 bindkey "^A" vi-beginning-of-line
