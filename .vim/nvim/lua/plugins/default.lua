@@ -5,12 +5,15 @@ local remap = { remap = true }
 local events = { "BufReadPre", "BufNewFile" }
 
 local copilot_types = {
+  "eruby",
   "javascript",
+  "json",
   "lua",
   "markdown",
   "python",
   "ruby",
   "scss",
+  "sql",
   "typescript",
   "typescriptreact",
 }
@@ -81,7 +84,7 @@ return {
 
       vim.keymap.set("n", ",>", gs.stage_hunk)
       vim.keymap.set("n", ",<", gs.reset_hunk)
-      vim.keymap.set("n", ",P", gs.preview_hunk)
+      vim.keymap.set("n", "<C-Space>", gs.preview_hunk)
     end,
   },
   {

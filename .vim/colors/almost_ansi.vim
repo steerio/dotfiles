@@ -42,10 +42,12 @@ hi WarningMsg       term=standout ctermfg=9
 hi WildMenu         term=standout ctermfg=0 ctermbg=11
 hi Folded           term=standout ctermfg=10 ctermbg=234
 hi FoldColumn       term=standout ctermfg=14 ctermbg=234
-hi DiffAdd          term=bold ctermbg=4
-hi DiffChange       term=bold ctermbg=5
-hi DiffDelete       term=bold ctermfg=12 ctermbg=6
+
+hi DiffAdd          term=bold ctermbg=22 ctermfg=NONE
+hi DiffChange       term=bold ctermbg=21 ctermfg=NONE
+hi DiffDelete       term=bold ctermbg=52 ctermfg=NONE
 hi DiffText         term=reverse cterm=bold ctermbg=9
+
 hi SignColumn       term=standout ctermfg=6 ctermbg=0
 hi Conceal          ctermfg=7 ctermbg=242
 hi SpellBad         term=reverse ctermbg=9
@@ -86,6 +88,14 @@ if has('nvim')
   hi NormalFloat ctermbg=235
   hi link @tag.tsx Function
   hi link @tag.builtin.tsx Identifier
+
+  hi GitSignsChange ctermfg=6
+  hi GitSignsStagedChange ctermfg=239
+  hi GitSignsStagedAdd ctermfg=241
+  hi link GitSignsStagedDelete GitSignsStagedChange
+  hi link GitSignsStagedChangedelete GitSignsStagedChange
+  hi link GitSignsStagedTopdelete GitSignsStagedChange
+  hi link GitSignsStagedUntracked GitSignsStagedChange
 else
   hi rubyInterpolation ctermfg=6
   hi rubyInterpolationDelimiter ctermfg=14
