@@ -23,15 +23,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     lazy = false,
-    config = function()
-      local enable = { enable = true }
-      local no_ruby = vim.tbl_extend("force", enable, { disable = { "ruby" }})
-      require("nvim-treesitter.config").setup({
-        highlight = enable,
-        indent = no_ruby,
-        matchup = enable,
-      })
-    end,
   },
   {
     "justinmk/vim-dirvish",

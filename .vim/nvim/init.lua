@@ -69,3 +69,11 @@ vim.g.StatuslineFlagsFn = function()
 
   return table.concat(flags)
 end
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(ev)
+    if vim.treesitter.get_parser(ev.buf) and not vim.treesitter.highlighter.active[ev.buf] then
+      vim.treesitter.start(ev.buf)
+    end
+  end
+})
