@@ -103,13 +103,6 @@ fun! s:maybe_shorten(path)
   return strlen(a:path) < winwidth(0) - 90 ? a:path : pathshorten(a:path)
 endfun
 
-fun! s:nav_path()
-  if &ft == 'dirvish'
-    let path = expand('%:~:.')
-    return empty(path) ? expand('%:~') : path
-  endif
-endfun
-
 fun! s:tab_path(bufnr)
   if empty(getbufvar(a:bufnr, '&buftype')) || getbufvar(a:bufnr, '&ft') ==# 'dirvish'
     return expand('#'.a:bufnr.':p:~')
@@ -123,19 +116,16 @@ fun! s:ro()
 endfun
 
 fun! s:filename()
-  let path = s:nav_path()
-  if empty(path)
-    if empty(&buftype)
-      let path = expand('%')
-      if empty(path)
-        return &mod ? '[+]' : '[-]'
-      endif
-      return s:maybe_shorten(expand('%')) . (&mod ? '[+]' : '').s:ro()
-    else
-      return expand('%:t').s:ro()
-    endif
+  if &ft == 'dirvish'
+    let path = expand('%:~:.')
+    return s:maybe_shorten(empty(path) ? expand('%:~') : path)
+  endif
+
+  if empty(&buftype)
+    let path = expand('%')
+    return (empty(path) ? '[No Name]' : s:maybe_shorten(path)) . (&mod ? ' ✶' : '') . s:ro()
   else
-    return s:maybe_shorten(path)
+    return expand('%:t').s:ro()
   endif
 endfun
 
@@ -209,13 +199,13 @@ let s:templates = [
       \ '%#StatusMid# %{'.s:sid.'type_branch()} '.s:connect('Mid', 0).
       \ '%#StatusLine#%='.
       \ ' %{'.s:sid.'attributes()} '.s:connect('Mid', 1).
-      \ '%#StatusMid# %3l/%L:%2c '.s:connect('Active', 1).
+      \ '%#StatusMid# %2c:%P '.s:connect('Active', 1).
       \ '%#StatusActive# %{g:StatuslineFlagsFn()}%{'.s:sid.'mode()} ',
       \
       \ '%#StatusNC# %{'.s:sid.'filename()} '.s:connect('NC', 0).
       \ '%#StatusLineNC#%='.
       \ '%{&ft} '.s:connect('NC', 1).
-      \ '%#StatusNC# %3l/%L:%2c '
+      \ '%#StatusNC# %2c:%P '
       \ ]
 
 "" Tabline
