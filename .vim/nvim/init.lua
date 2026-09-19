@@ -4,13 +4,38 @@ vim.cmd("runtime! vimrc mappings.vim")
 require'config.lazy'
 
 local map = vim.keymap.set
+local copilot = "GitHub Copilot"
 
-map('n', ',D', vim.diagnostic.open_float)
+map('n', ',do', vim.diagnostic.open_float)
 map('n', '[e', vim.diagnostic.goto_prev)
 map('n', ']e', vim.diagnostic.goto_next)
-map('n', ',L', vim.diagnostic.setloclist)
+map('n', ',dl', vim.diagnostic.setloclist)
 map('n', ',B', ':Gitsigns blame<CR>')
 map('n', ',r', ':Rg ')
+map('n', ',L', function()
+  local clients = {}
+
+  for _, i in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    if i.name ~= copilot then
+      table.insert(clients, i.name)
+    end
+  end
+
+  if #clients == 0 then
+    print("No LSP clients attached.")
+    return
+  end
+
+  print("LSP: " .. table.concat(clients, ", "))
+end)
+
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function(ev)
+    if vim.treesitter.get_parser(ev.buf) and not vim.treesitter.highlighter.active[ev.buf] then
+      vim.treesitter.start(ev.buf)
+    end
+  end
+})
 
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -50,7 +75,7 @@ vim.g.StatuslineFlagsFn = function()
   local clients = vim.lsp.get_clients({ bufnr = bufnr })
   local lang_flag = ""
   for _, client in ipairs(clients) do
-    if client.name == "GitHub Copilot" then
+    if client.name == copilot then
       table.insert(flags, "c")
     elseif client.server_capabilities
        and client.server_capabilities.semanticTokensProvider then
@@ -69,11 +94,3 @@ vim.g.StatuslineFlagsFn = function()
 
   return table.concat(flags)
 end
-
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function(ev)
-    if vim.treesitter.get_parser(ev.buf) and not vim.treesitter.highlighter.active[ev.buf] then
-      vim.treesitter.start(ev.buf)
-    end
-  end
-})
