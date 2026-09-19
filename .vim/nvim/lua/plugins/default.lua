@@ -193,6 +193,10 @@ return {
       map("n", "gyy", "gy_", remap)
       map("n", "<C-c><C-c>", "gy_", remap)
       map("n", "gY", "gy$", remap)
+      map("n", "<C-c>g", function() osc52.copy(vim.fn.expand("%:.")) end)
+      map("n", "<C-c>G", function() osc52.copy(vim.fn.expand("%:p")) end)
+      map("n", "gyg", "<C-c>g", remap)
+      map("n", "gyG", "<C-c>G", remap)
       map("v", "gy", osc52.copy_visual)
       map("v", "<C-c>", osc52.copy_visual)
     end,
