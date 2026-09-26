@@ -58,7 +58,7 @@ __right () {
   fi
 
   if [[ -n $bar[1] ]]; then
-    echo "%F{$1} ${(j:  :)bar} "
+    echo "%F{$1}${(j: · :)bar} "
   fi
 }
 

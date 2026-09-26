@@ -46,14 +46,18 @@ if &term !=# 'linux'
 
   call s:update_highlights()
 
-  let s:lheavy = ''
-  let s:rheavy = ''
-  let s:lsep = ''
-  let s:rsep = ''
-  let s:rsepw = '  '
+  let s:connect_l = ''
+  let s:connect_r = ''
+  let s:divider_l = '┊'
+  let s:divider_r = '┊'
+
+  let s:connect_tab = ''
+  let s:divider_tab = ''
+
+  let s:separator = ' · '
 
   fun! s:connect(outside, right)
-    return '%#Status'.a:outside.'_c#'.(a:right ? s:rheavy : s:lheavy)
+    return '%#Status'.a:outside.'_c#'.(a:right ? s:connect_r : s:connect_l)
   endfun
 
   fun! s:tab_connect(sel, last, next_sel)
@@ -64,14 +68,15 @@ if &term !=# 'linux'
     elseif a:last
       let hl = '_end'
     else
-      return s:lsep
+      return s:divider_tab
     endif
-    return '%#TabLine'.hl.'#'.s:lheavy
+    return '%#TabLine'.hl.'#'.s:connect_tab
   endfun
 else
-  let s:lsep = '|'
-  let s:rsep = s:lsep
-  let s:rsepw = ' | '
+  let s:divider_l = '|'
+  let s:divider_r = s:divider_l
+  let s:divider_tab = s:divider_l
+  let s:separator = ' + '
 
   fun! s:connect(outside, idx)
     return ''
@@ -79,7 +84,7 @@ else
 
   fun! s:tab_connect(sel, last, next_sel)
     if !a:sel && !a:next_sel
-      return s:lsep
+      return s:divider_l
     else
       return ''
     endif
@@ -112,7 +117,7 @@ endfun
 "" Elements
 
 fun! s:ro()
-  return (&ro || !&ma ? ' '.s:lsep.' ' : '')
+  return (&ro || !&ma ? ' ' : '')
 endfun
 
 fun! s:is_loclist()
@@ -163,7 +168,7 @@ fun! s:attributes()
     call add(buf, &fenc)
   endif
   if &ft !=# '' | call add(buf, &ft) | endif
-  return join(buf, s:rsepw)
+  return join(buf, s:separator)
 endfun
 
 let s:highlights = {
@@ -184,7 +189,7 @@ let s:highlights["\<C-s>"] = s:highlights.v
 fun! s:flags()
   let f = g:StatuslineFlagsFn()
   if f == "" | return f | endif
-  return f.s:rsepw
+  return f.s:separator
 endfun
 
 let s:m = ''
@@ -199,7 +204,7 @@ fun! s:mode()
   endif
 
   let buf = get(s:labels, l:m, l:m)
-  if &paste | let buf .= ' '.s:rsep.' PASTE' | endif
+  if &paste | let buf .= ' '.s:divider_r.' PASTE' | endif
   return buf
 endfun
 
