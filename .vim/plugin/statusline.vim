@@ -115,10 +115,22 @@ fun! s:ro()
   return (&ro || !&ma ? ' '.s:lsep.' ' : '')
 endfun
 
+fun! s:is_loclist()
+  return getwininfo()[0].loclist
+endfun
+
 fun! s:filename()
   if &ft == 'dirvish'
     let path = expand('%:~:.')
     return s:maybe_shorten(empty(path) ? expand('%:~') : path)
+  endif
+
+  if &buftype ==# 'quickfix'
+    if exists('w:quickfix_title')
+      return w:quickfix_title
+    else
+      return (s:is_loclist() ? 'Location List' : 'Quickfix')
+    endif
   endif
 
   if empty(&buftype)
@@ -135,6 +147,8 @@ fun! s:type_branch()
     return empty(branch)
           \ ? ''
           \ : ' '.branch->substitute('^feature\([-/]\)', 'f\1', '')->substitute('^issue[-/]', '#', '')
+  elseif &ft ==# 'qf'
+    return ''
   else
     return &buftype
   endif
@@ -302,6 +316,7 @@ endfun
 augroup status
   autocmd!
   autocmd BufEnter,SessionLoadPost,FileChangedShellPost * call s:update()
+  autocmd FileType qf call s:update()
   if &term !=# 'linux'
     autocmd ColorScheme * call s:update_highlights()
   endif
