@@ -103,20 +103,24 @@ he () {
   fi
 }
 
-kpwd () {
-  echo $(kubectx -c) '>' $(kubens -c)
-}
-
-ky () {
-  kubectl get $* -o yaml|bat -l yaml
-}
-
 dj () {
   docker inspect $*|bat -l json
 }
 
 clone () {
   git clone git@github.com:$1.git $2
+}
+
+drop() {
+  tail -n +"$((${1:-1} + 1))"
+}
+
+fld() {
+  awk "{ print \$$1 }"
+}
+
+nth() {
+  sed -n "${1}p"
 }
 
 autoload activate clip dangling kubesh ta conda
@@ -148,17 +152,6 @@ help () {
   $1 --help|bat -lhelp
 }
 
-alias pods="kubectl get pods"
-alias kup="kubectl apply -f"
-alias kcl="kubectl"
-alias kcx="kubectx"
-alias kg="kubectl get"
-alias kgd="kubectl get deploy"
-alias kd="kubectl describe"
-alias kns="kubens"
-alias ks="kubesh"
-alias kcp="kubectl cp"
-
 alias dssh='docker-machine ssh'
 alias di='docker image ls'
 alias dv='docker volume ls'
@@ -182,7 +175,6 @@ gbs () {
   fi
 }
 
-alias g=git
 alias ga='git add'
 alias gbc='git switch -c'
 alias gbr='git branch'
