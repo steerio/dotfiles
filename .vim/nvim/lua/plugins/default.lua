@@ -57,11 +57,13 @@ return {
         numhl = false
       })
 
+      vim.keymap.set({'o', 'x'}, 'ih', '<Cmd>Gitsigns select_hunk<CR>')
+
       vim.keymap.set("n", "]c", function()
         if vim.wo.diff then
           vim.cmd.normal({ "]c", bang = true })
         else
-          gs.next_hunk()
+          gs.nav_hunk('next', { target = 'all' })
         end
       end, { desc = "Next hunk" })
 
@@ -69,9 +71,17 @@ return {
         if vim.wo.diff then
           vim.cmd.normal({ "[c", bang = true })
         else
-          gs.prev_hunk()
+          gs.nav_hunk('prev', { target = 'all' })
         end
       end, { desc = "Previous hunk" })
+
+      vim.keymap.set("n", "]C", function()
+        gs.nav_hunk('next', { target = 'unstaged' })
+      end, { desc = "Next unstaged hunk" })
+
+      vim.keymap.set("n", "[C", function()
+        gs.nav_hunk('prev', { target = 'unstaged' })
+      end, { desc = "Previous unstaged hunk" })
 
       vim.keymap.set("n", ",>", gs.stage_hunk)
       vim.keymap.set("n", ",<", gs.reset_hunk)
